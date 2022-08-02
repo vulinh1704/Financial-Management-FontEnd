@@ -78,33 +78,37 @@
                 <h3 class="mb-0">Trang cá nhân</h3>
               </div>
             </div>
-            <form>
+            <form [formGroup]="updateForm" (ngSubmit)="update()">
               <div class="profile-pic">
                 <label class="-label" for="file">
                   <span class="glyphicon glyphicon-camera"></span>
                   <span>Thay đổi</span>
                 </label>
-                <input id="file" type="file" onchange="loadFile(event)"/>
-                <img src="https://dvdn247.net/wp-content/uploads/2020/07/avatar-mac-dinh-1.png" id="output" width="200" />
+                <input type="file" id="file" #userPhoto (change)="onFileSelected($event)" name="image" autocomplete="off"/>
+                <img src="{{image}}" id="output" width="200">
+              </div>
+              <div class="mb-3">
+                <label class="form-label" for="exampleFormControlInput">Email</label>
+                <input type="email" class="form-control" id="exampleFormControlInput" placeholder="Email" formControlName="email">
               </div>
               <div class="mb-3">
                 <label class="form-label" for="exampleFormControlInput1">Tên</label>
-                <input type="email" class="form-control" id="exampleFormControlInput1" placeholder="Tên đầy đủ">
+                <input type="text" class="form-control" id="exampleFormControlInput1" placeholder="Tên dang nhap" formControlName="username">
               </div>
               <div class="mb-3">
                 <label class="form-label" for="exampleFormControlInput1">Địa chỉ</label>
-                <input type="email" class="form-control"  placeholder="Địa chỉ">
+                <input type="text" class="form-control"  placeholder="Địa chỉ" formControlName="address">
               </div>
               <div class="mb-3">
                 <label class="form-label" for="exampleFormControlInput1">Tuổi</label>
-                <input type="number" class="form-control"  placeholder="Tuổi">
+                <input type="number" class="form-control"  placeholder="Tuổi" formControlName="age">
               </div>
               <div class="mb-3">
                 <label class="form-label" for="exampleFormControlSelect2">Giới tính</label>
-                <select multiple class="form-control" id="exampleFormControlSelect2">
-                  <option>Nam</option>
-                  <option>Nữ</option>
-                  <option>Khác</option>
+                <select class="form-control" id="exampleFormControlSelect2" formControlName="sex">
+                  <option value="1">Nam</option>
+                  <option value="2">Nữ</option>
+                  <option value="3">Khác</option>
                 </select>
               </div>
               <div class="mb-3">
