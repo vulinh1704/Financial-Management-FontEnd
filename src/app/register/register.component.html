@@ -29,20 +29,6 @@
                         <input type="text" class="form-control" placeholder="Username" formControlName="username" >
                       </div>
                       <i *ngIf="!username?.valid && (username?.dirty ||username?.touched)" style="color: red">Vui lòng không để tên trống !</i>
-<!--                      <div-->
-<!--                        *ngIf="!username?.invalid && (username?.dirty ||username?.touched)">-->
-<!--                        <div [hidden]="!username.errors.['required']">-->
-<!--                          Username is required-->
-<!--                        </div>-->
-<!--                        <div [hidden]="!username.errors.['minlength']">-->
-<!--                          Min Length is 6-->
-<!--                        </div>-->
-<!--                      </div>-->
-<!--                      <div-->
-<!--                        *ngIf="!registerForm.controls.username?.valid && (registerForm.controls.username?.dirty-->
-<!--    ||registerForm.controls.username?.touched)">-->
-<!--                        Email is not valid-->
-<!--                      </div>-->
                       <div class="">
                         <input type="password" class="form-control" placeholder="Password" formControlName="password">
                       </div>
@@ -50,10 +36,7 @@
                       <div class="">
                         <input type="password" class="form-control" placeholder="ConfirmPassword" formControlName="confirmPassword" >
                       </div>
-<!--                      <div style="display: none;color: red" id="abc" >-->
-<!--                      <i>Mật khẩu nhập lại không đúng</i>-->
-<!--                      </div>-->
-                      <i *ngIf="!confirmPassword?.valid && (password != confirmPassword)" style="color: red">Vui lòng nhập lại mật khẩu  !</i>
+                      <i *ngIf="!confirmPassword?.valid && (confirmPassword?.dirty ||confirmPassword?.touched && password!==confirmPassword )" style="color: red">Vui lòng nhập mật khẩu !</i>
                       <div class=" cs_check_box">
                         <input type="checkbox" id="check_box" class="common_checkbox">
                         <label class="form-label" for="check_box">

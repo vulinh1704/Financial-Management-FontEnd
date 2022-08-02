@@ -25,11 +25,13 @@ export class RegisterComponent implements OnInit {
 
   register() {
     const user = this.setNewUser();
-    this.userService.register(user).subscribe(() => {
-      this.router.navigate(['/login']);
-    }, err => {
-      console.log(err);
-    });
+    if(this.registerForm.value.password === this.registerForm.value.confirmPassword) {
+      this.userService.register(user).subscribe(() => {
+        this.router.navigate(['/login']);
+      }, err => {
+        console.log(err);
+      });
+    }
   }
 
   private setNewUser() {
@@ -37,7 +39,7 @@ export class RegisterComponent implements OnInit {
     const user: User = {
       username: this.registerForm.value.username,
       password: this.registerForm.value.password,
-      confirmPassword: this.registerForm.value.confirmPassword,
+      confirmPassword: this.registerForm.value.password
     };
     return user;
   }
