@@ -3,6 +3,7 @@ import {ActivatedRoute, Router} from "@angular/router";
 import {AuthenticationService} from "../service/authentication.service";
 import {FormControl, FormGroup} from "@angular/forms";
 import {first} from "rxjs";
+import {NgToastService} from "ng-angular-popup";
 
 @Component({
   selector: 'app-login',
@@ -15,9 +16,9 @@ export class LoginComponent implements OnInit {
     password: new FormControl()
   })
 
-  constructor(private activatedRoute: ActivatedRoute, private router: Router,
-              private authenticationService: AuthenticationService) {
-  }
+  constructor(private activatedRoute : ActivatedRoute, private router : Router,
+              private authenticationService : AuthenticationService,
+              private toast : NgToastService) { }
 
   ngOnInit(): void {
   }
@@ -28,11 +29,12 @@ export class LoginComponent implements OnInit {
       localStorage.setItem('ROLE', data.roles[0].authority);
       localStorage.setItem('USERNAME', data.username);
       if (data.roles[0].authority == "ROLE_USER") {
-        this.router.navigate(['/user']);
+        this.toast.success({detail:"Thông báo", summary: "Đăng nhập thành công!",duration: 3000,position:'toast-bottom-right'})
+        this.router.navigate(['/']);
       }
     }, error => {
-      alert("Tài khoản của bạn bị sai")
-      this.router.navigateByUrl('/login')
+      this.toast.error({detail:"Thông báo", summary: "Sai tài khoản hoặc mật khẩu!",duration: 3000,position:'toast-bottom-right'})
+      this.router.navigate(['/login']);
     })
   }
 }

@@ -16,6 +16,8 @@ import { SideBarComponent } from './side-bar/side-bar.component';
 import { NavBarComponent } from './nav-bar/nav-bar.component';
 import { ProfileComponent } from './profile/profile.component';
 import { ChangePasswordComponent } from './change-password/change-password.component';
+import {NgToastModule} from "ng-angular-popup";
+import {ToastrModule} from "ngx-toastr";
 
 @NgModule({
   declarations: [
@@ -34,6 +36,8 @@ import { ChangePasswordComponent } from './change-password/change-password.compo
     BrowserModule,
     AppRoutingModule,
     HttpClientModule,
+    ReactiveFormsModule,
+    NgToastModule,
     ReactiveFormsModule,
     FormsModule
   ],
