@@ -7,7 +7,7 @@ import {HomeComponent} from './home/home.component';
 import {LoginComponent} from './login/login.component';
 import {RegisterComponent} from './register/register.component';
 import {HTTP_INTERCEPTORS, HttpClientModule} from "@angular/common/http";
-import {ReactiveFormsModule} from "@angular/forms";
+import {FormsModule, ReactiveFormsModule} from "@angular/forms";
 import {HomePageComponent} from './user/home-page/home-page.component';
 import {ListProductComponent} from './user/list-product/list-product.component';
 import {JwtInterceptor} from "./helper/jwt-interceptor";
@@ -26,7 +26,8 @@ import {ErrorInterceptor} from "./helper/error-interceptor";
     BrowserModule,
     AppRoutingModule,
     HttpClientModule,
-    ReactiveFormsModule
+    ReactiveFormsModule,
+    FormsModule
   ],
   providers: [
     {
