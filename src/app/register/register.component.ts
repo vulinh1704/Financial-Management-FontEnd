@@ -13,7 +13,7 @@ export class RegisterComponent implements OnInit {
   registerForm: FormGroup = new FormGroup({
     username: new FormControl('', [Validators.required, Validators.minLength(6), Validators.maxLength(12)]),
     password: new FormControl('', [Validators.required, Validators.minLength(6), Validators.maxLength(12)]),
-    confirmPassword: new FormControl('', [Validators.required, Validators.minLength(6), Validators.maxLength(12)])
+    confirmPassword: new FormControl('', [Validators.required])
   });
 
   constructor(private userService: UserService,
