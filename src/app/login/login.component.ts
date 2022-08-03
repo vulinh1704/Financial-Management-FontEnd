@@ -28,6 +28,8 @@ export class LoginComponent implements OnInit {
       localStorage.setItem('ACCESS_TOKEN', data.accessToken);
       localStorage.setItem('ROLE', data.roles[0].authority);
       localStorage.setItem('USERNAME', data.username);
+      localStorage.setItem('ID', data.id);
+
       if (data.roles[0].authority == "ROLE_USER") {
         this.toast.success({detail:"Thông báo", summary: "Đăng nhập thành công!",duration: 3000,position:'toast-bottom-right'})
         this.router.navigate(['/']);

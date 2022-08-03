@@ -1,0 +1,34 @@
+<!--<a routerLink="profile"><img [src]="avatar" style="width: 30%; border-radius: 50%; padding: 20px 0 0 20px"></a>-->
+<h3>Hello : {{username}}</h3>
+<a routerLink="create">Add Wallet</a> |
+<a routerLink="change">Change Password</a>
+<!--<h2>history delete wallet : <a routerLink="history">Click!</a></h2>-->
+<table class="table">
+  <thead>
+  <tr>
+    <th scope="col">#</th>
+    <th scope="col">icon</th>
+    <th scope="col">NameWallet</th>
+    <th scope="col">Money Amount</th>
+    <th scope="col">Status</th>
+    <th scope="col">Money Type</th>
+     </tr>
+  </thead>
+  <tbody>
+  <tbody *ngFor="let wallet of wallets; index as i">
+  <tr>
+    <th scope="row">{{i + 1}}</th>
+    <td>{{wallet.icon}}</td>
+    <td>{{wallet.name}}</td>
+    <td>{{wallet.moneyAmount}}</td>
+    <td>{{wallet.status}}</td>
+    <td>{{wallet.moneyType.name}}</td>
+<!--    <td><button [routerLink]="['create', wallet.id]">Create</button></td>-->
+<!--    <td><button [routerLink]="['update', wallet.id]">Sửa</button></td>-->
+    <td><button (click)="delete(wallet.id)">Xoa</button></td>
+<!--    <td><button [routerLink]="['show', wallet.id]">xem</button></td>-->
+
+  </tr>
+  </tbody>
+</table>
+<!--<button (click)="logout()">logout</button>-->
