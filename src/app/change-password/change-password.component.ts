@@ -4,6 +4,8 @@ import {FormBuilder, FormControl, FormGroup, Validators} from "@angular/forms";
 import {UserService} from "../service/user.service";
 import {ActivatedRoute, Router} from "@angular/router";
 import { AuthenticationService } from '../service/authentication.service';
+import {NgToastService} from "ng-angular-popup";
+import Swal from "sweetalert2";
 
 @Component({
   selector: 'app-change-password',
@@ -29,7 +31,8 @@ export class ChangePasswordComponent implements OnInit {
               private router: Router,
               private fb: FormBuilder,
               private activatedRoute: ActivatedRoute,
-              private authService: AuthenticationService) {
+              private authService: AuthenticationService,
+              private toast: NgToastService) {
   }
 
   ngOnInit() {
@@ -38,29 +41,45 @@ export class ChangePasswordComponent implements OnInit {
 
   changePassword() {
     const user = this.setNewUser();
-    if (confirm('Are you sure you want to change password ?')) {
-      if(this.newPasswordForm.value.oldPassword === localStorage.getItem('PASS')) {
-        if (this.newPasswordForm.value.password === this.newPasswordForm.value.confirmPassword) {
-          this.authService.currentUser.subscribe(
-            currentUser => {
-              this.userService.changePass(currentUser.id, user).subscribe(() => {
-                alert('Đổi mật khẩu thành công');
-                localStorage.setItem('PASS', this.newPasswordForm.value.password);
-                this.newPasswordForm.reset();
-                this.router.navigate(['/home']);
-              }, err => {
-                console.log(err)
-              });
-            }
-          )
-        }
-        else {
-          alert('Mật khẩu không trùng');
-        }
-      }else {
-        alert('Mật khẩu cũ không đúng ');
+    Swal.fire({
+      title: '<h3 style="color: #575656">Bạn muốn thay đổi ?</h3>',
+      text: 'Mật khẩu thay đổi sẽ được cập nhật !',
+      icon: 'warning',
+      showCancelButton: true,
+      confirmButtonColor: '#3085d6',
+      cancelButtonColor: '#d33',
+      confirmButtonText: 'Đúng, thay đổi !',
+      cancelButtonText:'Đóng '
+    }).then((result) => {
+      if (result.isConfirmed) {
+        if(this.newPasswordForm.value.oldPassword === localStorage.getItem('PASS')) {
+          if (this.newPasswordForm.value.password === this.newPasswordForm.value.confirmPassword) {
+            this.authService.currentUser.subscribe(
+              currentUser => {
+                this.userService.changePass(currentUser.id, user).subscribe(() => {
+                  this.toast.success({detail:"Thông báo", summary: "Đổi mật khẩu thành công!",duration: 3000,position:'br'});
+                  localStorage.setItem('PASS', this.newPasswordForm.value.password);
+                  this.newPasswordForm.reset();
+                  Swal.fire(
+                    '<h3 style="color: #575656">Đã thay đổi !</h3>',
+                    'Mật khẩu đã được thay đổi',
+                    'success'
+                  )
+                  this.router.navigate(['/home']);
+                }, err => {
+                  console.log(err)
+                });
+              }
+            )
+          }
+          else {
+            this.toast.warning({detail:"Thông báo", summary: "Mật khẩu không trùng!",duration: 3000,position:'br'})
+          }
+        }else {
+          this.toast.warning({detail:"Thông báo", summary: "Mật khẩu cũ không đúng!",duration: 3000,position:'br'});
+        };
       }
-    }
+    })
   }
 
   private setNewUser() {
