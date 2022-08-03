@@ -14,15 +14,15 @@
                   </button>
                 </div>
                 <ul>
-                  <li>
+                  <li *ngFor="let wallet of wallets; let i = index;">
                     <a>
                       <div class="message_pre_left">
                         <div class="message_preview_thumb">
                           <img src="assets/img/messages/1.png" alt="">
                         </div>
                         <div class="messges_info">
-                          <h4>Tên ví</h4>
-                          <p>Tiền</p>
+                          <h4>{{wallet.name}}</h4>
+                          <p>{{wallet.amountMoney}}</p>
                         </div>
                       </div>
                       <div class="messge_time">

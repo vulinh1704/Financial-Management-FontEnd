@@ -1,5 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import Swal from 'sweetalert2';
+import {WalletService} from "../../service/wallet.service";
+import {Wallet} from "../../model/wallet";
 @Component({
   selector: 'app-show-wallet',
   templateUrl: './show-wallet.component.html',
@@ -7,9 +9,18 @@ import Swal from 'sweetalert2';
 })
 export class ShowWalletComponent implements OnInit {
 
-  constructor() { }
+  wallets: Wallet[] = [];
+
+  constructor(private walletService: WalletService) { }
 
   ngOnInit(): void {
+    this.showWallet();
+  }
+
+  showWallet() {
+    this.walletService.findAll().subscribe(wallets => {
+      this.wallets = wallets;
+    })
   }
 
   confirmDelete() {
