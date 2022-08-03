@@ -4,6 +4,7 @@ import {AuthenticationService} from "../service/authentication.service";
 import {FormControl, FormGroup} from "@angular/forms";
 import {first} from "rxjs";
 import {NgToastService} from "ng-angular-popup";
+import {UserService} from "../service/user.service";
 
 @Component({
   selector: 'app-login',
@@ -18,7 +19,8 @@ export class LoginComponent implements OnInit {
 
   constructor(private activatedRoute : ActivatedRoute, private router : Router,
               private authenticationService : AuthenticationService,
-              private toast : NgToastService) { }
+              private toast : NgToastService,
+              private userService: UserService) { }
 
   ngOnInit(): void {
   }
@@ -30,10 +32,12 @@ export class LoginComponent implements OnInit {
       localStorage.setItem('USERNAME', data.username);
       localStorage.setItem('PASS', this.loginForm.value.password);
       localStorage.setItem('ID', data.id);
-      localStorage.setItem('AVATAR', data.avatar);
       if (data.roles[0].authority == "ROLE_USER") {
-        this.toast.success({detail:"Thông báo", summary: "Đăng nhập thành công!",duration: 3000,position:'toast-bottom-right'})
-        this.router.navigate(['/home']);
+        this.userService.findById(localStorage.getItem('ID')).subscribe( data=>{
+          localStorage.setItem('AVATAR', data.avatar);
+          this.toast.success({detail:"Thông báo", summary: "Đăng nhập thành công!",duration: 3000,position:'toast-bottom-right'})
+          this.router.navigateByUrl('/home');
+        })
       }
     }, error => {
       this.toast.error({detail:"Thông báo", summary: "Sai tài khoản hoặc mật khẩu!",duration: 3000,position:'toast-bottom-right'})

@@ -3,8 +3,8 @@ import {environment} from "../../environments/environment";
 import {HttpClient} from "@angular/common/http";
 import {Observable} from "rxjs";
 import {User} from "../model/user";
-const ID = localStorage.getItem('ID')
-const API_URL = environment.apiUrl + "users"
+
+const API_URL = environment.apiUrl + "users";
 @Injectable({
   providedIn: 'root'
 })
@@ -33,12 +33,12 @@ export class UserService {
     return this.httpClient.put<User>(API_URL + `/${id}` , user)
   }
 
-  updateUserProfile(user: User): Observable<User> {
-    return this.httpClient.put<User>(API_URL + `/updateProfile/` + ID, user);
+  updateUserProfile(id: any, user: User): Observable<User> {
+    return this.httpClient.put<User>(API_URL + `/update-profile/${id}` , user);
   }
 
-  findById() : Observable<User> {
-    return this.httpClient.get<User>(API_URL + `/` + ID)
+  findById(id: any) : Observable<User> {
+    return this.httpClient.get<User>(API_URL + `/${id}` )
   }
 
 }

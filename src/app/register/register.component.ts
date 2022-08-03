@@ -32,7 +32,7 @@ export class RegisterComponent implements OnInit {
         this.toast.success({detail:"Thông báo", summary: "Đăng kí thành công!",duration: 3000,position:'toast-bottom-right'})
         this.router.navigate(['/']);
       }, err => {
-        this.toast.error({detail:"Thông báo", summary: "Đăng kí thất bại!",duration: 3000,position:'toast-bottom-right'})
+        this.toast.success({detail:"Thông báo", summary: "Đăng kí thất bại!",duration: 3000,position:'toast-bottom-right'})
         console.log(err);
       });
     }
