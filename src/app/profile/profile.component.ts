@@ -37,8 +37,7 @@ export class ProfileComponent implements OnInit {
   }
 
   findById() {
-    this.userService.findById().subscribe(data => {
-      console.log(data)
+    this.userService.findById(localStorage.getItem('ID')).subscribe(data => {
       this.updateForm.patchValue({
         email: data.email,
         username: data.username,
@@ -58,14 +57,14 @@ export class ProfileComponent implements OnInit {
       username: this.updateForm.value.username,
       address: this.updateForm.value.address,
       age: this.updateForm.value.age,
+      sex: this.updateForm.value.sex,
       avatar: this.image,
     }
-    this.userService.updateUserProfile(this.user).subscribe(() => {
+    this.userService.updateUserProfile(localStorage.getItem('ID'), this.user).subscribe(() => {
       alert("ok")
-      console.log(this.user.username)
       localStorage.setItem('USERNAME', this.user.username);
       localStorage.setItem('AVATAR', this.user.avatar);
-      this.router.navigateByUrl("/")
+      this.router.navigateByUrl("/home")
     }, error => {
       console.log(error)
     })
