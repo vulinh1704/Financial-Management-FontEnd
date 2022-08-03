@@ -32,4 +32,11 @@ export class ShowWalletComponent implements OnInit {
       }
     })
   }
+  alertOnOff() {
+    Swal.fire(
+      '<h3 style="color: #575656">Tắt hoạt động ví ?</h3>',
+      'Bạn vui lòng bật hoạt động ví khác để tắt ví này !!!',
+      'question'
+    )
+  }
 }
