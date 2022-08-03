@@ -6,10 +6,12 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./nav-bar.component.css']
 })
 export class NavBarComponent implements OnInit {
-
+  image: any;
   constructor() { }
 
   ngOnInit(): void {
+    this.image = localStorage.getItem('AVATAR');
+    console.log(this.image);
   }
 
 }

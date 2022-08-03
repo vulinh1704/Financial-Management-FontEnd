@@ -1,71 +1,4 @@
 <app-side-bar></app-side-bar>
-<!--<section class="main_content dashboard_part">-->
-<!--  <app-nav-bar></app-nav-bar>-->
-<!--  <div class="main_content_iner" style="margin-top: -30px">-->
-<!--    <div class="container-fluid plr_30 body_white_bg pt_30">-->
-<!--      <div class="row justify-content-center">-->
-<!--        <div class="col-lg-12">-->
-<!--          <div class="white_box mb_30">-->
-<!--            <div class="row justify-content-center">-->
-<!--              <div class="col-lg-6">-->
-<!--                <div class="modal-content cs_modal">-->
-<!--                  <div class="modal-header">-->
-<!--                    <h5 class="modal-title">Thông tin cá nhân</h5>-->
-<!--                  </div>-->
-<!--                  <div class="modal-body">-->
-<!--                    <form>-->
-<!--                      <div class="">-->
-<!--                        &lt;!&ndash;                        <img src="https://dvdn247.net/wp-content/uploads/2020/07/avatar-mac-dinh-1.png" style="width: 100px;height: 100px">&ndash;&gt;-->
-<!--                        <div class="profile-pic">-->
-<!--                          <label class="-label" for="file">-->
-<!--                            <span class="glyphicon glyphicon-camera"></span>-->
-<!--                            <span>Change Image</span>-->
-<!--                          </label>-->
-<!--                          <input id="file" type="file" onchange="loadFile(event)"/>-->
-<!--                          <img src="https://dvdn247.net/wp-content/uploads/2020/07/avatar-mac-dinh-1.png" id="output"-->
-<!--                               width="100"/>-->
-<!--                        </div>-->
-<!--                      </div>-->
-<!--                      <br>-->
-<!--                      <div class="">-->
-<!--                        <input type="text" class="form-control" placeholder="Tên">-->
-<!--                      </div>-->
-<!--                      <br>-->
-<!--                      <div class="">-->
-<!--                        <input type="text" class="form-control" placeholder="Địa chỉ">-->
-<!--                      </div>-->
-<!--                      <br>-->
-<!--                      <div class="">-->
-<!--                        <input type="text" class="form-control" placeholder="Tuổi">-->
-<!--                      </div>-->
-<!--                      <br>-->
-<!--                      <div class="">-->
-<!--                        <input type="text" class="form-control" placeholder="Giới tính">-->
-<!--                      </div>-->
-<!--                      <button href="#" class="btn_1 full_width text-center">Lưu</button>-->
-<!--                    </form>-->
-<!--                  </div>-->
-<!--                </div>-->
-<!--              </div>-->
-<!--            </div>-->
-<!--          </div>-->
-<!--        </div>-->
-<!--      </div>-->
-<!--    </div>-->
-<!--    <div class="footer_part">-->
-<!--      <div class="container-fluid">-->
-<!--        <div class="row">-->
-<!--          <div class="col-lg-12 col-sm-12">-->
-<!--            <div class="footer_iner text-center">-->
-<!--              <p>2022 © Destroy - <a href="#"> Hủy diệt</a></p>-->
-<!--            </div>-->
-<!--          </div>-->
-<!--        </div>-->
-<!--      </div>-->
-<!--    </div>-->
-<!--  </div>-->
-<!--</section>-->
-
 <section class="main_content dashboard_part">
   <app-nav-bar></app-nav-bar>
   <div class="main_content_iner" style="margin-top: -40px">
@@ -78,54 +11,57 @@
                 <h3 class="mb-0">Trang cá nhân</h3>
               </div>
             </div>
-            <form>
+            <form [formGroup]="updateForm" (ngSubmit)="update()">
               <div class="profile-pic">
                 <label class="-label" for="file">
                   <span class="glyphicon glyphicon-camera"></span>
                   <span>Thay đổi</span>
                 </label>
-                <input id="file" type="file" onchange="loadFile(event)"/>
-                <img src="https://dvdn247.net/wp-content/uploads/2020/07/avatar-mac-dinh-1.png" id="output"
-                     width="200"/>
+                <input type="file" id="file" #userPhoto (change)="onFileSelected($event)" name="image" autocomplete="off"/>
+                <img src="{{image}}" id="output" width="200">
+              </div>
+              <div class="mb-3">
+                <label class="form-label" for="exampleFormControlInput">Email</label>
+                <input type="email" class="form-control" id="exampleFormControlInput" placeholder="Email" formControlName="email">
               </div>
               <div class="mb-3">
                 <label class="form-label" for="exampleFormControlInput1">Tên</label>
-                <input type="email" class="form-control" id="exampleFormControlInput1" placeholder="Tên đầy đủ">
+                <input type="text" class="form-control" id="exampleFormControlInput1" placeholder="Tên dang nhap" formControlName="username">
               </div>
               <div class="mb-3">
                 <label class="form-label" for="exampleFormControlInput1">Địa chỉ</label>
-                <input type="email" class="form-control" placeholder="Địa chỉ">
+                <input type="text" class="form-control"  placeholder="Địa chỉ" formControlName="address">
               </div>
               <div class="mb-3">
                 <label class="form-label" for="exampleFormControlInput1">Tuổi</label>
-                <input type="number" class="form-control" placeholder="Tuổi">
+                <input type="number" class="form-control"  placeholder="Tuổi" formControlName="age">
               </div>
-              <div class="mb-3" style="margin-top: 30px">
-                <select class="form-control" id="exampleFormControlSelect1">
-                  <option data-display="Select">Giới tính</option>
-                  <option value="0">Nam</option>
-                  <option value="1">Nữ</option>
-                  <option value="2">Khác</option>
+              <div class="mb-3">
+                <label class="form-label" for="exampleFormControlSelect2">Giới tính</label>
+                <select class="form-control" id="exampleFormControlSelect2" formControlName="sex">
+                  <option value="1">Nam</option>
+                  <option value="2">Nữ</option>
+                  <option value="3">Khác</option>
                 </select>
               </div>
               <div class="mb-3">
-                <button href="#" class="btn_1 full_width text-center">Lưu</button>
+              <button href="#" class="btn_1 full_width text-center">Lưu</button>
               </div>
             </form>
           </div>
         </div>
       </div>
     </div>
-    <div class="footer_part">
-      <div class="container-fluid">
-        <div class="row">
-          <div class="col-lg-12 col-sm-12">
-            <div class="footer_iner text-center">
-              <p>2022 © Destroy - <a href="#"> Hủy diệt</a></p>
+        <div class="footer_part">
+          <div class="container-fluid">
+            <div class="row">
+              <div class="col-lg-12 col-sm-12">
+                <div class="footer_iner text-center">
+                  <p>2022 © Destroy - <a href="#"> Hủy diệt</a></p>
+                </div>
+              </div>
             </div>
           </div>
         </div>
       </div>
-    </div>
-  </div>
 </section>

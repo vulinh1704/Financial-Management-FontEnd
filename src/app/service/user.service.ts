@@ -3,7 +3,7 @@ import {environment} from "../../environments/environment";
 import {HttpClient} from "@angular/common/http";
 import {Observable} from "rxjs";
 import {User} from "../model/user";
-
+const ID = localStorage.getItem('ID')
 const API_URL = environment.apiUrl + "users"
 @Injectable({
   providedIn: 'root'
@@ -28,6 +28,17 @@ export class UserService {
     return this.httpClient.post<User>(environment.apiUrl + '/login', user);
   }
 
+  changePass(id: any, user: User): Observable<User> {
+    console.log(API_URL + `/users/${id}`);
+    return this.httpClient.put<User>(API_URL + `/${id}` , user)
+  }
 
+  updateUserProfile(user: User): Observable<User> {
+    return this.httpClient.put<User>(API_URL + `/updateProfile/` + ID, user);
+  }
+
+  findById() : Observable<User> {
+    return this.httpClient.get<User>(API_URL + `/` + ID)
+  }
 
 }
