@@ -26,6 +26,7 @@ import {AngularFireStorageModule} from "@angular/fire/compat/storage";
 import {AngularFireModule} from "@angular/fire/compat";
 import {environment} from "../environments/environment";
 import { AddCategoryComponent } from './category/add-category/add-category.component';
+import { DetailWalletComponent } from './wallet/detail-wallet/detail-wallet.component';
 
 @NgModule({
   declarations: [
@@ -43,7 +44,8 @@ import { AddCategoryComponent } from './category/add-category/add-category.compo
     AddWalletComponent,
     EditWalletComponent,
     ShowCategoriesComponent,
-    AddCategoryComponent
+    AddCategoryComponent,
+    DetailWalletComponent
   ],
   imports: [
     BrowserModule,

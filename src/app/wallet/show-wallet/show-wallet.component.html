@@ -15,7 +15,7 @@
                 </div>
                 <ul>
                   <li *ngFor="let wallet of wallets; let i = index;">
-                    <a>
+                    <a routerLink="{{wallet.id}}">
                       <div class="message_pre_left">
                         <div class="message_preview_thumb">
                           <img src="{{wallet.icon}}" alt="">
@@ -34,42 +34,7 @@
               </div>
             </div>
             <div class="messages_chat">
-              <div class="white_box ">
-                <div class="single_message_chat">
-                  <div class="message_pre_left">
-                    <div class="messges_info">
-                      <h4>Chi tiết ví</h4>
-                    </div>
-                  </div>
-                  <div class="message_content_view red_border">
-                    <div class="message_preview_thumb">
-                      <img src="assets/img/messages/1.png" alt="">
-                    </div>
-
-                    <p>
-                      <br>
-                      Tên ví :
-                      <br>
-                      <span>
-                          Loại tiền :
-                          <br>
-                          </span>
-                      Số dư :
-                    </p>
-                    <br>
-                    <div class="form-check form-switch">
-                      <input class="form-check-input" type="checkbox" role="switch" id="flexSwitchCheckChecked" checked (click)="alertOnOff()">
-                    </div>
-                  </div>
-                </div>
-                <div>
-                  <button class="btn_1" type="submit" style="width: 20%; background: #15c47b" data-bs-toggle="modal"
-                          data-bs-target="#staticBackdrop-edit">Sửa</button>
-                  <button class="btn_1" type="submit" style="width: 20%; margin-left: 20px; background: palevioletred" (click)="confirmDelete()">
-                    Xóa
-                  </button>
-                </div>
-              </div>
+              <router-outlet></router-outlet>
             </div>
           </div>
         </div>

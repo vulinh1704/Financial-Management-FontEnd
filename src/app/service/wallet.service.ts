@@ -28,6 +28,6 @@ export class WalletService {
   }
 
   delete(id: number, wallet: any): Observable<any> {
-    return this.httpClient.put(API + '/delete' + id, wallet);
+    return this.httpClient.put(API + '/delete/' + id, wallet);
   }
 }

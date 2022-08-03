@@ -27,7 +27,8 @@ const routes: Routes = [{
   component: ChangePasswordComponent
 }, {
   path: 'wallet',
-  component: ShowWalletComponent
+  component: ShowWalletComponent,
+  loadChildren: () => import('./wallet/show-wallet/show-wallet-routing.module').then(module => module.ShowWalletRoutingModule)
 }, {
   path: 'category',
   component: ShowCategoriesComponent
