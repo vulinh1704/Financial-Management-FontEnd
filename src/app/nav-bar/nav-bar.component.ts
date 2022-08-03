@@ -11,7 +11,6 @@ export class NavBarComponent implements OnInit {
 
   ngOnInit(): void {
     this.image = localStorage.getItem('AVATAR');
-    console.log(this.image);
   }
 
 }

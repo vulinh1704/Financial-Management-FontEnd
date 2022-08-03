@@ -30,7 +30,7 @@ export class RegisterComponent implements OnInit {
     if(this.registerForm.value.password === this.registerForm.value.confirmPassword) {
       this.userService.register(user).subscribe(() => {
         this.toast.success({detail:"Thông báo", summary: "Đăng kí thành công!",duration: 3000,position:'toast-bottom-right'})
-        this.router.navigate(['/login']);
+        this.router.navigate(['']);
       }, err => {
         this.toast.success({detail:"Thông báo", summary: "Đăng kí thất bại!",duration: 3000,position:'toast-bottom-right'})
         console.log(err);
