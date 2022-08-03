@@ -47,7 +47,7 @@ export class ChangePasswordComponent implements OnInit {
                 alert('Đổi mật khẩu thành công');
                 localStorage.setItem('PASS', this.newPasswordForm.value.password);
                 this.newPasswordForm.reset();
-                this.router.navigate(['/user']);
+                this.router.navigate(['/home']);
               }, err => {
                 console.log(err)
               });
