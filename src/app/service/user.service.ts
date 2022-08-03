@@ -37,6 +37,8 @@ export class UserService {
     return this.httpClient.put<User>(API_URL + `/updateProfile/` + ID, user);
   }
 
-
+  findById() : Observable<User> {
+    return this.httpClient.get<User>(API_URL + `/` + ID)
+  }
 
 }

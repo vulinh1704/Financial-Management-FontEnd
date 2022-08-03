@@ -22,6 +22,9 @@ import { ShowWalletComponent } from './wallet/show-wallet/show-wallet.component'
 import { AddWalletComponent } from './wallet/add-wallet/add-wallet.component';
 import { EditWalletComponent } from './wallet/edit-wallet/edit-wallet.component';
 import { ShowCategoriesComponent } from './category/show-categories/show-categories.component';
+import {AngularFireStorageModule} from "@angular/fire/compat/storage";
+import {AngularFireModule} from "@angular/fire/compat";
+import {environment} from "../environments/environment";
 
 @NgModule({
   declarations: [
@@ -47,7 +50,9 @@ import { ShowCategoriesComponent } from './category/show-categories/show-categor
     ReactiveFormsModule,
     NgToastModule,
     ReactiveFormsModule,
-    FormsModule
+    FormsModule,
+    AngularFireStorageModule,
+    AngularFireModule.initializeApp(environment.firebaseConfig, "cloud")
   ],
   providers: [
     {
