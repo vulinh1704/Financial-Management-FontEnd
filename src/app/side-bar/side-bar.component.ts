@@ -14,10 +14,10 @@ export class SideBarComponent implements OnInit {
   }
 
   logout(){
-    if (confirm('Are you sure you want to logout ?')) {
+    if (confirm('Bạn có chắc muốn đăng xuất không ?')) {
       localStorage.clear();
       this.isLogin = false;
-      this.router.navigate(['/login']);
+      this.router.navigate(['/']);
     }
   }
 

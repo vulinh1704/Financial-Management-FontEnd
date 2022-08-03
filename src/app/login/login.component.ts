@@ -33,11 +33,11 @@ export class LoginComponent implements OnInit {
       localStorage.setItem('AVATAR', data.avatar);
       if (data.roles[0].authority == "ROLE_USER") {
         this.toast.success({detail:"Thông báo", summary: "Đăng nhập thành công!",duration: 3000,position:'toast-bottom-right'})
-        this.router.navigate(['/']);
+        this.router.navigate(['/home']);
       }
     }, error => {
       this.toast.error({detail:"Thông báo", summary: "Sai tài khoản hoặc mật khẩu!",duration: 3000,position:'toast-bottom-right'})
-      this.router.navigate(['/login']);
+      this.router.navigate(['/']);
     })
   }
 }

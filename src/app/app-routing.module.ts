@@ -11,10 +11,10 @@ import {ShowWalletComponent} from "./wallet/show-wallet/show-wallet.component";
 import {ShowCategoriesComponent} from "./category/show-categories/show-categories.component";
 
 const routes: Routes = [{
-  path: '',
+  path:'home',
   component: HomeComponent
 }, {
-  path: 'login',
+  path: '',
   component: LoginComponent
 }, {
   path: 'register',
