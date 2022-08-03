@@ -7,6 +7,8 @@ import {HomePageComponent} from "./user/home-page/home-page.component";
 import {AuthGuard} from "./helper/auth-guard";
 import {ProfileComponent} from "./profile/profile.component";
 import {ChangePasswordComponent} from "./change-password/change-password.component";
+import {ShowWalletComponent} from "./wallet/show-wallet/show-wallet.component";
+import {ShowCategoriesComponent} from "./category/show-categories/show-categories.component";
 
 const routes: Routes = [{
   path: '',
@@ -23,6 +25,12 @@ const routes: Routes = [{
 }, {
   path: 'change-password',
   component: ChangePasswordComponent
+}, {
+  path: 'wallet',
+  component: ShowWalletComponent
+}, {
+  path: 'category',
+  component: ShowCategoriesComponent
 }, {
   path: 'user',
   canActivate: [AuthGuard],

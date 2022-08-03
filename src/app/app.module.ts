@@ -18,6 +18,10 @@ import { ProfileComponent } from './profile/profile.component';
 import { ChangePasswordComponent } from './change-password/change-password.component';
 import {NgToastModule} from "ng-angular-popup";
 import {ToastrModule} from "ngx-toastr";
+import { ShowWalletComponent } from './wallet/show-wallet/show-wallet.component';
+import { AddWalletComponent } from './wallet/add-wallet/add-wallet.component';
+import { EditWalletComponent } from './wallet/edit-wallet/edit-wallet.component';
+import { ShowCategoriesComponent } from './category/show-categories/show-categories.component';
 
 @NgModule({
   declarations: [
@@ -30,7 +34,11 @@ import {ToastrModule} from "ngx-toastr";
     SideBarComponent,
     NavBarComponent,
     ProfileComponent,
-    ChangePasswordComponent
+    ChangePasswordComponent,
+    ShowWalletComponent,
+    AddWalletComponent,
+    EditWalletComponent,
+    ShowCategoriesComponent
   ],
   imports: [
     BrowserModule,
