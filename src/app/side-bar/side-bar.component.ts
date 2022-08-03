@@ -17,7 +17,7 @@ export class SideBarComponent implements OnInit {
     if (confirm('Are you sure you want to logout ?')) {
       localStorage.clear();
       this.isLogin = false;
-      this.router.navigate(['/login']);
+      this.router.navigate(['/register']);
     }
   }
 
