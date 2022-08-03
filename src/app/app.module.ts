@@ -21,6 +21,7 @@ import {ToastrModule} from "ngx-toastr";
 import { ShowWalletComponent } from './wallet/show-wallet/show-wallet.component';
 import { AddWalletComponent } from './wallet/add-wallet/add-wallet.component';
 import { EditWalletComponent } from './wallet/edit-wallet/edit-wallet.component';
+import { ShowCategoriesComponent } from './category/show-categories/show-categories.component';
 
 @NgModule({
   declarations: [
@@ -36,7 +37,8 @@ import { EditWalletComponent } from './wallet/edit-wallet/edit-wallet.component'
     ChangePasswordComponent,
     ShowWalletComponent,
     AddWalletComponent,
-    EditWalletComponent
+    EditWalletComponent,
+    ShowCategoriesComponent
   ],
   imports: [
     BrowserModule,
