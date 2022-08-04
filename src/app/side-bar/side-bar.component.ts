@@ -30,8 +30,8 @@ export class SideBarComponent implements OnInit {
     no-repeat
   `
     })
-    // localStorage.clear();
-    // this.isLogin = false;
-    // this.router.navigate(['/']);
+    localStorage.clear();
+    this.isLogin = false;
+    this.router.navigate(['/']);
   }
 }
