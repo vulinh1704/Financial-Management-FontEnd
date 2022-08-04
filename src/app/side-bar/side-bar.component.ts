@@ -9,9 +9,8 @@ import Swal from "sweetalert2";
 })
 export class SideBarComponent implements OnInit {
   isLogin = false;
-
-  constructor(private router: Router) {
-  }
+  idUser = localStorage.getItem('ID');
+  constructor(private router:Router) { }
 
   ngOnInit(): void {
   }
@@ -32,6 +31,6 @@ export class SideBarComponent implements OnInit {
     })
     localStorage.clear();
     this.isLogin = false;
-    this.router.navigate(['/']);
+    this.router.navigate(['/']).then();
   }
 }

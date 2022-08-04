@@ -5,6 +5,8 @@ import {FormControl, FormGroup} from "@angular/forms";
 import {first} from "rxjs";
 import {NgToastService} from "ng-angular-popup";
 import {UserService} from "../service/user.service";
+import {WalletService} from "../service/wallet.service";
+import {Wallet} from "../model/wallet";
 
 @Component({
   selector: 'app-login',
@@ -12,6 +14,9 @@ import {UserService} from "../service/user.service";
   styleUrls: ['./login.component.css']
 })
 export class LoginComponent implements OnInit {
+
+  wallets: Wallet[] = [];
+
   loginForm = new FormGroup({
     username: new FormControl(),
     password: new FormControl()
@@ -20,7 +25,8 @@ export class LoginComponent implements OnInit {
   constructor(private activatedRoute : ActivatedRoute, private router : Router,
               private authenticationService : AuthenticationService,
               private toast : NgToastService,
-              private userService: UserService) { }
+              private userService: UserService,
+              private walletService: WalletService) { }
 
   ngOnInit(): void {
   }
@@ -35,13 +41,21 @@ export class LoginComponent implements OnInit {
       if (data.roles[0].authority == "ROLE_USER") {
         this.userService.findById(localStorage.getItem('ID')).subscribe( data=>{
           localStorage.setItem('AVATAR', data.avatar);
-          this.toast.success({detail:"Thông báo", summary: "Đăng nhập thành công!",duration: 3000,position:'br'})
-          this.router.navigateByUrl('/home');
+          this.toast.success({detail:"Thông báo", summary: "Đăng nhập thành công!",duration: 3000,position:'br'});
+          this.walletService.findAll().subscribe(wallets => {
+            this.wallets = wallets;
+            for (let i = 0; i < this.wallets.length; i++) {
+              if (this.wallets[i].status == 2) {
+                localStorage.setItem('ID_WALLET', String(this.wallets[i].id));
+              }
+            }
+          })
+          this.router.navigateByUrl('/home').then();
         })
       }
     }, error => {
       this.toast.error({detail:"Thông báo", summary: "Sai tài khoản hoặc mật khẩu!",duration: 3000,position:'br'})
-      this.router.navigate(['/']);
+      this.router.navigate(['/']).then();
     })
   }
 }

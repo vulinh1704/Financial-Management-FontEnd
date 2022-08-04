@@ -2,6 +2,8 @@ import { Component, OnInit } from '@angular/core';
 import Swal from "sweetalert2";
 import {WalletService} from "../../service/wallet.service";
 import {ActivatedRoute, Router} from "@angular/router";
+import {FormControl, FormGroup} from "@angular/forms";
+import {NgToastService} from "ng-angular-popup";
 
 @Component({
   selector: 'app-detail-wallet',
@@ -10,13 +12,21 @@ import {ActivatedRoute, Router} from "@angular/router";
 })
 export class DetailWalletComponent implements OnInit {
 
+  updateForm = new FormGroup({
+    name: new FormControl(),
+    moneyType: new FormControl(),
+  });
+
   id: number = 0;
+  icon: any;
   wallet: any;
   walletDelete: any
+  walletEdit: any;
 
   constructor(private walletService: WalletService,
               private activatedRoute: ActivatedRoute,
-              private router: Router) { }
+              private router: Router,
+              private toast : NgToastService) { }
 
   ngOnInit(): void {
     this.activatedRoute.paramMap.subscribe((paramMap) => {
@@ -26,10 +36,18 @@ export class DetailWalletComponent implements OnInit {
     })
   }
 
+  changeIcon(event: any) {
+    this.icon = event.target.src;
+  }
+
   getWallet(id: number) {
     return this.walletService.findById(id).subscribe((wallet) => {
       this.wallet = wallet;
-      console.log(this.wallet);
+      this.icon = wallet.icon;
+      this.updateForm = new FormGroup({
+        name: new FormControl(wallet.name),
+        moneyType: new FormControl("" + wallet.moneyType.id)
+      });
     })
   }
 
@@ -90,7 +108,7 @@ export class DetailWalletComponent implements OnInit {
               console.log('I was closed by the timer')
             }
           })
-          this.router.navigate(['/wallet/1']).then(() => {
+          this.router.navigate(['/wallet/' + localStorage.getItem('ID_WALLET')]).then(() => {
             setInterval(() => {
               location.reload()
             }, 1500)
@@ -98,5 +116,27 @@ export class DetailWalletComponent implements OnInit {
         })
       }
     })
+  }
+
+  updateWallet() {
+    this.walletEdit = {
+      name: this.updateForm.value.name,
+      moneyType: {
+        id: this.updateForm.value.moneyType,
+      },
+      icon: this.icon,
+      moneyAmount: this.wallet.moneyAmount,
+      status: this.wallet.status,
+      user: {
+        id: localStorage.getItem('ID')
+      }
+    }
+    console.log(this.walletEdit);
+    this.walletService.update(this.id, this.walletEdit).subscribe(() => {
+      this.toast.success({detail:"Thông báo", summary: "Sửa ví thành công!",duration: 3000,position:'br'});
+    }, error => {
+      this.toast.error({detail:"Thông báo", summary: "Sửa ví thất bại!",duration: 3000,position:'br'});
+    })
+    location.reload();
   }
 }
