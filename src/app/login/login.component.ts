@@ -35,12 +35,12 @@ export class LoginComponent implements OnInit {
       if (data.roles[0].authority == "ROLE_USER") {
         this.userService.findById(localStorage.getItem('ID')).subscribe( data=>{
           localStorage.setItem('AVATAR', data.avatar);
-          this.toast.success({detail:"Thông báo", summary: "Đăng nhập thành công!",duration: 3000,position:'toast-bottom-right'})
+          this.toast.success({detail:"Thông báo", summary: "Đăng nhập thành công!",duration: 3000,position:'br'})
           this.router.navigateByUrl('/home');
         })
       }
     }, error => {
-      this.toast.error({detail:"Thông báo", summary: "Sai tài khoản hoặc mật khẩu!",duration: 3000,position:'toast-bottom-right'})
+      this.toast.error({detail:"Thông báo", summary: "Sai tài khoản hoặc mật khẩu!",duration: 3000,position:'br'})
       this.router.navigate(['/']);
     })
   }

@@ -11,7 +11,6 @@ import {ActivatedRoute, Router} from "@angular/router";
 export class DetailWalletComponent implements OnInit {
 
   id: number = 0;
-  idInUse = localStorage.getItem('ID_WALLET');
   wallet: any;
   walletDelete: any
 
@@ -68,15 +67,33 @@ export class DetailWalletComponent implements OnInit {
         }
         console.log(this.walletDelete);
         this.walletService.delete(this.wallet.id, this.walletDelete).subscribe(() => {
-          Swal.fire(
-            '<h3 style="color: #575656">Đã xóa !</h3>',
-            'Ví này đã bị xóa khỏi danh sách',
-            'success'
-          )
-          this.router.navigate(['/wallet/'+ this.idInUse]).then(() => {
+          let timerInterval: any
+          Swal.fire({
+            title: '<h3 style="color:#d94646;"><i class="fa-solid fa-trash"></i> Đang xóa ...</h3>',
+            html: 'Ví được xóa trong <b></b> mini giây.',
+            timer: 1500,
+            timerProgressBar: true,
+            didOpen: () => {
+              Swal.showLoading()
+              // @ts-ignore
+              const b = Swal.getHtmlContainer().querySelector('b')
+              timerInterval = setInterval(() => {
+                // @ts-ignore
+                b.textContent = Swal.getTimerLeft()
+              }, 100)
+            },
+            willClose: () => {
+              clearInterval(timerInterval)
+            }
+          }).then((result) => {
+            if (result.dismiss === Swal.DismissReason.timer) {
+              console.log('I was closed by the timer')
+            }
+          })
+          this.router.navigate(['/wallet/1']).then(() => {
             setInterval(() => {
-              window.location.reload();
-            }, 800);
+              location.reload()
+            }, 1500)
           })
         })
       }

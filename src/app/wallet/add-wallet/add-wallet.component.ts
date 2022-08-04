@@ -45,10 +45,10 @@ export class AddWalletComponent implements OnInit {
     }
     console.log(this.wallet);
     this.walletService.save(this.wallet).subscribe(() => {
-      this.toast.success({detail:"Thông báo", summary: "Thêm ví thành công!",duration: 3000,position:'toast-bottom-right'})
+      this.toast.success({detail:"Thông báo", summary: "Thêm ví thành công!",duration: 3000,position:'br'})
       this.router.navigate(['/wallet']).then();
     }, error => {
-      this.toast.error({detail:"Thông báo", summary: "Thêm ví thất bại!",duration: 3000,position:'toast-bottom-right'})
+      this.toast.error({detail:"Thông báo", summary: "Thêm ví thất bại!",duration: 3000,position:'br'})
     })
     location.reload()
   }
