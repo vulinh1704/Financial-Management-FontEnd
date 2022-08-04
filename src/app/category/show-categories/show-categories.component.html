@@ -26,17 +26,31 @@
                   <th scope="col">Sửa</th>
                   <th scope="col">Xóa</th>
                 </tr>
+
+
                 </thead>
                 <tbody>
                 <tr style="text-align: center">
                   <td scope="row"><a href="#" class="question_content"> title here 1</a></td>
                   <td>Category name</td>
-                  <td>Loại thu</td>
+                  <td>Chọn loại ví</td>
+
                   <td>
                     <div class="br" style="height: 5px;background:chartreuse;"></div>
                   </td>
                   <td><a href="#" class="status_btn" style="background: #15c47b">Sửa</a></td>
                   <td><a href="#" class="status_btn" style="background: palevioletred">Xóa</a></td>
+                </tr>
+                <tr *ngFor="let c of categories; index as i" style="text-align: center">
+<!--                  <td>{{i+1}}</td>-->
+                  <td>{{c.name}}</td>
+                  <td>{{c.note}}</td>
+                  <td> <select>
+                     <option [value]="categories">#</option>
+                    <option [value]="categories">Loại thu</option>
+                    <option [value]="categories">Loại chi</option>
+                  </select></td>
+                  <td>{{c.color}}</td>
                 </tr>
                 </tbody>
               </table>

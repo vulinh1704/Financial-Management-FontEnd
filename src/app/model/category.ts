@@ -1,6 +1,8 @@
 export interface Category {
   id: number;
   name: string;
-  status: string;
+  type: string;
+  status: string
   note: string;
+  color: string;
 }
