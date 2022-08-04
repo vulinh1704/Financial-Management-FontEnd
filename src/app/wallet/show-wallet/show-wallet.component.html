@@ -25,7 +25,7 @@
                           <p>{{wallet.amountMoney}}</p>
                         </div>
                       </div>
-                      <div class="messge_time">
+                      <div class="messge_time" *ngIf="wallet.status == 2" >
                         <span style="color: #4694e1"><i class="fa-solid fa-circle"></i> Đang sử dụng</span>
                       </div>
                     </a>
