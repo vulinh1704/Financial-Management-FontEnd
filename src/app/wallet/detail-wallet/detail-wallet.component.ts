@@ -11,6 +11,7 @@ import {ActivatedRoute, Router} from "@angular/router";
 export class DetailWalletComponent implements OnInit {
 
   id: number = 0;
+  idInUse = localStorage.getItem('ID_WALLET');
   wallet: any;
   walletDelete: any
 
