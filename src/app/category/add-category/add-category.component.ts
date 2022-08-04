@@ -8,7 +8,6 @@ import { Component, OnInit } from '@angular/core';
 export class AddCategoryComponent implements OnInit {
 
   constructor() { }
-  icon:any
   ngOnInit(): void {
   }
 

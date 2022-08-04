@@ -35,8 +35,8 @@
                   <td>
                     <div class="br" style="height: 5px;background:chartreuse;"></div>
                   </td>
-                  <td><a class="status_btn" style="background: #15c47b">Sửa</a></td>
-                  <td><a class="status_btn" style="background: palevioletred">Xóa</a></td>
+                  <td><a class="status_btn" style="background: #15c47b" data-bs-toggle="modal" data-bs-target="#staticBackdrop-edit-category">Sửa</a></td>
+                  <td><a class="status_btn" style="background: palevioletred" (click)="confirmDelete()">Xóa</a></td>
                 </tr>
                 </tbody>
               </table>
@@ -59,3 +59,4 @@
   </div>
 </section>
 <app-add-category></app-add-category>
+<app-edit-category></app-edit-category>
