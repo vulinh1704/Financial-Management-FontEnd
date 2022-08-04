@@ -1,4 +1,5 @@
-import { Component, OnInit } from '@angular/core';
+import {Component, OnInit} from '@angular/core';
+import {Options} from "@angular-slider/ngx-slider";
 
 @Component({
   selector: 'app-home',
@@ -7,9 +8,17 @@ import { Component, OnInit } from '@angular/core';
 })
 export class HomeComponent implements OnInit {
 
-  constructor() { }
+  constructor() {
+  }
 
   ngOnInit(): void {
   }
+
+  value: number = 0;
+  highValue: number = 300;
+  options: Options = {
+    floor: 0,
+    ceil: 1000
+  };
 
 }

@@ -12,24 +12,24 @@
                   <div class="quick_activity_wrap">
                     <div class="single_quick_activity">
                       <h4>Tổng tiền</h4>
-                      <h3>$ <span class="counter">5,79,000</span> </h3>
+                      <h3>$ <span class="counter">5,79,000</span></h3>
                       <p>Saved 25%</p>
                     </div>
-<!--                    <div class="single_quick_activity">-->
-<!--                      <h4>Total Expences</h4>-->
-<!--                      <h3>$ <span class="counter">79,000</span> </h3>-->
-<!--                      <p>Saved 25%</p>-->
-<!--                    </div>-->
-<!--                    <div class="single_quick_activity">-->
-<!--                      <h4>Cash on Hand</h4>-->
-<!--                      <h3>$ <span class="counter">92,000</span> </h3>-->
-<!--                      <p>Saved 25%</p>-->
-<!--                    </div>-->
-<!--                    <div class="single_quick_activity">-->
-<!--                      <h4>Net Profit Margin</h4>-->
-<!--                      <h3>$ <span class="counter">1,79,000</span> </h3>-->
-<!--                      <p>Saved 65%</p>-->
-<!--                    </div>-->
+                    <!--                    <div class="single_quick_activity">-->
+                    <!--                      <h4>Total Expences</h4>-->
+                    <!--                      <h3>$ <span class="counter">79,000</span> </h3>-->
+                    <!--                      <p>Saved 25%</p>-->
+                    <!--                    </div>-->
+                    <!--                    <div class="single_quick_activity">-->
+                    <!--                      <h4>Cash on Hand</h4>-->
+                    <!--                      <h3>$ <span class="counter">92,000</span> </h3>-->
+                    <!--                      <p>Saved 25%</p>-->
+                    <!--                    </div>-->
+                    <!--                    <div class="single_quick_activity">-->
+                    <!--                      <h4>Net Profit Margin</h4>-->
+                    <!--                      <h3>$ <span class="counter">1,79,000</span> </h3>-->
+                    <!--                      <p>Saved 65%</p>-->
+                    <!--                    </div>-->
                   </div>
                 </div>
               </div>
@@ -38,5 +38,157 @@
         </div>
       </div>
     </div>
+    <!--    <section class="main_content dashboard_part">-->
+    <div class="container-fluid g-0">
+      <div class="row">
+        <div class="col-lg-12 p-0">
+          <div class="header_iner d-flex justify-content-between align-items-center">
+            <div class="header_right d-flex justify-content-between align-items-center">
+              <div class="header_notification_warp d-flex align-items-center">
+                <li>
+                  <a href="#"> <img src="img/icon/bell.svg" alt=""> </a>
+                </li>
+                <li>
+                  <a href="#"> <img src="img/icon/msg.svg" alt=""> </a>
+                </li>
+              </div>
+              <div class="profile_info">
+                <div class="profile_info_iner">
+                  <p>Welcome Admin!</p>
+                  <h5>Travor James</h5>
+                  <div class="profile_info_details">
+                    <a href="#">My Profile <i class="ti-user"></i></a>
+                    <a href="#">Settings <i class="ti-settings"></i></a>
+                    <a href="#">Log Out <i class="ti-shift-left"></i></a>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="main_content_iner ">
+      <div class="container-fluid plr_30 body_white_bg pt_30">
+        <div class="row justify-content-center">
+          <div class="col-md-3">
+            <div class="text-start">
+              <button class="btn_1 mb-2 btn-lg email-gradient gradient-9-hover email__btn waves-effect"><i
+                class="fa-solid fa-folder-plus"></i>Thêm mới giao dịch
+              </button>
+            </div>
+            <div class="email-sidebar">
+              <h4><i class="fa-brands fa-searchengin"></i> Tìm kiếm</h4>
+              <ul class="text-start">
+                <li>
+                  <ngx-slider [(value)]="value" [(highValue)]="highValue" [options]="options" style="width: 90%; margin-left: 3%"></ngx-slider>
+                </li>
+                <li><a><i class="fa-solid fa-money-bill-transfer" style="color: rgba(102,102,102,0.74); margin-top: 10px"></i> Khoảng giá</a></li>
+              </ul>
+              <ul class="text-start">
+                <li><a href="#"><i class="ti-star"></i> Started</a></li>
+                <li><a href="#"><i class="ti-email"></i> Send Mails</a></li>
+                <li><a href="#"><i class="ti-announcement"></i> Drafts</a></li>
+              </ul>
+              <ul class="text-start">
+                <li class="text-start"><a href="#"><i class="ti-pin2"></i>Spam</a></li>
+                <li><a href="#"><i class="ti-trash"></i>Trash</a></li>
+              </ul>
+            </div>
+          </div>
+          <div class="col-md-9">
+            <div class="white_box QA_section">
+              <div class="white_box_tittle list_header">
+                <h4><i class="fa-solid fa-list"></i> Danh sách giao dịch</h4>
+                <!--                <div class="box_right d-flex lms_block">-->
+                <!--                  <div class="serach_field_2">-->
+                <!--                    <div class="search_inner">-->
+                <!--                      <form active="#">-->
+                <!--                        <div class="search_field">-->
+                <!--                          <input type="text" placeholder="Search content here...">-->
+                <!--                        </div>-->
+                <!--                        <button type="submit"><i class="ti-search"></i></button>-->
+                <!--                      </form>-->
+                <!--                    </div>-->
+                <!--                  </div>-->
+                <!--                </div>-->
+              </div>
+              <div class="QA_table ">
+                <div id="DataTables_Table_0_wrapper" class="dataTables_wrapper no-footer">
+                  <table class="table lms_table_active">
+                    <thead>
+                    <tr>
+                      <th scope="col">
+                        <label class="form-label primary_checkbox d-flex me-12 ">
+                          Thứ tự
+                        </label>
+                      </th>
+                      <th scope="col"></th>
+                      <th scope="col">Loại giao dịch</th>
+                      <th scope="col">Số tiền</th>
+                      <th scope="col">Ghi chú</th>
+                      <th scope="col"></th>
+                    </tr>
+                    </thead>
+                    <tbody>
+                    <tr>
+                      <th scope="row">
+                        <label class="form-label primary_checkbox d-flex me-12 ">
+                          1
+                        </label></th>
+                      <td><i class="far fa-star"></i></td>
+                      <td>
+                        <div class="d-flex align-items-center">
+                          <div class="flex-shrink-0">
+                            <svg width="20" height="20">
+                              <rect width="25" height="25" style="fill:#E9E612;stroke-width:3;stroke:rgb(248,246,246)"/>
+                            </svg>
+                          </div>
+                          <div class="flex-grow-1 ms-3">
+                            <p>Tên loại</p>
+                          </div>
+                        </div>
+                      </td>
+                      <td>
+                        <p>500 vnd</p>
+                      </td>
+                      <td>
+                        <p class="nowrap">chi tiền cho gái , gái cho ăn ...</p>
+                      </td>
+                      <td>
+                      </td>
+                    </tr>
+                    </tbody>
+                  </table>
+                  <div class="dataTables_info" id="DataTables_Table_0_info" role="status" aria-live="polite">Hiển thị 1
+                    đến 10 giao dịch gần nhất
+                  </div>
+                  <div class="dataTables_paginate paging_simple_numbers" id="DataTables_Table_0_paginate"><a
+                    class="paginate_button previous disabled" aria-controls="DataTables_Table_0" data-dt-idx="0"
+                    tabindex="0" id="DataTables_Table_0_previous"><i class="ti-arrow-left"></i></a><span><a
+                    class="paginate_button current" aria-controls="DataTables_Table_0" data-dt-idx="1"
+                    tabindex="0">1</a></span><a class="paginate_button next disabled" aria-controls="DataTables_Table_0"
+                                                data-dt-idx="2" tabindex="0" id="DataTables_Table_0_next"><i
+                    class="ti-arrow-right"></i></a></div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="footer_part">
+        <div class="container-fluid">
+          <div class="row">
+            <div class="col-lg-12 col-sm-12">
+              <div class="footer_iner text-center">
+                <p>2022 © Destroy - <a href="#"> Hủy diệt</a></p>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
   </div>
 </section>
+
+

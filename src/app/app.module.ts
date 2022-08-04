@@ -17,7 +17,6 @@ import { NavBarComponent } from './nav-bar/nav-bar.component';
 import { ProfileComponent } from './profile/profile.component';
 import { ChangePasswordComponent } from './change-password/change-password.component';
 import {NgToastModule} from "ng-angular-popup";
-import {ToastrModule} from "ngx-toastr";
 import { ShowWalletComponent } from './wallet/show-wallet/show-wallet.component';
 import { AddWalletComponent } from './wallet/add-wallet/add-wallet.component';
 import { ShowCategoriesComponent } from './category/show-categories/show-categories.component';
@@ -28,6 +27,7 @@ import { AddCategoryComponent } from './category/add-category/add-category.compo
 import { DetailWalletComponent } from './wallet/detail-wallet/detail-wallet.component';
 import { DeleteCategoryComponent } from './category/delete-category/delete-category.component';
 import { EditCategoryComponent } from './category/edit-category/edit-category.component';
+import {NgxSliderModule} from "@angular-slider/ngx-slider";
 
 @NgModule({
   declarations: [
@@ -58,7 +58,8 @@ import { EditCategoryComponent } from './category/edit-category/edit-category.co
     ReactiveFormsModule,
     FormsModule,
     AngularFireStorageModule,
-    AngularFireModule.initializeApp(environment.firebaseConfig, "cloud")
+    AngularFireModule.initializeApp(environment.firebaseConfig, "cloud"),
+    NgxSliderModule
   ],
   providers: [
     {
