@@ -11,6 +11,7 @@ import {ActivatedRoute, Router} from "@angular/router";
 export class DetailWalletComponent implements OnInit {
 
   id: number = 0;
+  idInUse = localStorage.getItem('ID_WALLET');
   wallet: any;
   walletDelete: any
 
@@ -72,13 +73,13 @@ export class DetailWalletComponent implements OnInit {
             'Ví này đã bị xóa khỏi danh sách',
             'success'
           )
-          this.router.navigate(['/wallet/1']).then(() => {
-            location.reload()
+          this.router.navigate(['/wallet/'+ this.idInUse]).then(() => {
+            setInterval(() => {
+              window.location.reload();
+            }, 800);
           })
         })
-
       }
     })
-
   }
 }
