@@ -73,26 +73,64 @@
         <div class="row justify-content-center">
           <div class="col-md-3">
             <div class="text-start">
-              <button class="btn_1 mb-2 btn-lg email-gradient gradient-9-hover email__btn waves-effect"><i
+              <button class="btn_1 mb-2 btn-lg email-gradient gradient-9-hover email__btn waves-effect" data-bs-toggle="modal" data-bs-target="#exampleModal1"><i
                 class="fa-solid fa-folder-plus"></i>Thêm mới giao dịch
               </button>
             </div>
             <div class="email-sidebar">
               <h4><i class="fa-brands fa-searchengin"></i> Tìm kiếm</h4>
+              <hr style="margin-top: -30px; width: 80%;margin-left: 25px;color: #666666">
+              <ul class="text-start">
+                <li><h5><i class="fa-solid fa-money-bill-transfer"
+                           style="color: rgba(64,153,217,0.93); margin-top: 15px;margin-left: 15px"></i> Khoảng giá
+                </h5></li>
+                <li>
+                  <ngx-slider [(value)]="value" [(highValue)]="highValue" [options]="options"
+                              style="width: 90%; margin-left: 3%"></ngx-slider>
+                </li>
+                <li class="text-start"><h5><i class="fa-solid fa-crop-simple"
+                                              style="color: rgba(64,153,217,0.93); margin-top: 30px;margin-left: 17px;"></i>
+                  Từ ngày</h5>
+                </li>
+                <li>
+                  <input type="date"/>
+                </li>
+                <li class="text-start"><h5><i class="fa-solid fa-crop-simple"
+                                              style="color: rgba(64,153,217,0.93); margin-top: 30px;margin-left: 17px;"></i>
+                  Đến ngày</h5></li>
+                <input type="date"/>
+                <li class="text-start"><h5><i class="fa-solid fa-font-awesome"
+                                              style="color: rgba(64,153,217,0.93); margin-top: 33px;margin-left: 15px"></i>
+                  Kiểu giao dịch</h5>
+                  <br>
+                  <input class="form-check-input" type="radio" name="flexRadioDefault" id="flexRadioDefault1"
+                         style="margin-left: 30px">
+                  <img
+                    src="https://previews.123rf.com/images/izakowski/izakowski1301/izakowski130100082/17325761-%E7%8F%BE%E9%87%91%E3%81%A7%E9%87%91%E3%81%AE%E8%A2%8B%E3%82%92%E5%B9%B8%E3%81%9B%E3%81%AA%E7%94%B7%E3%82%84%E3%83%93%E3%82%B8%E3%83%8D%E3%82%B9%E3%83%9E%E3%83%B3%E3%81%AE%E6%BC%AB%E7%94%BB%E3%82%A4%E3%83%A9%E3%82%B9%E3%83%88.jpg"
+                    style="width: 20px;height: 20px; margin-right: 4px;margin-left: 5px;">
+                  <label class="form-check-label" for="flexRadioDefault1">
+                    Thu
+                  </label>
+                  <input class="form-check-input" type="radio" name="flexRadioDefault" id="flexRadioDefault2" checked
+                         style="margin-left: 40px">
+                  <img
+                    src="https://banner2.cleanpng.com/20180301/ade/kisspng-united-states-dollar-banknote-cartoon-vector-holding-dollar-5a979df432a946.2963528815198858122075.jpg"
+                    style="width: 20px;height: 20px; margin-right: 5px; margin-left: 5px">
+                  <label class="form-check-label" for="flexRadioDefault2">
+                    Chi
+                  </label>
+                </li>
+              </ul>
+              <hr style="margin-top: -20px; width: 80%;margin-left: 25px;color: #545252; margin-bottom: 30px">
               <ul class="text-start">
                 <li>
-                  <ngx-slider [(value)]="value" [(highValue)]="highValue" [options]="options" style="width: 90%; margin-left: 3%"></ngx-slider>
+                  <button class="btn_1 mb-2 btn-lg email-gradient gradient-9-hover email__btn waves-effect" style="margin-left: 5px"><i
+                    class="fa-solid fa-trash"></i> Nhập lại
+                  </button>
+                  <button class="btn_1 mb-2 btn-lg email-gradient gradient-9-hover email__btn waves-effect"
+                          style="margin-left: 20px"><i class="fa-brands fa-searchengin"></i> Tìm
+                  </button>
                 </li>
-                <li><a><i class="fa-solid fa-money-bill-transfer" style="color: rgba(102,102,102,0.74); margin-top: 10px"></i> Khoảng giá</a></li>
-              </ul>
-              <ul class="text-start">
-                <li><a href="#"><i class="ti-star"></i> Started</a></li>
-                <li><a href="#"><i class="ti-email"></i> Send Mails</a></li>
-                <li><a href="#"><i class="ti-announcement"></i> Drafts</a></li>
-              </ul>
-              <ul class="text-start">
-                <li class="text-start"><a href="#"><i class="ti-pin2"></i>Spam</a></li>
-                <li><a href="#"><i class="ti-trash"></i>Trash</a></li>
               </ul>
             </div>
           </div>
@@ -192,3 +230,21 @@
 </section>
 
 
+<!-- Modal -->
+<div class="modal fade" id="exampleModal1" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+  <div class="modal-dialog modal-lg">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="exampleModalLabel">Modal title</h5>
+        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+      </div>
+      <div class="modal-body">
+        ...
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+        <button type="button" class="btn btn-primary">Save changes</button>
+      </div>
+    </div>
+  </div>
+</div>

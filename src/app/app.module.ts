@@ -28,6 +28,9 @@ import { DetailWalletComponent } from './wallet/detail-wallet/detail-wallet.comp
 import { DeleteCategoryComponent } from './category/delete-category/delete-category.component';
 import { EditCategoryComponent } from './category/edit-category/edit-category.component';
 import {NgxSliderModule} from "@angular-slider/ngx-slider";
+import {MatDatepickerModule} from "@angular/material/datepicker";
+import {MatInputModule} from "@angular/material/input";
+import {MatNativeDateModule} from "@angular/material/core";
 
 @NgModule({
   declarations: [
@@ -59,7 +62,10 @@ import {NgxSliderModule} from "@angular-slider/ngx-slider";
     FormsModule,
     AngularFireStorageModule,
     AngularFireModule.initializeApp(environment.firebaseConfig, "cloud"),
-    NgxSliderModule
+    NgxSliderModule,
+    MatDatepickerModule,
+    MatInputModule,
+    MatNativeDateModule
   ],
   providers: [
     {
