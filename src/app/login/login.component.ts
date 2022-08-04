@@ -42,6 +42,7 @@ export class LoginComponent implements OnInit {
         this.userService.findById(localStorage.getItem('ID')).subscribe( data=>{
           localStorage.setItem('AVATAR', data.avatar);
           this.toast.success({detail:"Thông báo", summary: "Đăng nhập thành công!",duration: 3000,position:'br'});
+          this.router.navigateByUrl('/home').then();
           this.walletService.findAll().subscribe(wallets => {
             this.wallets = wallets;
             for (let i = 0; i < this.wallets.length; i++) {
@@ -50,7 +51,6 @@ export class LoginComponent implements OnInit {
               }
             }
           })
-          this.router.navigateByUrl('/home').then();
         })
       }
     }, error => {
