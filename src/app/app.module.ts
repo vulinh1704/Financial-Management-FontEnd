@@ -20,7 +20,6 @@ import {NgToastModule} from "ng-angular-popup";
 import {ToastrModule} from "ngx-toastr";
 import { ShowWalletComponent } from './wallet/show-wallet/show-wallet.component';
 import { AddWalletComponent } from './wallet/add-wallet/add-wallet.component';
-import { EditWalletComponent } from './wallet/edit-wallet/edit-wallet.component';
 import { ShowCategoriesComponent } from './category/show-categories/show-categories.component';
 import {AngularFireStorageModule} from "@angular/fire/compat/storage";
 import {AngularFireModule} from "@angular/fire/compat";
@@ -44,7 +43,6 @@ import { EditCategoryComponent } from './category/edit-category/edit-category.co
     ChangePasswordComponent,
     ShowWalletComponent,
     AddWalletComponent,
-    EditWalletComponent,
     ShowCategoriesComponent,
     AddCategoryComponent,
     DetailWalletComponent,
