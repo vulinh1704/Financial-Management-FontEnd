@@ -5,6 +5,7 @@ import {ActivatedRoute, Router} from "@angular/router";
 import {UserService} from "../service/user.service";
 import {AngularFireStorage} from "@angular/fire/compat/storage";
 import {finalize} from "rxjs";
+import {NgToastService} from "ng-angular-popup";
 
 @Component({
   selector: 'app-profile',
@@ -29,7 +30,8 @@ export class ProfileComponent implements OnInit {
   constructor(private activatedRoute: ActivatedRoute,
               private router: Router,
               private userService: UserService,
-              private storage: AngularFireStorage) {
+              private storage: AngularFireStorage,
+              private toast : NgToastService) {
   }
 
   ngOnInit(): void {
@@ -61,7 +63,7 @@ export class ProfileComponent implements OnInit {
       avatar: this.image,
     }
     this.userService.updateUserProfile(localStorage.getItem('ID'), this.user).subscribe(() => {
-      alert("ok")
+      this.toast.success({detail:"Thông báo", summary: "Cập nhật trang cá nhân thành công!",duration: 3000,position:'br'})
       localStorage.setItem('USERNAME', this.user.username);
       localStorage.setItem('AVATAR', this.user.avatar);
       this.router.navigateByUrl("/home")
