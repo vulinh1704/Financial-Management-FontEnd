@@ -73,7 +73,8 @@
         <div class="row justify-content-center">
           <div class="col-md-3">
             <div class="text-start">
-              <button class="btn_1 mb-2 btn-lg email-gradient gradient-9-hover email__btn waves-effect" data-bs-toggle="modal" data-bs-target="#exampleModal1"><i
+              <button class="btn_1 mb-2 btn-lg email-gradient gradient-9-hover email__btn waves-effect"
+                      data-bs-toggle="modal" data-bs-target="#exampleModal1"><i
                 class="fa-solid fa-folder-plus"></i>Thêm mới giao dịch
               </button>
             </div>
@@ -120,7 +121,8 @@
               <hr style="margin-top: -20px; width: 80%;margin-left: 25px;color: #545252; margin-bottom: 30px">
               <ul class="text-start">
                 <li>
-                  <button class="btn_1 mb-2 btn-lg email-gradient gradient-9-hover email__btn waves-effect" style="margin-left: 5px"><i
+                  <button class="btn_1 mb-2 btn-lg email-gradient gradient-9-hover email__btn waves-effect"
+                          style="margin-left: 5px"><i
                     class="fa-solid fa-trash"></i> Nhập lại
                   </button>
                   <button class="btn_1 mb-2 btn-lg email-gradient gradient-9-hover email__btn waves-effect"
@@ -161,7 +163,7 @@
                       <th scope="col">Loại giao dịch</th>
                       <th scope="col">Số tiền</th>
                       <th scope="col">Ghi chú</th>
-                      <th scope="col"></th>
+                      <th scope="col"><i class="fa-solid fa-ellipsis"></i></th>
                     </tr>
                     </thead>
                     <tbody>
@@ -190,7 +192,10 @@
                         <p class="nowrap">chi tiền cho gái , gái cho ăn ...</p>
                       </td>
                       <td>
+                        <a (click)="openHtml($event)"><i class="fa-solid fa-ellipsis" ></i></a>
                       </td>
+                    </tr>
+                    <tr id="detail">
                     </tr>
                     </tbody>
                   </table>
@@ -231,15 +236,111 @@
   <div class="modal-dialog modal-lg">
     <div class="modal-content">
       <div class="modal-header">
-        <h5 class="modal-title" id="exampleModalLabel">Modal title</h5>
+        <h5 class="modal-title" id="exampleModalLabel">Thêm mới giao dịch</h5>
         <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
       </div>
       <div class="modal-body">
-        ...
+        <table style="width: 100%; border-spacing: 30px">
+          <tr>
+            <td class="tdTbale" style="width: 23%">
+                <a data-bs-toggle="modal" data-bs-target="#exampleModalCate" style="background: rgba(247,247,247,0.16)">
+                  <div class="flex-shrink-0">
+                    <svg width="20" height="20">
+                      <rect width="25" height="25" style="fill:#E9E612;stroke-width:3;stroke:rgb(248,246,246)"/>
+                    </svg>
+                    <span style="margin-left: 10px;">Loại chi tiêu</span>
+                  </div>
+                </a>
+            </td>
+            <td style="width: 20px"></td>
+            <td class="tdTbale">
+              <input type="date" id="date"/>
+            </td>
+            <td style="width: 20px"></td>
+            <td class="tdTbale"> <input type="number" style="border: 1px solid #f1f3f5;" placeholder="Số tiền"></td>
+            <td style="width: 20px"></td>
+            <td class="tdTbale"> <input type="text" style="border: 1px solid #f1f3f5 ;" placeholder="Ghi chú"></td>
+          </tr>
+        </table>
       </div>
-      <div class="modal-footer">
-        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
-        <button type="button" class="btn btn-primary">Save changes</button>
+        <button type="button" class="btn btn-primary" style="width: 20%; margin-left: 77%;margin-bottom: 10px ;background: #3b76ef">Lưu</button>
+    </div>
+  </div>
+</div>
+
+
+<div class="modal fade" id="exampleModalCate" tabindex="-1" aria-labelledby="exampleModalLabel1" aria-hidden="true">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="exampleModalLabel1">Loại chi tiêu</h5>
+        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+      </div>
+      <div class="modal-body">
+        <div class="tab">
+          <button class="tablinks" onclick="openCity(event, 'collect')" style="width: 50%">Thu</button>
+          <button class="tablinks" onclick="openCity(event, 'spend')" style="width: 50%">Chi</button>
+        </div>
+        <div id="collect" class="tabcontent">
+          <table class="table lms_table_active" style="margin-top: 20px">
+            <tbody>
+            <tr>
+              <td>
+                <div class="d-flex align-items-center">
+                  <div class="flex-shrink-0">
+                    <svg width="20" height="20">
+                      <rect width="25" height="25" style="fill:#E9E612;stroke-width:3;stroke:rgb(248,246,246)"/>
+                    </svg>
+                  </div>
+                </div>
+              </td>
+              <td>
+                <div class="flex-grow-1 ms-3">
+                  <p>Tên loại</p>
+                </div>
+              </td>
+              <td>
+                <p>Tên loại</p>
+              </td>
+              <td>
+                <p class="nowrap">Note</p>
+              </td>
+              <td>
+              </td>
+            </tr>
+            </tbody>
+          </table>
+        </div>
+        <div id="spend" class="tabcontent">
+          <table class="table lms_table_active" style="margin-top: 20px">
+            <tbody>
+            <tr>
+              <td>
+                <div class="d-flex align-items-center">
+                  <div class="flex-shrink-0">
+                    <svg width="20" height="20">
+                      <rect width="25" height="25" style="fill:#E9E612;stroke-width:3;stroke:rgb(248,246,246)"/>
+                    </svg>
+                  </div>
+                </div>
+              </td>
+              <td>
+                <div class="flex-grow-1 ms-3">
+                  <p>Tên loại</p>
+                </div>
+              </td>
+              <td>
+                <p>Tên loại</p>
+              </td>
+              <td>
+                <p class="nowrap">Note</p>
+              </td>
+              <td>
+              </td>
+            </tr>
+            </tbody>
+          </table>
+        </div>
       </div>
     </div>
   </div>

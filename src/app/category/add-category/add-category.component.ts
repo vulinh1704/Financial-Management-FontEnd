@@ -40,6 +40,7 @@ export class AddCategoryComponent implements OnInit {
     this.categoryService.save(this.category).subscribe(() => {
       this.toast.success({detail:"Thông báo", summary: "Thêm danh mục thành công!",duration: 3000,position:'br'})
       this.router.navigateByUrl('/category').then();
+      location.reload()
     })
   }
 }

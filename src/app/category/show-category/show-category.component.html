@@ -31,7 +31,8 @@
                 <tr style="text-align: center">
                   <td scope="row"><a href="#" class="question_content">{{category.name}}</a></td>
                   <td>{{category.note}}</td>
-                  <td>{{category.status}}</td>
+                  <td *ngIf="category.status == '1'" style="color: rgba(0,0,0,0.68); size: 3px">Thu</td>
+                  <td *ngIf="category.status == '2'" style="color: rgba(0,0,0,0.64); size: 3px">Chi</td>
                   <td>
                     <div class="br" [ngStyle]="{'background': category.color,'height':'5px'}"></div>
                   </td>

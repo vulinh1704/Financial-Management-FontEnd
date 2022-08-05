@@ -2,8 +2,7 @@ import {Component, OnInit} from '@angular/core';
 import Swal from "sweetalert2";
 import {Category} from "../../model/category";
 import {CategoryService} from "../../service/category.service";
-import {ActivatedRoute, Router} from "@angular/router";
-import {FormControl, FormGroup} from "@angular/forms";
+import {Router} from "@angular/router";
 
 
 @Component({
@@ -14,6 +13,7 @@ import {FormControl, FormGroup} from "@angular/forms";
 export class ShowCategoryComponent implements OnInit {
   categories: Category[] = [];
   category: any;
+  showStatus: any;
 
   constructor(private categoryService: CategoryService,
               private router: Router) {}

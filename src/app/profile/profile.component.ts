@@ -45,7 +45,7 @@ export class ProfileComponent implements OnInit {
         username: data.username,
         address: data.address,
         age: data.age,
-        sex: data.sex,
+        sex: data.sex + "",
       })
       this.image = data.avatar;
     }, error => {

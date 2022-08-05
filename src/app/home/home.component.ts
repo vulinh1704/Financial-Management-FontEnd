@@ -1,6 +1,5 @@
 import {Component, OnInit} from '@angular/core';
 import {Options} from "@angular-slider/ngx-slider";
-import {FormGroup, FormControl} from '@angular/forms';
 
 @Component({
   selector: 'app-home',
@@ -21,5 +20,27 @@ export class HomeComponent implements OnInit {
     floor: 0,
     ceil: 1000,
   };
+
+  openHtml(event: any) {
+    // @ts-ignore
+    document.getElementById('detail').innerHTML =
+      `               <th scope="row" style="color: red">
+                        <i class="fa-solid fa-x"></i>
+                      </th>
+                      <td></td>
+                      <td></td>
+                      <td></td>
+                      <td style="color: green" >
+                        <i class="fa-solid fa-pen-to-square"></i>
+                      </td>
+                      <td>
+                        <a (click)="closeHtml()"><i class="fa-solid fa-angle-up"></i></a>
+                      </td>
+                      `;
+  }
+  closeHtml() {
+    // @ts-ignore
+    document.getElementById('detail').innerHTML = ``;
+  }
 
 }
