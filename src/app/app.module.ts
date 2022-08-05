@@ -19,13 +19,12 @@ import { ChangePasswordComponent } from './change-password/change-password.compo
 import {NgToastModule} from "ng-angular-popup";
 import { ShowWalletComponent } from './wallet/show-wallet/show-wallet.component';
 import { AddWalletComponent } from './wallet/add-wallet/add-wallet.component';
-import { ShowCategoriesComponent } from './category/show-categories/show-categories.component';
+import { ShowCategoryComponent } from './category/show-category/show-category.component';
 import {AngularFireStorageModule} from "@angular/fire/compat/storage";
 import {AngularFireModule} from "@angular/fire/compat";
 import {environment} from "../environments/environment";
 import { AddCategoryComponent } from './category/add-category/add-category.component';
 import { DetailWalletComponent } from './wallet/detail-wallet/detail-wallet.component';
-import { DeleteCategoryComponent } from './category/delete-category/delete-category.component';
 import { EditCategoryComponent } from './category/edit-category/edit-category.component';
 import {NgxSliderModule} from "@angular-slider/ngx-slider";
 import {MatDatepickerModule} from "@angular/material/datepicker";
@@ -46,10 +45,9 @@ import {MatNativeDateModule} from "@angular/material/core";
     ChangePasswordComponent,
     ShowWalletComponent,
     AddWalletComponent,
-    ShowCategoriesComponent,
+    ShowCategoryComponent,
     AddCategoryComponent,
     DetailWalletComponent,
-    DeleteCategoryComponent,
     EditCategoryComponent
   ],
   imports: [
