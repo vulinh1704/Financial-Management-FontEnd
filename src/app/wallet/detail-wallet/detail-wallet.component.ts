@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import {Component, OnInit} from '@angular/core';
 import Swal from "sweetalert2";
 import {WalletService} from "../../service/wallet.service";
 import {ActivatedRoute, Router} from "@angular/router";
@@ -18,15 +18,19 @@ export class DetailWalletComponent implements OnInit {
   });
 
   id: number = 0;
+  idInUse = Number(localStorage.getItem('ID_WALLET'));
   icon: any;
+  isCheck: boolean = false;
   wallet: any;
+  walletInUse: any;
   walletDelete: any
   walletEdit: any;
 
   constructor(private walletService: WalletService,
               private activatedRoute: ActivatedRoute,
               private router: Router,
-              private toast : NgToastService) { }
+              private toast: NgToastService) {
+  }
 
   ngOnInit(): void {
     this.activatedRoute.paramMap.subscribe((paramMap) => {
@@ -48,15 +52,50 @@ export class DetailWalletComponent implements OnInit {
         name: new FormControl(wallet.name),
         moneyType: new FormControl("" + wallet.moneyType.id)
       });
+      if (this.wallet.id == localStorage.getItem('ID_WALLET')) {
+        this.isCheck = true;
+      } else {
+        this.isCheck = false;
+      }
     })
   }
 
-  alertOnOff() {
-    Swal.fire(
-      '<h3 style="color: #575656">Tắt hoạt động ví ?</h3>',
-      'Bạn vui lòng bật hoạt động ví khác để tắt ví này !!!',
-      'question'
-    )
+  alertOnOff(id: number) {
+    this.walletService.findById(id).subscribe((wallet) => {
+      this.wallet = wallet;
+      if (this.wallet.id == localStorage.getItem('ID_WALLET')) {
+        Swal.fire(
+          '<h3 style="color: #575656">Tắt hoạt động ví ?</h3>',
+          'Bạn vui lòng bật hoạt động ví khác để tắt ví này !!!',
+          'question'
+        )
+        location.reload()
+      } else {
+        this.walletEdit = {
+          name: this.wallet.name,
+          moneyType: {
+            id: this.wallet.moneyType.id,
+          },
+          icon: this.icon,
+          moneyAmount: this.wallet.moneyAmount,
+          status: 2,
+          user: {
+            id: localStorage.getItem('ID')
+          }
+        }
+        this.walletService.update(this.wallet.id, this.walletEdit).subscribe(() => {
+          localStorage.removeItem('ID_WALLET');
+          localStorage.setItem('ID_WALLET', this.wallet.id);
+          this.toast.success({detail: "Thông báo", summary: "Chuyển ví thành công!", duration: 3000, position: 'br'});
+          location.reload();
+        })
+      }
+    })
+    this.walletService.findById(this.idInUse).subscribe((wallet) => {
+      this.walletInUse = wallet;
+      this.walletService.updateStatus(this.walletInUse.id, this.walletInUse).subscribe(() => {
+      })
+    })
   }
 
   confirmDelete() {
@@ -68,7 +107,7 @@ export class DetailWalletComponent implements OnInit {
       confirmButtonColor: '#3085d6',
       cancelButtonColor: '#d33',
       confirmButtonText: 'Đúng, xóa ngay !',
-      cancelButtonText:'Đóng '
+      cancelButtonText: 'Đóng '
     }).then((result) => {
       if (result.isConfirmed) {
         this.walletDelete = {
@@ -133,9 +172,9 @@ export class DetailWalletComponent implements OnInit {
     }
     console.log(this.walletEdit);
     this.walletService.update(this.id, this.walletEdit).subscribe(() => {
-      this.toast.success({detail:"Thông báo", summary: "Sửa ví thành công!",duration: 3000,position:'br'});
+      this.toast.success({detail: "Thông báo", summary: "Sửa ví thành công!", duration: 3000, position: 'br'});
     }, error => {
-      this.toast.error({detail:"Thông báo", summary: "Sửa ví thất bại!",duration: 3000,position:'br'});
+      this.toast.error({detail: "Thông báo", summary: "Sửa ví thất bại!", duration: 3000, position: 'br'});
     })
     location.reload();
   }
