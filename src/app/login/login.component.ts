@@ -50,6 +50,7 @@ export class LoginComponent implements OnInit {
                 localStorage.setItem('ID_WALLET', String(this.wallets[i].id));
               }
             }
+            location.reload();
           })
         })
       }

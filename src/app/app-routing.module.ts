@@ -8,7 +8,7 @@ import {AuthGuard} from "./helper/auth-guard";
 import {ProfileComponent} from "./profile/profile.component";
 import {ChangePasswordComponent} from "./change-password/change-password.component";
 import {ShowWalletComponent} from "./wallet/show-wallet/show-wallet.component";
-import {ShowCategoriesComponent} from "./category/show-categories/show-categories.component";
+import {ShowCategoryComponent} from "./category/show-category/show-category.component";
 
 const routes: Routes = [{
   path:'home',
@@ -31,7 +31,8 @@ const routes: Routes = [{
   loadChildren: () => import('./wallet/show-wallet/show-wallet-routing.module').then(module => module.ShowWalletRoutingModule)
 }, {
   path: 'category',
-  component: ShowCategoriesComponent
+  component: ShowCategoryComponent,
+  loadChildren: () => import('./category/show-category/show-category-routing.module').then(module => module.ShowCategoryRoutingModule)
 }, {
   path: 'user',
   canActivate: [AuthGuard],
