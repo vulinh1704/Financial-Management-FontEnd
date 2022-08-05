@@ -2,8 +2,9 @@ import {Component, OnInit} from '@angular/core';
 import Swal from "sweetalert2";
 import {Category} from "../../model/category";
 import {CategoryService} from "../../service/category.service";
-import {ActivatedRoute, Router} from "@angular/router";
+import {NgToastService} from "ng-angular-popup";
 import {FormControl, FormGroup} from "@angular/forms";
+import { Router } from '@angular/router';
 
 
 @Component({
@@ -12,14 +13,35 @@ import {FormControl, FormGroup} from "@angular/forms";
   styleUrls: ['./show-category.component.css']
 })
 export class ShowCategoryComponent implements OnInit {
+
+  updateCategoryForm = new FormGroup({
+    name: new FormControl(),
+    status: new FormControl(),
+    note: new FormControl(),
+    color: new FormControl(),
+  })
   categories: Category[] = [];
   category: any;
+  categoryUpdate: any;
 
   constructor(private categoryService: CategoryService,
-              private router: Router) {}
+              private router: Router,
+              private toast: NgToastService) {}
 
   ngOnInit(): void {
     this.showCategory();
+  }
+
+  getCategory(id: number) {
+    this.categoryService.findById(id).subscribe(category => {
+      this.category = category;
+      this.updateCategoryForm = new FormGroup({
+        name: new FormControl(category.name),
+        status: new FormControl(category.status + ""),
+        note: new FormControl(category.note),
+        color: new FormControl(category.color),
+      })
+    })
   }
 
   confirmDelete(id: number) {
@@ -74,4 +96,29 @@ export class ShowCategoryComponent implements OnInit {
       console.log(this.categories);
     })
   }
+
+  updateCategory() {
+    this.categoryUpdate = {
+      name: this.updateCategoryForm.value.name,
+      status: this.updateCategoryForm.value.status,
+      note: this.updateCategoryForm.value.note,
+      color: this.updateCategoryForm.value.color,
+      user: {
+        id: localStorage.getItem('ID')
+      }
+    }
+    console.log(this.category);
+    this.categoryService.update(this.category.id, this.categoryUpdate).subscribe(() => {
+      this.toast.success({detail: "Thông Báo", summary: "Sửa danh mục thành công", duration: 3000, position: "br"})
+      this.router.navigate(['/category/']).then(() => {
+        setInterval(() => {
+          location.reload()
+        }, 500)
+      })
+    }, e => {
+      this.toast.error({detail: "Thông Báo", summary: "Sửa danh mục thất bại", duration: 3000, position: "br"})
+      console.log(e);
+    });
+  }
 }
+

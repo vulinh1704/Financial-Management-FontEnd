@@ -26,7 +26,6 @@ import {AngularFireModule} from "@angular/fire/compat";
 import {environment} from "../environments/environment";
 import { AddCategoryComponent } from './category/add-category/add-category.component';
 import { DetailWalletComponent } from './wallet/detail-wallet/detail-wallet.component';
-import { EditCategoryComponent } from './category/edit-category/edit-category.component';
 
 @NgModule({
   declarations: [
@@ -45,7 +44,6 @@ import { EditCategoryComponent } from './category/edit-category/edit-category.co
     ShowCategoryComponent,
     AddCategoryComponent,
     DetailWalletComponent,
-    EditCategoryComponent
   ],
   imports: [
     BrowserModule,
