@@ -33,10 +33,10 @@
         <div class="row justify-content-center">
           <div class="col-md-3">
             <div class="text-start">
-              <button class="btn_1 mb-2 btn-lg email-gradient gradient-9-hover email__btn waves-effect"
+              <a class="btn_1 mb-2 btn-lg email-gradient gradient-9-hover email__btn waves-effect"
                       data-bs-toggle="modal" data-bs-target="#exampleModal1"><i
                 class="fa-solid fa-folder-plus"></i>Thêm mới giao dịch
-              </button>
+              </a>
             </div>
             <div class="email-sidebar">
               <h4><i class="fa-brands fa-searchengin"></i> Tìm kiếm</h4>
@@ -151,10 +151,10 @@
                         <p class="nowrap">{{transaction.note}}</p>
                       </td>
                       <td class="form-check form-switch">
-                        <a (click)="isOpenHtml()"><i class="fa-solid fa-ellipsis" ></i></a>
+                        <a (click)="isOpenHtml(i+1)"><i class="fa-solid fa-ellipsis" ></i></a>
                       </td>
                     </tr>
-                    <tr id="detail" [hidden]="isOpen">
+                    <tr id="{{i+1}}" hidden="false">
                       <td style="text-align: center" colspan="3">
                         {{transaction.time}}
                       </td>

@@ -13,7 +13,6 @@ Chart.register(...registerables);
 })
 export class HomeComponent implements OnInit {
 
-  isOpen: boolean = true;
   transactions : Transaction[] = [];
 
   constructor(private transactionService: TransactionService) {
@@ -111,12 +110,14 @@ options: Options = {
   ceil: 1000,
 };
 
-  isOpenHtml() {
+  isOpenHtml(id: any) {
     // @ts-ignore
-    if (document.getElementById('detail').hidden) {
-      this.isOpen = false;
+    if (document.getElementById('' + id).hidden) {
+      // @ts-ignore
+      document.getElementById('' + id).hidden = false;
     } else {
-      this.isOpen = true;
+      // @ts-ignore
+      document.getElementById('' + id).hidden = true;
     }
   }
 
