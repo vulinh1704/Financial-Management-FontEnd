@@ -17,15 +17,19 @@ import { NavBarComponent } from './nav-bar/nav-bar.component';
 import { ProfileComponent } from './profile/profile.component';
 import { ChangePasswordComponent } from './change-password/change-password.component';
 import {NgToastModule} from "ng-angular-popup";
-import {ToastrModule} from "ngx-toastr";
 import { ShowWalletComponent } from './wallet/show-wallet/show-wallet.component';
 import { AddWalletComponent } from './wallet/add-wallet/add-wallet.component';
-import { EditWalletComponent } from './wallet/edit-wallet/edit-wallet.component';
-import { ShowCategoriesComponent } from './category/show-categories/show-categories.component';
+import { ShowCategoryComponent } from './category/show-category/show-category.component';
 import {AngularFireStorageModule} from "@angular/fire/compat/storage";
 import {AngularFireModule} from "@angular/fire/compat";
 import {environment} from "../environments/environment";
-import {MoneyTypeComponent} from "./money-type/money-type.component";
+import { AddCategoryComponent } from './category/add-category/add-category.component';
+import { DetailWalletComponent } from './wallet/detail-wallet/detail-wallet.component';
+import {NgxSliderModule} from "@angular-slider/ngx-slider";
+import {MatDatepickerModule} from "@angular/material/datepicker";
+import {MatInputModule} from "@angular/material/input";
+import {MatNativeDateModule} from "@angular/material/core";
+import { AddTransactionComponent } from './home/add-transaction/add-transaction.component';
 
 @NgModule({
   declarations: [
@@ -41,9 +45,10 @@ import {MoneyTypeComponent} from "./money-type/money-type.component";
     ChangePasswordComponent,
     ShowWalletComponent,
     AddWalletComponent,
-    EditWalletComponent,
-    ShowCategoriesComponent,
-    MoneyTypeComponent
+    ShowCategoryComponent,
+    AddCategoryComponent,
+    DetailWalletComponent,
+    AddTransactionComponent
   ],
   imports: [
     BrowserModule,
@@ -54,7 +59,11 @@ import {MoneyTypeComponent} from "./money-type/money-type.component";
     ReactiveFormsModule,
     FormsModule,
     AngularFireStorageModule,
-    AngularFireModule.initializeApp(environment.firebaseConfig, "cloud")
+    AngularFireModule.initializeApp(environment.firebaseConfig, "cloud"),
+    NgxSliderModule,
+    MatDatepickerModule,
+    MatInputModule,
+    MatNativeDateModule
   ],
   providers: [
     {

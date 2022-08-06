@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import {WalletService} from "../service/wallet.service";
 
 @Component({
   selector: 'app-nav-bar',
@@ -7,11 +8,18 @@ import { Component, OnInit } from '@angular/core';
 })
 export class NavBarComponent implements OnInit {
   image: any;
-  constructor() { }
+  wallet: any;
+  constructor(private walletService: WalletService) { }
 
   ngOnInit(): void {
     this.image = localStorage.getItem('AVATAR');
-    console.log(this.image);
+    this.findWallet();
   }
 
+  findWallet() {
+    // @ts-ignore
+    this.walletService.findById(localStorage.getItem('ID_WALLET')).subscribe((wallet) => {
+      this.wallet = wallet;
+    })
+  }
 }

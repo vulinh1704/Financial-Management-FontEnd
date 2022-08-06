@@ -36,6 +36,9 @@ export class AuthenticationService {
     localStorage.removeItem('USERNAME');
     localStorage.removeItem('ROLE');
     localStorage.removeItem('ACCESS_TOKEN');
+    localStorage.removeItem('PASS');
+    localStorage.removeItem('AVATAR');
+    localStorage.removeItem('ID');
   }
 
 

@@ -12,24 +12,24 @@
                   <div class="quick_activity_wrap">
                     <div class="single_quick_activity">
                       <h4>Tổng tiền</h4>
-                      <h3>$ <span class="counter">5,79,000</span> </h3>
+                      <h3>$ <span class="counter">5,79,000</span></h3>
                       <p>Saved 25%</p>
                     </div>
-<!--                    <div class="single_quick_activity">-->
-<!--                      <h4>Total Expences</h4>-->
-<!--                      <h3>$ <span class="counter">79,000</span> </h3>-->
-<!--                      <p>Saved 25%</p>-->
-<!--                    </div>-->
-<!--                    <div class="single_quick_activity">-->
-<!--                      <h4>Cash on Hand</h4>-->
-<!--                      <h3>$ <span class="counter">92,000</span> </h3>-->
-<!--                      <p>Saved 25%</p>-->
-<!--                    </div>-->
-<!--                    <div class="single_quick_activity">-->
-<!--                      <h4>Net Profit Margin</h4>-->
-<!--                      <h3>$ <span class="counter">1,79,000</span> </h3>-->
-<!--                      <p>Saved 65%</p>-->
-<!--                    </div>-->
+                    <!--                    <div class="single_quick_activity">-->
+                    <!--                      <h4>Total Expences</h4>-->
+                    <!--                      <h3>$ <span class="counter">79,000</span> </h3>-->
+                    <!--                      <p>Saved 25%</p>-->
+                    <!--                    </div>-->
+                    <!--                    <div class="single_quick_activity">-->
+                    <!--                      <h4>Cash on Hand</h4>-->
+                    <!--                      <h3>$ <span class="counter">92,000</span> </h3>-->
+                    <!--                      <p>Saved 25%</p>-->
+                    <!--                    </div>-->
+                    <!--                    <div class="single_quick_activity">-->
+                    <!--                      <h4>Net Profit Margin</h4>-->
+                    <!--                      <h3>$ <span class="counter">1,79,000</span> </h3>-->
+                    <!--                      <p>Saved 65%</p>-->
+                    <!--                    </div>-->
                   </div>
                 </div>
               </div>
@@ -38,5 +38,323 @@
         </div>
       </div>
     </div>
+    <!--    <section class="main_content dashboard_part">-->
+    <div class="container-fluid g-0">
+      <div class="row">
+        <div class="col-lg-12 p-0">
+          <div class="header_iner d-flex justify-content-between align-items-center">
+            <div class="header_right d-flex justify-content-between align-items-center">
+              <div class="header_notification_warp d-flex align-items-center">
+                <li>
+                  <a href="#"> <img src="img/icon/bell.svg" alt=""> </a>
+                </li>
+                <li>
+                  <a href="#"> <img src="img/icon/msg.svg" alt=""> </a>
+                </li>
+              </div>
+              <div class="profile_info">
+                <div class="profile_info_iner">
+                  <p>Welcome Admin!</p>
+                  <h5>Travor James</h5>
+                  <div class="profile_info_details">
+                    <a href="#">My Profile <i class="ti-user"></i></a>
+                    <a href="#">Settings <i class="ti-settings"></i></a>
+                    <a href="#">Log Out <i class="ti-shift-left"></i></a>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="main_content_iner ">
+      <div class="container-fluid plr_30 body_white_bg pt_30">
+        <div class="row justify-content-center">
+          <div class="col-md-3">
+            <div class="text-start">
+              <button class="btn_1 mb-2 btn-lg email-gradient gradient-9-hover email__btn waves-effect"
+                      data-bs-toggle="modal" data-bs-target="#exampleModal1"><i
+                class="fa-solid fa-folder-plus"></i>Thêm mới giao dịch
+              </button>
+            </div>
+            <div class="email-sidebar">
+              <h4><i class="fa-brands fa-searchengin"></i> Tìm kiếm</h4>
+              <hr style="margin-top: -30px; width: 80%;margin-left: 25px;color: #666666">
+              <ul class="text-start">
+                <li style="margin-top: 10px"><h5 style="margin-left: 10px"> Khoảng giá
+                </h5></li>
+                <li>
+                  <ngx-slider [(value)]="value" [(highValue)]="highValue" [options]="options"
+                              style="width: 90%; margin-left: 3%"></ngx-slider>
+                </li>
+                <li class="text-start" style="margin-top: 10px"><h5 style="margin-left: 10px">
+                  Từ ngày</h5>
+                </li>
+                <li>
+                  <input type="date"/>
+                </li>
+                <li class="text-start" style="margin-top: 10px"><h5 style="margin-left: 10px">
+                  Đến ngày</h5></li>
+                <input type="date"/>
+                <li class="text-start" style="margin-top: 10px"><h5 style="margin-left: 10px">
+                  Kiểu giao dịch</h5>
+                  <br>
+                  <input class="form-check-input" type="radio" name="flexRadioDefault" id="flexRadioDefault1"
+                         style="margin-left: 30px">
+                  <img
+                    src="https://previews.123rf.com/images/izakowski/izakowski1301/izakowski130100082/17325761-%E7%8F%BE%E9%87%91%E3%81%A7%E9%87%91%E3%81%AE%E8%A2%8B%E3%82%92%E5%B9%B8%E3%81%9B%E3%81%AA%E7%94%B7%E3%82%84%E3%83%93%E3%82%B8%E3%83%8D%E3%82%B9%E3%83%9E%E3%83%B3%E3%81%AE%E6%BC%AB%E7%94%BB%E3%82%A4%E3%83%A9%E3%82%B9%E3%83%88.jpg"
+                    style="width: 20px;height: 20px; margin-right: 4px;margin-left: 5px;">
+                  <label class="form-check-label" for="flexRadioDefault1">
+                    Thu
+                  </label>
+                  <input class="form-check-input" type="radio" name="flexRadioDefault" id="flexRadioDefault2" checked
+                         style="margin-left: 40px">
+                  <img
+                    src="https://banner2.cleanpng.com/20180301/ade/kisspng-united-states-dollar-banknote-cartoon-vector-holding-dollar-5a979df432a946.2963528815198858122075.jpg"
+                    style="width: 20px;height: 20px; margin-right: 5px; margin-left: 5px">
+                  <label class="form-check-label" for="flexRadioDefault2">
+                    Chi
+                  </label>
+                </li>
+              </ul>
+              <hr style="margin-top: -20px; width: 80%;margin-left: 25px;color: #545252; margin-bottom: 30px">
+              <ul class="text-start">
+                <li>
+                  <button class="btn_1 mb-2 btn-lg email-gradient gradient-9-hover email__btn waves-effect"
+                          style="margin-left: 5px"><i
+                    class="fa-solid fa-trash"></i> Nhập lại
+                  </button>
+                  <button class="btn_1 mb-2 btn-lg email-gradient gradient-9-hover email__btn waves-effect"
+                          style="margin-left: 20px"><i class="fa-brands fa-searchengin"></i> Tìm
+                  </button>
+                </li>
+              </ul>
+            </div>
+          </div>
+          <div class="col-md-9">
+            <div class="white_box QA_section">
+              <div class="white_box_tittle list_header">
+                <h4><i class="fa-solid fa-list"></i> Danh sách giao dịch</h4>
+                <!--                <div class="box_right d-flex lms_block">-->
+                <!--                  <div class="serach_field_2">-->
+                <!--                    <div class="search_inner">-->
+                <!--                      <form active="#">-->
+                <!--                        <div class="search_field">-->
+                <!--                          <input type="text" placeholder="Search content here...">-->
+                <!--                        </div>-->
+                <!--                        <button type="submit"><i class="ti-search"></i></button>-->
+                <!--                      </form>-->
+                <!--                    </div>-->
+                <!--                  </div>-->
+                <!--                </div>-->
+              </div>
+              <div class="QA_table ">
+                <div id="DataTables_Table_0_wrapper" class="dataTables_wrapper no-footer">
+                  <table class="table lms_table_active">
+                    <thead>
+                    <tr>
+                      <th scope="col">
+                        <label class="form-label primary_checkbox d-flex me-12 ">
+                          Thứ tự
+                        </label>
+                      </th>
+                      <th scope="col"></th>
+                      <th scope="col">Loại giao dịch</th>
+                      <th scope="col">Số tiền</th>
+                      <th scope="col">Ghi chú</th>
+                      <th scope="col"><i class="fa-solid fa-ellipsis"></i></th>
+                    </tr>
+                    </thead>
+                    <tbody>
+                    <tr>
+                      <th scope="row">
+                        <label class="form-label primary_checkbox d-flex me-12 ">
+                          1
+                        </label></th>
+                      <td><i class="far fa-star"></i></td>
+                      <td>
+                        <div class="d-flex align-items-center">
+                          <div class="flex-shrink-0">
+                            <svg width="20" height="20">
+                              <rect width="25" height="25" style="fill:#E9E612;stroke-width:3;stroke:rgb(248,246,246)"/>
+                            </svg>
+                          </div>
+                          <div class="flex-grow-1 ms-3">
+                            <p>Tên loại</p>
+                          </div>
+                        </div>
+                      </td>
+                      <td>
+                        <p>500 vnd</p>
+                      </td>
+                      <td>
+                        <p class="nowrap">chi tiền cho gái , gái cho ăn ...</p>
+                      </td>
+                      <td>
+                        <a><i class="fa-solid fa-ellipsis" ></i></a>
+                      </td>
+                    </tr>
+                    <tr id="detail">
+                      <td style="text-align: center" colspan="3">
+                        06 / 08 / 2022
+                      </td>
+                      <td style="color: red; text-align: center">
+                        <i class="fa-solid fa-x"></i>
+                      </td>
+                      <td style="text-align: center">
+                        <a data-bs-toggle="modal" data-bs-target="#exampleModal-edit" style="color: green"><i class="fa-solid fa-pen-to-square"></i></a>
+                      </td>
+                      <td>
+                        <a (click)="closeHtml()"><i class="fa-solid fa-angle-up"></i></a>
+                      </td>
+                    </tr>
+                    </tbody>
+                  </table>
+                  <div class="dataTables_info" id="DataTables_Table_0_info" role="status" aria-live="polite">Hiển thị 1
+                    đến 10 giao dịch gần nhất
+                  </div>
+                  <div class="dataTables_paginate paging_simple_numbers" id="DataTables_Table_0_paginate"><a
+                    class="paginate_button previous disabled" aria-controls="DataTables_Table_0" data-dt-idx="0"
+                    tabindex="0" id="DataTables_Table_0_previous"><i class="ti-arrow-left"></i></a><span><a
+                    class="paginate_button current" aria-controls="DataTables_Table_0" data-dt-idx="1"
+                    tabindex="0">1</a></span><a class="paginate_button next disabled" aria-controls="DataTables_Table_0"
+                                                data-dt-idx="2" tabindex="0" id="DataTables_Table_0_next"><i
+                    class="ti-arrow-right"></i></a></div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="footer_part">
+        <div class="container-fluid">
+          <div class="row">
+            <div class="col-lg-12 col-sm-12">
+              <div class="footer_iner text-center">
+                <p>2022 © Destroy - <a href="#"> Hủy diệt</a></p>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
   </div>
 </section>
+
+
+<!-- Modal -->
+<div class="modal fade" id="exampleModal1" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+  <div class="modal-dialog modal-lg">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="exampleModalLabel">Thêm mới giao dịch</h5>
+        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+      </div>
+      <div class="modal-body">
+        <table style="width: 100%; border-spacing: 30px">
+          <tr>
+            <td class="tdTbale" style="width: 23%">
+                <a data-bs-toggle="modal" data-bs-target="#exampleModalCate" style="background: rgba(247,247,247,0.16)">
+                  <div class="flex-shrink-0">
+                    <svg width="20" height="20">
+                      <rect width="25" height="25" style="fill:#E9E612;stroke-width:3;stroke:rgb(248,246,246)"/>
+                    </svg>
+                    <span style="margin-left: 10px;">Loại chi tiêu</span>
+                  </div>
+                </a>
+            </td>
+            <td style="width: 20px"></td>
+            <td class="tdTbale">
+              <input type="date" id="date"/>
+            </td>
+            <td style="width: 20px"></td>
+            <td class="tdTbale"> <input type="number" style="border: 1px solid #f1f3f5;" placeholder="Số tiền"></td>
+            <td style="width: 20px"></td>
+            <td class="tdTbale"> <input type="text" style="border: 1px solid #f1f3f5 ;" placeholder="Ghi chú"></td>
+          </tr>
+        </table>
+      </div>
+        <button type="button" class="btn btn-primary" style="width: 20%; margin-left: 77%;margin-bottom: 10px ;background: #3b76ef">Lưu</button>
+    </div>
+  </div>
+</div>
+
+
+<div class="modal fade" id="exampleModalCate" tabindex="-1" aria-labelledby="exampleModalLabel1" aria-hidden="true">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="exampleModalLabel1">Loại chi tiêu</h5>
+        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+      </div>
+      <div class="modal-body">
+        <div class="tab">
+          <button class="tablinks" onclick="openCity(event, 'collect')" style="width: 50%">Thu</button>
+          <button class="tablinks" onclick="openCity(event, 'spend')" style="width: 50%">Chi</button>
+        </div>
+        <div id="collect" class="tabcontent">
+          <table class="table lms_table_active" style="margin-top: 20px">
+            <tbody>
+            <tr>
+              <td>
+                <div class="d-flex align-items-center">
+                  <div class="flex-shrink-0">
+                    <svg width="20" height="20">
+                      <rect width="25" height="25" style="fill:#E9E612;stroke-width:3;stroke:rgb(248,246,246)"/>
+                    </svg>
+                  </div>
+                </div>
+              </td>
+              <td>
+                <div class="flex-grow-1 ms-3">
+                  <p>Tên loại</p>
+                </div>
+              </td>
+              <td>
+                <p>Tên loại</p>
+              </td>
+              <td>
+                <p class="nowrap">Note</p>
+              </td>
+              <td>
+              </td>
+            </tr>
+            </tbody>
+          </table>
+        </div>
+        <div id="spend" class="tabcontent">
+          <table class="table lms_table_active" style="margin-top: 20px">
+            <tbody>
+            <tr>
+              <td>
+                <div class="d-flex align-items-center">
+                  <div class="flex-shrink-0">
+                    <svg width="20" height="20">
+                      <rect width="25" height="25" style="fill:#E9E612;stroke-width:3;stroke:rgb(248,246,246)"/>
+                    </svg>
+                  </div>
+                </div>
+              </td>
+              <td>
+                <div class="flex-grow-1 ms-3">
+                  <p>Tên loại</p>
+                </div>
+              </td>
+              <td>
+                <p>Tên loại</p>
+              </td>
+              <td>
+                <p class="nowrap">Note</p>
+              </td>
+              <td>
+              </td>
+            </tr>
+            </tbody>
+          </table>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+<app-add-transaction></app-add-transaction>

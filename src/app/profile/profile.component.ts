@@ -5,6 +5,7 @@ import {ActivatedRoute, Router} from "@angular/router";
 import {UserService} from "../service/user.service";
 import {AngularFireStorage} from "@angular/fire/compat/storage";
 import {finalize} from "rxjs";
+import {NgToastService} from "ng-angular-popup";
 
 @Component({
   selector: 'app-profile',
@@ -29,7 +30,8 @@ export class ProfileComponent implements OnInit {
   constructor(private activatedRoute: ActivatedRoute,
               private router: Router,
               private userService: UserService,
-              private storage: AngularFireStorage) {
+              private storage: AngularFireStorage,
+              private toast : NgToastService) {
   }
 
   ngOnInit(): void {
@@ -37,14 +39,13 @@ export class ProfileComponent implements OnInit {
   }
 
   findById() {
-    this.userService.findById().subscribe(data => {
-      console.log(data)
+    this.userService.findById(localStorage.getItem('ID')).subscribe(data => {
       this.updateForm.patchValue({
         email: data.email,
         username: data.username,
         address: data.address,
         age: data.age,
-        sex: data.sex,
+        sex: data.sex + "",
       })
       this.image = data.avatar;
     }, error => {
@@ -58,14 +59,14 @@ export class ProfileComponent implements OnInit {
       username: this.updateForm.value.username,
       address: this.updateForm.value.address,
       age: this.updateForm.value.age,
+      sex: this.updateForm.value.sex,
       avatar: this.image,
     }
-    this.userService.updateUserProfile(this.user).subscribe(() => {
-      alert("ok")
-      console.log(this.user.username)
+    this.userService.updateUserProfile(localStorage.getItem('ID'), this.user).subscribe(() => {
+      this.toast.success({detail:"Thông báo", summary: "Cập nhật trang cá nhân thành công!",duration: 3000,position:'br'})
       localStorage.setItem('USERNAME', this.user.username);
       localStorage.setItem('AVATAR', this.user.avatar);
-      this.router.navigateByUrl("/")
+      this.router.navigateByUrl("/home")
     }, error => {
       console.log(error)
     })

@@ -1,8 +1,10 @@
+import {User} from "./user";
+
 export interface Category {
   id: number;
   name: string;
-  type: string;
-  status: string
+  status: string;
   note: string;
   color: string;
+  user: User;
 }
