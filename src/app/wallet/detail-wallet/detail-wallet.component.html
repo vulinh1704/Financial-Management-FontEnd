@@ -23,7 +23,7 @@
         <br>
         <div class="form-check form-switch">
           <input class="form-check-input" type="checkbox" role="switch" id="flexSwitchCheckChecked" [checked] = "isCheck"
-                 (click)="alertOnOff(wallet.id)">
+                 (click)="alertOnOff(wallet.id)" [disabled]="isDisabled">
         </div>
       </div>
     </div>
