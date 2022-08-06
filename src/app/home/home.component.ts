@@ -1,5 +1,7 @@
 import {Component, OnInit} from '@angular/core';
 import {Options} from "@angular-slider/ngx-slider";
+import {TransactionService} from "../service/transaction.service";
+import {Transaction} from "../model/transaction";
 
 @Component({
   selector: 'app-home',
@@ -8,10 +10,14 @@ import {Options} from "@angular-slider/ngx-slider";
 })
 export class HomeComponent implements OnInit {
 
-  constructor() {
+  isOpen: boolean = true;
+  transactions : Transaction[] = [];
+
+  constructor(private transactionService: TransactionService) {
   }
 
   ngOnInit(): void {
+    this.showTransaction();
   }
 
   value: number = 0;
@@ -21,26 +27,19 @@ export class HomeComponent implements OnInit {
     ceil: 1000,
   };
 
-  openHtml(event: any) {
+  isOpenHtml() {
     // @ts-ignore
-    document.getElementById('detail').innerHTML =
-      `               <th scope="row" style="color: red">
-                        <i class="fa-solid fa-x"></i>
-                      </th>
-                      <td></td>
-                      <td></td>
-                      <td></td>
-                      <td style="color: green" >
-                        <i class="fa-solid fa-pen-to-square"></i>
-                      </td>
-                      <td>
-                        <a (click)="closeHtml()"><i class="fa-solid fa-angle-up"></i></a>
-                      </td>
-                      `;
-  }
-  closeHtml() {
-    // @ts-ignore
-    document.getElementById('detail').innerHTML = ``;
+    if (document.getElementById('detail').hidden) {
+      this.isOpen = false;
+    } else {
+      this.isOpen = true;
+    }
   }
 
+  showTransaction() {
+    this.transactionService.findAll().subscribe(transactions => {
+      this.transactions = transactions;
+      console.log(transactions);
+    })
+  }
 }

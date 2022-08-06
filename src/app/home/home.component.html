@@ -166,47 +166,43 @@
                       <th scope="col"><i class="fa-solid fa-ellipsis"></i></th>
                     </tr>
                     </thead>
-                    <tbody>
+                    <tbody *ngFor="let transaction of transactions; let i = index">
                     <tr>
                       <th scope="row">
-                        <label class="form-label primary_checkbox d-flex me-12 ">
-                          1
-                        </label></th>
+                        <label class="form-label primary_checkbox d-flex me-12 ">{{i + 1}}</label>
+                      </th>
                       <td><i class="far fa-star"></i></td>
                       <td>
                         <div class="d-flex align-items-center">
                           <div class="flex-shrink-0">
                             <svg width="20" height="20">
-                              <rect width="25" height="25" style="fill:#E9E612;stroke-width:3;stroke:rgb(248,246,246)"/>
+                              <rect width="25" height="25" [ngStyle]="{'fill':transaction.category.color,'stroke-width':'3px'}"/>
                             </svg>
                           </div>
                           <div class="flex-grow-1 ms-3">
-                            <p>Tên loại</p>
+                            <p>{{transaction.category.name}}</p>
                           </div>
                         </div>
                       </td>
                       <td>
-                        <p>500 vnd</p>
+                        <p>{{transaction.totalSpent}}</p>
                       </td>
                       <td>
-                        <p class="nowrap">chi tiền cho gái , gái cho ăn ...</p>
+                        <p class="nowrap">{{transaction.note}}</p>
                       </td>
-                      <td>
-                        <a><i class="fa-solid fa-ellipsis" ></i></a>
+                      <td class="form-check form-switch">
+                        <a (click)="isOpenHtml()"><i class="fa-solid fa-ellipsis" ></i></a>
                       </td>
                     </tr>
-                    <tr id="detail">
+                    <tr id="detail" [hidden]="isOpen">
                       <td style="text-align: center" colspan="3">
-                        06 / 08 / 2022
+                        {{transaction.time}}
                       </td>
                       <td style="color: red; text-align: center">
                         <i class="fa-solid fa-x"></i>
                       </td>
                       <td style="text-align: center">
                         <a data-bs-toggle="modal" data-bs-target="#exampleModal-edit" style="color: green"><i class="fa-solid fa-pen-to-square"></i></a>
-                      </td>
-                      <td>
-                        <a (click)="closeHtml()"><i class="fa-solid fa-angle-up"></i></a>
                       </td>
                     </tr>
                     </tbody>
@@ -357,4 +353,4 @@
     </div>
   </div>
 </div>
-<app-add-transaction></app-add-transaction>
+<app-edit-transaction></app-edit-transaction>
