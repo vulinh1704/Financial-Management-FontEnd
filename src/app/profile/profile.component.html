@@ -30,19 +30,52 @@
                     <input type="email" class="form-control" id="exampleFormControlInput" placeholder="email@gmail.com"
                            formControlName="email">
                   </div>
+                  <div *ngIf="!email?.['valid'] && (email?.dirty ||email?.['touched'])">
+                    <div [hidden]="!email?.errors?.['required']">
+                      <i style="color: red" > Email không được để trống</i>
+                    </div>
+                  </div>
+                  <div [hidden]="!email?.errors?.['email']">
+                    <i style="color: red" > Vui lòng nhập đúng định dạng email@gmail.com</i>
+                  </div>
                   <div class="row pt-3">
                     <label class="form-label" for="exampleFormControlInput1">Tên</label>
                     <input type="text" class="form-control" id="exampleFormControlInput1" placeholder="Tên"
                            formControlName="username">
                   </div>
+                  <div *ngIf="!username?.['valid'] && (username?.dirty ||username?.['touched'])">
+                    <div [hidden]="!username?.errors?.['required']">
+                      <i style="color: red" > Tên không được để trống</i>
+                    </div>
+                    <div [hidden]="!username?.errors?.['minlength']">
+                      <i style="color: red" > Tên phải có ít nhất 6 ký tự</i>
+                    </div>
+                    <div [hidden]="!username?.errors?.['maxlength']">
+                      <i style="color: red" > Tên có tối đa 25 ký tự</i>
+                    </div>
+                  </div>
                   <div class="row pt-3">
                     <label class="form-label" for="exampleFormControlInput1">Địa chỉ</label>
                     <input type="text" class="form-control" placeholder="Địa chỉ" formControlName="address">
+                  </div>
+                  <div *ngIf="!address?.['valid'] && (address?.dirty ||address?.['touched'])">
+                    <div [hidden]="!address?.errors?.['required']">
+                      <i style="color: red" > Địa chỉ không được để trống</i>
+                    </div>
                   </div>
                   <div class="row pt-3">
                     <label class="form-label" for="exampleFormControlInput1">Tuổi</label>
                     <input type="number" class="form-control" placeholder="Tuổi" formControlName="age">
                   </div>
+                  <div *ngIf="!age?.['valid'] && (age?.dirty ||age?.['touched'])">
+                    <div [hidden]="!age?.errors?.['required']">
+                      <i style="color: red" > Vui lòng nhập độ tuổi của bạn</i>
+                    </div>
+                    <div [hidden]="!age?.errors?.['pattern']">
+                      <i style="color: red" > Vui lòng nhập độ tuổi từ 16 - 99 tuổi</i>
+                    </div>
+                  </div>
+
                   <div class="row pt-3">
                     <label class="form-label">Giới tính</label>
                     <div style="margin-top: 10px">

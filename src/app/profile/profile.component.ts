@@ -1,6 +1,6 @@
 import {Component, OnInit} from '@angular/core';
 import {User} from "../model/user";
-import {FormControl, FormGroup} from "@angular/forms";
+import {FormControl, FormGroup, Validators} from "@angular/forms";
 import {ActivatedRoute, Router} from "@angular/router";
 import {UserService} from "../service/user.service";
 import {AngularFireStorage} from "@angular/fire/compat/storage";
@@ -20,11 +20,12 @@ export class ProfileComponent implements OnInit {
   downloadURL: any;
 
   updateForm = new FormGroup({
-    email: new FormControl(),
-    username: new FormControl(),
-    address: new FormControl(),
-    age: new FormControl(),
-    sex: new FormControl(),
+    email: new FormControl('',[Validators.required, Validators.email]),
+    username: new FormControl('', [Validators.required, Validators.minLength(6), Validators.maxLength(25)]),
+    // name: new FormControl('', [Validators.required, Validators.minLength(6), Validators.maxLength(25)]),
+    address: new FormControl('',[Validators.required]),
+    age: new FormControl('', [Validators.required, Validators.pattern("^(1[6789]|[2-9]\\d)$")]),
+    sex: new FormControl('',[Validators.required]),
   })
 
   constructor(private activatedRoute: ActivatedRoute,
@@ -57,6 +58,7 @@ export class ProfileComponent implements OnInit {
     this.user = {
       email: this.updateForm.value.email,
       username: this.updateForm.value.username,
+      // name: this.updateForm.value.name,
       address: this.updateForm.value.address,
       age: this.updateForm.value.age,
       sex: this.updateForm.value.sex,
@@ -96,5 +98,29 @@ export class ProfileComponent implements OnInit {
           console.log(url);
         }
       });
+  }
+
+  get username(){
+    return this.updateForm.get('username');
+  }
+
+  get email(){
+    return this.updateForm.get('email');
+  }
+
+  get address(){
+    return this.updateForm.get('address');
+  }
+
+  get age(){
+    return this.updateForm.get('age');
+  }
+
+  get sex(){
+    return this.updateForm.get('sex');
+  }
+
+  get profilename(){
+    return this.updateForm.get('profilename');
   }
 }
