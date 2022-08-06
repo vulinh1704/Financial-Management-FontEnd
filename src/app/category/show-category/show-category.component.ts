@@ -49,11 +49,9 @@ export class ShowCategoryComponent implements OnInit {
       title: '<h3 style="color: #575656">Bạn muốn xóa ?</h3>',
       text: 'Khi xóa loại giao dịch sẽ không còn trong danh sách !',
       icon: 'warning',
-      showCancelButton: true,
+      showCloseButton: true,
       confirmButtonColor: '#3085d6',
-      cancelButtonColor: '#e55858',
-      confirmButtonText: 'Đúng, xóa ngay !',
-      cancelButtonText: 'Đóng '
+      confirmButtonText: 'Xóa',
     }).then((result) => {
       if (result.isConfirmed) {
         this.categoryService.delete(id).subscribe(() => {
