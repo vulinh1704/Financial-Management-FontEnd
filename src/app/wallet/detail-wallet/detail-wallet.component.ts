@@ -21,6 +21,7 @@ export class DetailWalletComponent implements OnInit {
   idInUse = Number(localStorage.getItem('ID_WALLET'));
   icon: any;
   isCheck: boolean = false;
+  isDisabled: boolean = false;
   wallet: any;
   walletInUse: any;
   walletDelete: any
@@ -54,48 +55,55 @@ export class DetailWalletComponent implements OnInit {
       });
       if (this.wallet.id == localStorage.getItem('ID_WALLET')) {
         this.isCheck = true;
+        this.isDisabled = true;
       } else {
         this.isCheck = false;
+        this.isDisabled = false;
       }
     })
   }
 
   alertOnOff(id: number) {
     this.walletService.findById(id).subscribe((wallet) => {
-      this.wallet = wallet;
-      if (this.wallet.id == localStorage.getItem('ID_WALLET')) {
-        Swal.fire(
-          '<h3 style="color: #575656">Tắt hoạt động ví ?</h3>',
-          'Bạn vui lòng bật hoạt động ví khác để tắt ví này !!!',
-          'question'
-        )
-        location.reload()
-      } else {
-        this.walletEdit = {
-          name: this.wallet.name,
-          moneyType: {
-            id: this.wallet.moneyType.id,
-          },
-          icon: this.icon,
-          moneyAmount: this.wallet.moneyAmount,
-          status: 2,
-          user: {
-            id: localStorage.getItem('ID')
-          }
+        this.wallet = wallet;
+        if (this.wallet.id != localStorage.getItem('ID_WALLET')) {
+          Swal.fire({
+            title: `<h3 style="color: #b71313">Chuyển ví</h3>`,
+            icon: 'question',
+            html:
+              'Bạn muốn <b>chuyển ví</b>, ví <b>' + this.wallet.name + '</b> sẽ bị <b>tắt</b>',
+            showCloseButton: true,
+            focusConfirm: false,
+            confirmButtonText: 'Xác nhận',
+          }).then((result) => {
+              if (result.isConfirmed) {
+                this.walletEdit = {
+                  name: this.wallet.name,
+                  moneyType: {
+                    id: this.wallet.moneyType.id,
+                  },
+                  icon: this.icon,
+                  moneyAmount: this.wallet.moneyAmount,
+                  status: 2,
+                  user: {
+                    id: localStorage.getItem('ID')
+                  }
+                }
+                this.walletService.update(this.wallet.id, this.walletEdit).subscribe(() => {
+                  localStorage.removeItem('ID_WALLET');
+                  localStorage.setItem('ID_WALLET', this.wallet.id);
+                  location.reload();
+                })
+              }
+            })
+          this.walletService.findById(this.idInUse).subscribe((wallet) => {
+            this.walletInUse = wallet;
+            this.walletService.updateStatus(this.walletInUse.id, this.walletInUse).subscribe(() => {
+            })
+          })
         }
-        this.walletService.update(this.wallet.id, this.walletEdit).subscribe(() => {
-          localStorage.removeItem('ID_WALLET');
-          localStorage.setItem('ID_WALLET', this.wallet.id);
-          this.toast.success({detail: "Thông báo", summary: "Chuyển ví thành công!", duration: 3000, position: 'br'});
-          location.reload();
-        })
       }
-    })
-    this.walletService.findById(this.idInUse).subscribe((wallet) => {
-      this.walletInUse = wallet;
-      this.walletService.updateStatus(this.walletInUse.id, this.walletInUse).subscribe(() => {
-      })
-    })
+    )
   }
 
   confirmDelete() {
