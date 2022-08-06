@@ -1,5 +1,7 @@
 import {Component, OnInit} from '@angular/core';
 import {Options} from "@angular-slider/ngx-slider";
+import {TransactionService} from "../service/transaction.service";
+import {Transaction} from "../model/transaction";
 import {Chart, registerables} from "chart.js";
 
 Chart.register(...registerables);
@@ -11,12 +13,16 @@ Chart.register(...registerables);
 })
 export class HomeComponent implements OnInit {
 
-  constructor() {
+  isOpen: boolean = true;
+  transactions : Transaction[] = [];
+
+  constructor(private transactionService: TransactionService) {
   }
 
   arr: any[] = [20, 60, 20, 30 , 40, 50, 48,57];
 
   ngOnInit(): void {
+    this.showTransaction();
     const ctx = document.getElementById('myChart');
     // @ts-ignore
     const myChart = new Chart(ctx, {
@@ -105,4 +111,19 @@ options: Options = {
   ceil: 1000,
 };
 
+  isOpenHtml() {
+    // @ts-ignore
+    if (document.getElementById('detail').hidden) {
+      this.isOpen = false;
+    } else {
+      this.isOpen = true;
+    }
+  }
+
+  showTransaction() {
+    this.transactionService.findAll().subscribe(transactions => {
+      this.transactions = transactions;
+      console.log(transactions);
+    })
+  }
 }

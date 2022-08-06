@@ -1,16 +1,16 @@
 <!-- Modal -->
-<div class="modal fade" id="exampleModal-edit" tabindex="-1" aria-labelledby="exampleModalLabel-edit" aria-hidden="true">
+<div class="modal fade" id="exampleModal1" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
   <div class="modal-dialog modal-lg">
     <div class="modal-content">
       <div class="modal-header">
-        <h5 class="modal-title" id="exampleModalLabel-edit">Sửa giao dịch</h5>
+        <h5 class="modal-title" id="exampleModalLabel">Thêm mới giao dịch</h5>
         <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
       </div>
       <div class="modal-body">
         <table style="width: 100%; border-spacing: 30px">
           <tr>
             <td class="tdTbale" style="width: 23%">
-              <a data-bs-toggle="modal" data-bs-target="#exampleModalCate-edit" style="background: rgba(247,247,247,0.16)">
+              <a data-bs-toggle="modal" data-bs-target="#exampleModalCate" style="background: rgba(247,247,247,0.16)">
                 <div class="flex-shrink-0">
                   <svg width="20" height="20">
                     <rect width="25" height="25" style="fill:#E9E612;stroke-width:3;stroke:rgb(248,246,246)"/>
@@ -34,19 +34,21 @@
     </div>
   </div>
 </div>
-<div class="modal fade" id="exampleModalCate-edit" tabindex="-1" aria-labelledby="exampleModalLabel1-edit" aria-hidden="true">
+
+
+<div class="modal fade" id="exampleModalCate" tabindex="-1" aria-labelledby="exampleModalLabel1" aria-hidden="true">
   <div class="modal-dialog">
     <div class="modal-content">
       <div class="modal-header">
-        <h5 class="modal-title" id="exampleModalLabel1-edit">Loại chi tiêu</h5>
+        <h5 class="modal-title" id="exampleModalLabel1">Loại chi tiêu</h5>
         <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
       </div>
       <div class="modal-body">
         <div class="tab">
-          <button class="tablinks" onclick="openCity(event, 'collect-edit')" style="width: 50%">Thu</button>
-          <button class="tablinks" onclick="openCity(event, 'spend-edit')" style="width: 50%">Chi</button>
+          <button class="tablinks" onclick="openCity(event, 'collect')" style="width: 50%">Thu</button>
+          <button class="tablinks" onclick="openCity(event, 'spend')" style="width: 50%">Chi</button>
         </div>
-        <div id="collect-edit" class="tabcontent">
+        <div id="collect" class="tabcontent">
           <table class="table lms_table_active" style="margin-top: 20px">
             <tbody>
             <tr>
@@ -76,7 +78,7 @@
             </tbody>
           </table>
         </div>
-        <div id="spend-edit" class="tabcontent">
+        <div id="spend" class="tabcontent">
           <table class="table lms_table_active" style="margin-top: 20px">
             <tbody>
             <tr>
