@@ -30,6 +30,7 @@ import {MatDatepickerModule} from "@angular/material/datepicker";
 import {MatInputModule} from "@angular/material/input";
 import {MatNativeDateModule} from "@angular/material/core";
 import { AddTransactionComponent } from './home/add-transaction/add-transaction.component';
+import { EditTransactionComponent } from './home/edit-transaction/edit-transaction.component';
 
 @NgModule({
   declarations: [
@@ -48,7 +49,8 @@ import { AddTransactionComponent } from './home/add-transaction/add-transaction.
     ShowCategoryComponent,
     AddCategoryComponent,
     DetailWalletComponent,
-    AddTransactionComponent
+    AddTransactionComponent,
+    EditTransactionComponent
   ],
   imports: [
     BrowserModule,
