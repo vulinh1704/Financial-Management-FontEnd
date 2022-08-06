@@ -105,7 +105,7 @@ export class DetailWalletComponent implements OnInit {
       icon: 'warning',
       showCancelButton: true,
       confirmButtonColor: '#3085d6',
-      cancelButtonColor: '#d33',
+      cancelButtonColor: '#ee4848',
       confirmButtonText: 'Đúng, xóa ngay !',
       cancelButtonText: 'Đóng '
     }).then((result) => {

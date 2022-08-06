@@ -36,8 +36,8 @@
                   <td>
                     <div class="br" [ngStyle]="{'background': category.color,'height':'5px'}"></div>
                   </td>
-                  <td><a class="status_btn" style="background: #15c47b" data-bs-toggle="modal" data-bs-target="#staticBackdrop-edit-category" (click)="getCategory(category.id)">Sửa</a></td>
-                  <td><a class="status_btn" style="background: palevioletred" (click)="confirmDelete(category.id)">Xóa</a></td>
+                  <td><a class="status_btn" style="background: #60e886" data-bs-toggle="modal" data-bs-target="#staticBackdrop-edit-category" (click)="getCategory(category.id)">Sửa</a></td>
+                  <td><a class="status_btn" style="background: #ec82a5" (click)="confirmDelete(category.id)">Xóa</a></td>
                 </tr>
                 </tbody>
               </table>
@@ -69,6 +69,9 @@
     <div class="modal-content">
       <div class="modal-header">
         <h5 class="modal-title" id="staticBackdropLabel">Sửa Danh Mục</h5>
+        <button type="button" class="close" data-bs-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
       </div>
       <form [formGroup]="updateCategoryForm" (ngSubmit)="updateCategory()">
         <div class="modal-body">
@@ -103,9 +106,8 @@
             </div>
           </div>
         </div>
-        <div class="modal-footer">
-          <button type="button" class="btn btn-secondary" style="background: #f187aa" data-bs-dismiss="modal" >Đóng</button>
-          <button type="submit" class="btn_1 btn btn-primary" style="background: #4694e1">Lưu</button>
+        <div>
+          <button type="submit" class="btn_1 btn btn-primary" style="background: #4694e1; margin-left: 80%; margin-bottom: 15px">Thêm</button>
         </div>
       </form>
     </div>

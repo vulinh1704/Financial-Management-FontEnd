@@ -4,6 +4,9 @@
     <div class="modal-content">
       <div class="modal-header">
         <h5 class="modal-title" id="staticBackdropLabel">Thêm Ví</h5>
+        <button type="button" class="close" data-bs-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
       </div>
       <form [formGroup]="walletForm" (ngSubmit)="addWallet()" >
         <div class="modal-body">
@@ -33,10 +36,8 @@
             </div>
           </div>
         </div>
-        <div class="modal-footer">
-          <button type="button" class="btn btn-secondary" style="background: #f187aa" data-bs-dismiss="modal">Đóng
-          </button>
-          <button type="submit" class="btn_1 btn btn-primary" style="background: #4694e1">Thêm</button>
+        <div>
+          <button type="submit" class="btn_1 btn btn-primary" style="background: #4694e1; margin-left: 80%; margin-bottom: 10px">Thêm</button>
         </div>
       </form>
     </div>

@@ -1,8 +1,6 @@
 import { Component, OnInit } from '@angular/core';
-import Swal from 'sweetalert2';
 import {WalletService} from "../../service/wallet.service";
 import {Wallet} from "../../model/wallet";
-import * as buffer from "buffer";
 import {Router} from "@angular/router";
 @Component({
   selector: 'app-show-wallet',
@@ -19,6 +17,7 @@ export class ShowWalletComponent implements OnInit {
   ngOnInit(): void {
     this.showWallet();
   }
+
 
   showWallet() {
     this.walletService.findAll().subscribe(wallets => {

@@ -51,7 +51,7 @@ export class ShowCategoryComponent implements OnInit {
       icon: 'warning',
       showCancelButton: true,
       confirmButtonColor: '#3085d6',
-      cancelButtonColor: '#d33',
+      cancelButtonColor: '#e55858',
       confirmButtonText: 'Đúng, xóa ngay !',
       cancelButtonText: 'Đóng '
     }).then((result) => {

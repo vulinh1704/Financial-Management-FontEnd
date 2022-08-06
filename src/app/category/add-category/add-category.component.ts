@@ -15,7 +15,7 @@ export class AddCategoryComponent implements OnInit {
     name: new FormControl(),
     status: new FormControl(),
     note: new FormControl(),
-    color: new FormControl('#ff0000'),
+    color: new FormControl('#E9E612'),
   })
   color: any;
   category: any;
