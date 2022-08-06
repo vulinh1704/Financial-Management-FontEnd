@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import {Component, OnInit} from '@angular/core';
 
 @Component({
   selector: 'app-edit-transaction',
@@ -6,12 +6,9 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./edit-transaction.component.css']
 })
 export class EditTransactionComponent implements OnInit {
-
-
-
-  constructor() { }
+  constructor() {
+  }
 
   ngOnInit(): void {
   }
-
 }
