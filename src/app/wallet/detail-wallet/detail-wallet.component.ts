@@ -107,61 +107,70 @@ export class DetailWalletComponent implements OnInit {
   }
 
   confirmDelete() {
-    Swal.fire({
-      title: '<h3 style="color: #575656">Bạn muốn xóa ?</h3>',
-      text: 'Khi xóa ví của bạn sẽ không còn trong danh sách !',
-      icon: 'warning',
-      showCancelButton: true,
-      confirmButtonColor: '#3085d6',
-      cancelButtonColor: '#ee4848',
-      confirmButtonText: 'Đúng, xóa ngay !',
-      cancelButtonText: 'Đóng '
-    }).then((result) => {
-      if (result.isConfirmed) {
-        this.walletDelete = {
-          name: this.wallet.name,
-          moneyType: {
-            id: this.wallet.moneyType.id,
-          },
-          icon: this.wallet.icon,
-          moneyAmount: this.wallet.moneyAmount,
-          status: this.wallet.status,
-          user: {
-            id: localStorage.getItem('ID')
-          }
-        }
-        this.walletService.delete(this.wallet.id, this.walletDelete).subscribe(() => {
-          let timerInterval: any
-          Swal.fire({
-            title: '<h3 style="color:#d94646;"><i class="fa-solid fa-trash"></i> Đang xóa ...</h3>',
-            html: 'Ví được xóa trong <b></b> mini giây.',
-            timer: 1500,
-            timerProgressBar: true,
-            didOpen: () => {
-              Swal.showLoading()
-              // @ts-ignore
-              const b = Swal.getHtmlContainer().querySelector('b')
-              timerInterval = setInterval(() => {
-                // @ts-ignore
-                b.textContent = Swal.getTimerLeft()
-              }, 100)
+    if (this.wallet.id == localStorage.getItem('ID_WALLET')){
+      Swal.fire({
+        title: '<h3 style="color: #575656">Bạn muốn xóa ví ?</h3>',
+        text: 'Ví này hiện đang sử dụng nên không thể xóa !',
+        icon: 'warning',
+        confirmButtonText: 'Xác nhận',
+      })
+    }
+    else {
+      Swal.fire({
+        title: '<h3 style="color: #575656">Bạn muốn xóa ví ?</h3>',
+        text: 'Khi xóa ví của bạn sẽ không còn trong danh sách !',
+        icon: 'warning',
+        showCloseButton: true,
+        confirmButtonColor: '#3085d6',
+        cancelButtonColor: '#d33',
+        confirmButtonText: 'Xóa',
+      }).then((result) => {
+        if (result.isConfirmed) {
+          this.walletDelete = {
+            name: this.wallet.name,
+            moneyType: {
+              id: this.wallet.moneyType.id,
             },
-            willClose: () => {
-              clearInterval(timerInterval)
+            icon: this.wallet.icon,
+            moneyAmount: this.wallet.moneyAmount,
+            status: this.wallet.status,
+            user: {
+              id: localStorage.getItem('ID')
             }
-          }).then((result) => {
-            if (result.dismiss === Swal.DismissReason.timer) {
-              console.log('I was closed by the timer')
-            }
+          }
+          this.walletService.delete(this.wallet.id, this.walletDelete).subscribe(() => {
+            let timerInterval: any
+            Swal.fire({
+              title: '<h3 style="color:#d94646;"><i class="fa-solid fa-trash"></i> Đang xóa ...</h3>',
+              html: 'Ví được xóa trong <b></b> mini giây.',
+              timer: 1500,
+              timerProgressBar: true,
+              didOpen: () => {
+                Swal.showLoading()
+                // @ts-ignore
+                const b = Swal.getHtmlContainer().querySelector('b')
+                timerInterval = setInterval(() => {
+                  // @ts-ignore
+                  b.textContent = Swal.getTimerLeft()
+                }, 100)
+              },
+              willClose: () => {
+                clearInterval(timerInterval)
+              }
+            }).then((result) => {
+              if (result.dismiss === Swal.DismissReason.timer) {
+                console.log('I was closed by the timer')
+              }
+            })
+            this.router.navigate(['/wallet/' + localStorage.getItem('ID_WALLET')]).then(() => {
+              setInterval(() => {
+                location.reload()
+              }, 1500)
+            })
           })
-          this.router.navigate(['/wallet/' + localStorage.getItem('ID_WALLET')]).then(() => {
-            setInterval(() => {
-              location.reload()
-            }, 1500)
-          })
-        })
-      }
-    })
+        }
+      })
+    }
   }
 
   updateWallet() {
