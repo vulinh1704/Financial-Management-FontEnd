@@ -192,10 +192,24 @@
                         <p class="nowrap">chi tiền cho gái , gái cho ăn ...</p>
                       </td>
                       <td>
-                        <a (click)="openHtml($event)"><i class="fa-solid fa-ellipsis" ></i></a>
+                        <a><i class="fa-solid fa-ellipsis" ></i></a>
                       </td>
                     </tr>
                     <tr id="detail">
+                      <th scope="row"></th>
+                      <td></td>
+                      <td>
+                        06/08/2022
+                      </td>
+                      <td style="color: red">
+                        <i class="fa-solid fa-x"></i>
+                      </td>
+                      <td>
+                        <a data-bs-toggle="modal" data-bs-target="#exampleModal-edit" style="color: green"><i class="fa-solid fa-pen-to-square"></i></a>
+                      </td>
+                      <td>
+                        <a (click)="closeHtml()"><i class="fa-solid fa-angle-up"></i></a>
+                      </td>
                     </tr>
                     </tbody>
                   </table>
@@ -345,3 +359,4 @@
     </div>
   </div>
 </div>
+<app-add-transaction></app-add-transaction>

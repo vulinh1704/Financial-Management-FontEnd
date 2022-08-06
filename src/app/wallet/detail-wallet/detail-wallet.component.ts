@@ -83,7 +83,6 @@ export class DetailWalletComponent implements OnInit {
             id: localStorage.getItem('ID')
           }
         }
-        console.log(this.walletDelete);
         this.walletService.delete(this.wallet.id, this.walletDelete).subscribe(() => {
           let timerInterval: any
           Swal.fire({

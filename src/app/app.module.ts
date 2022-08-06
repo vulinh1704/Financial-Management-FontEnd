@@ -30,6 +30,7 @@ import {NgxSliderModule} from "@angular-slider/ngx-slider";
 import {MatDatepickerModule} from "@angular/material/datepicker";
 import {MatInputModule} from "@angular/material/input";
 import {MatNativeDateModule} from "@angular/material/core";
+import { AddTransactionComponent } from './home/add-transaction/add-transaction.component';
 
 @NgModule({
   declarations: [
@@ -48,7 +49,8 @@ import {MatNativeDateModule} from "@angular/material/core";
     ShowCategoryComponent,
     AddCategoryComponent,
     DetailWalletComponent,
-    EditCategoryComponent
+    EditCategoryComponent,
+    AddTransactionComponent
   ],
   imports: [
     BrowserModule,
