@@ -22,8 +22,8 @@
         </p>
         <br>
         <div class="form-check form-switch">
-          <input class="form-check-input" type="checkbox" role="switch" id="flexSwitchCheckChecked" checked
-                 (click)="alertOnOff()">
+          <input class="form-check-input" type="checkbox" role="switch" id="flexSwitchCheckChecked" [checked] = "isCheck"
+                 (click)="alertOnOff(wallet.id)">
         </div>
       </div>
     </div>

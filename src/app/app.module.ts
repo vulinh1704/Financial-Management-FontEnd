@@ -25,7 +25,6 @@ import {AngularFireModule} from "@angular/fire/compat";
 import {environment} from "../environments/environment";
 import { AddCategoryComponent } from './category/add-category/add-category.component';
 import { DetailWalletComponent } from './wallet/detail-wallet/detail-wallet.component';
-import { EditCategoryComponent } from './category/edit-category/edit-category.component';
 import {NgxSliderModule} from "@angular-slider/ngx-slider";
 import {MatDatepickerModule} from "@angular/material/datepicker";
 import {MatInputModule} from "@angular/material/input";
@@ -49,7 +48,6 @@ import { AddTransactionComponent } from './home/add-transaction/add-transaction.
     ShowCategoryComponent,
     AddCategoryComponent,
     DetailWalletComponent,
-    EditCategoryComponent,
     AddTransactionComponent
   ],
   imports: [
