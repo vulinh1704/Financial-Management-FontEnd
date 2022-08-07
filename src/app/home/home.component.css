@@ -62,6 +62,7 @@ button:hover {
 }
 
 #chart-spend {
+  display: none;
   padding: 6px 12px;
   border: white;
 }

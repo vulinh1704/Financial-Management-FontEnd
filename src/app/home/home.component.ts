@@ -4,6 +4,7 @@ import {TransactionService} from "../service/transaction.service";
 import {Transaction} from "../model/transaction";
 import {Chart, registerables} from "chart.js";
 import {ExportService} from "../service/export.service";
+import Swal from "sweetalert2";
 
 Chart.register(...registerables);
 
@@ -50,9 +51,9 @@ export class HomeComponent implements OnInit {
     })
   }
 
-  // biểu đồ chi
+  // biểu đồ chi '#d0e1ef' 100
   transactionsSpent: any[] = [];
-  labelsSpent: any = [];
+  labelsSpent: any[] = [];
   colorSpent: any[] = [];
   totalRevenueSpent = 0;
   percentMoneySpent: any[] = [];
@@ -63,13 +64,10 @@ export class HomeComponent implements OnInit {
     let pm = 0;
     this.transactionService.findAllByMonth(2).subscribe((transactions) => {
       this.transactionsSpent = transactions;
-      if (this.transactionsSpent.length == 0) {
-        this.labelsSpent.push("trống");
-        this.colorSpent.push('#d0e1ef');
-        this.percentMoneySpent.push(100);
-      }
-      if(this.transactionsSpent.length != 0){
-        alert(1)
+      // if (this.transactionsSpent.length != 0) {
+      //   this.labelsSpent.pop();
+      //   this.colorSpent.pop();
+      //   this.percentMoneySpent.pop();
         for (let i = 0; i < this.transactionsSpent.length; i++) {
           if (!this.checkIdSpent.includes(this.transactionsSpent[i].category.id)) {
             this.labelsSpent.push(this.transactionsSpent[i].category.name);
@@ -89,33 +87,23 @@ export class HomeComponent implements OnInit {
           pm = (this.totalSpent[i] / this.totalRevenueSpent) * 100;
           this.percentMoneySpent.push(pm);
         }
-      }
+      // }
     });
   }
 
-  lab:any = []
   chart3() {
     this.getDataSpent();
-    console.log('lable =>',this.labelsSpent)
-    this.lab.push('trống');
-    console.log('lab', this.lab)
-    if(this.lab == this.labelsSpent){
-      alert(1);
-    }
+    console.log(this.totalSpent)
     const ctx = document.getElementById('myChart3');
     // @ts-ignore
     const myChart = new Chart(ctx, {
       type: 'doughnut',
       data: {
-        labels: this.lab,
+        labels: this.labelsSpent,
         datasets: [{
           label: 'My First Dataset',
-          data: [
-            100
-          ],
-          backgroundColor: [
-            '#d0e1ef'
-          ],
+          data:this.percentMoneySpent,
+          backgroundColor: this.colorSpent,
           hoverOffset: 4
         }]
       },
@@ -132,6 +120,7 @@ export class HomeComponent implements OnInit {
   checkIdCollect: any[] = [];
   totalCollect: any[] = [];
   arr: any[] = [20, 60, 20, 30, 40, 50, 48, 57];
+
   getDataCollect() {
     let pm = 0;
     this.transactionService.findAllByMonth(1).subscribe((transactions) => {
@@ -213,21 +202,51 @@ export class HomeComponent implements OnInit {
 
   // exportFile
   transactionFile: any[] = [];
-
+  categoryStatus: any;
+  totalFile:any;
   transactionList() {
     for (let i = 0; i < this.transactions.length; i++) {
+      if(this.transactions[i].category.status == '1'){
+        this.categoryStatus = 'Thu';
+      } else if (this.transactionsSpent[i].category.status == '2'){
+        this.categoryStatus = 'Chi';
+      }
       this.transactionFile.push({
         'Số thứ tự': `${i + 1}`,
-        'Loại chi tiêu': `${this.transactions[i].category.status}`,
-        'Tổng tiền': `${this.transactions[i].totalSpent}`,
+        'Loại chi tiêu': `${this.categoryStatus}`,
+        'Tên loại chi tiêu': `${this.transactions[i].category.name}`,
+        'Tổng tiền': `${this.transactions[i].totalSpent + ' ' + this.transactions[i].wallet.moneyType.name}`,
         'Thời gian': `${this.transactions[i].time}`,
         'Ghi chú': `${this.transactions[i].note}`
       })
     }
+    console.log(this.transactionFile)
   }
 
   export() {
-    alert(1)
-    this.exportService.exportExcel(this.transactionFile, 'transactions');
+    let timerInterval: any;
+    Swal.fire({
+      title: '<h3 style="color: #5ec05e"><img src="https://img.pikbest.com/png-images/20190918/cartoon-snail-loading-loading-gif-animation_2734139.png!bw340" style="width: 100px;height: 100px"><\h3>',
+      html: 'Các giao dịch tải trong <b></b> mili giây',
+      timer: 1500,
+      timerProgressBar: true,
+      didOpen: () => {
+        Swal.showLoading();
+        // @ts-ignore
+        const b = Swal.getHtmlContainer().querySelector('b');
+        timerInterval = setInterval(() => {
+          // @ts-ignore
+          b.textContent = Swal.getTimerLeft()
+        }, 100)
+      },
+      willClose: () => {
+        clearInterval(timerInterval);
+        this.exportService.exportExcel(this.transactionFile, 'transactions');
+      }
+    }).then((result) => {
+      /* Read more about handling dismissals below */
+      if (result.dismiss === Swal.DismissReason.timer) {
+      }
+    })
   }
 }

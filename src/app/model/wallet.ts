@@ -1,4 +1,5 @@
 import {User} from "./user";
+import {MoneyType} from "./money-type";
 
 export interface Wallet {
   id: number;
@@ -6,6 +7,6 @@ export interface Wallet {
   icon: string;
   amountMoney: number;
   status: number ;
-  moneyType: string;
+  moneyType: MoneyType;
   user: User;
 }
