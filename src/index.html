@@ -29,7 +29,7 @@
   <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/JNKKKK/MoreToggles.css@0.2.1/output/moretoggles.min.css">
 </head>
 
-<body class="crm_body_bg">
+<body class="crm_body_bg" style="background: white">
 <app-root></app-root>
 <script src="assets/js/jquery1-3.4.1.min.js"></script>
 <script src="assets/js/popper1.min.js"></script>
@@ -85,13 +85,13 @@
   }
 </script>
 <script>
-  function openCity(evt, cityName) {
+  function openCityChart(evt, cityName) {
     var i, tabcontent, tablinks;
-    tabcontent = document.getElementsByClassName("tabcontent");
+    tabcontent = document.getElementsByClassName("tabcontent-chart");
     for (i = 0; i < tabcontent.length; i++) {
       tabcontent[i].style.display = "none";
     }
-    tablinks = document.getElementsByClassName("tablinks");
+    tablinks = document.getElementsByClassName("tablinks-chart");
     for (i = 0; i < tablinks.length; i++) {
       tablinks[i].className = tablinks[i].className.replace(" active", "");
     }

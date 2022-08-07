@@ -1,14 +1,14 @@
 <app-side-bar></app-side-bar>
 <section class="main_content dashboard_part">
   <app-nav-bar></app-nav-bar>
-  <div class="main_content_iner" style="border: 1px solid rgba(0,0,0,0.2);width: 70%;margin-left: 13%">
+  <div class="main_content_iner" style="border: 1px solid rgba(0,0,0,0.2);width: 70%;margin-left: 13%;border-radius: 0.3rem;">
     <div class="container-fluid plr_30 body_white_bg pt_30">
       <div class="row justify-content-center">
         <div class="col-lg-12">
           <div class="white_box mb_30">
             <div class="box_header ">
               <div class="main-title">
-                <h3 class="mb-0" style="margin-left: 80px">Trang cá nhân</h3>
+                <h5 class="mb-0" style="margin-left: 275px;font-size: 22px;font-weight: 600; padding-bottom: 35px; margin-top: -30px">Trang cá nhân</h5>
               </div>
             </div>
             <form [formGroup]="updateForm" (ngSubmit)="update()">
@@ -26,25 +26,20 @@
                 </div>
                 <div class="col-7">
                   <div class="row">
-                    <label class="form-label" for="exampleFormControlInput">Email</label>
-                    <input type="email" class="form-control" id="exampleFormControlInput" placeholder="email@gmail.com"
+                    <input type="email" class="form-control" id="exampleFormControlInput" placeholder="Email"
                            formControlName="email">
                   </div>
-                  <div class="row pt-3">
-                    <label class="form-label" for="exampleFormControlInput1">Tên</label>
+                  <div class="row pt-4">
                     <input type="text" class="form-control" id="exampleFormControlInput1" placeholder="Tên"
                            formControlName="username">
                   </div>
-                  <div class="row pt-3">
-                    <label class="form-label" for="exampleFormControlInput1">Địa chỉ</label>
+                  <div class="row pt-4">
                     <input type="text" class="form-control" placeholder="Địa chỉ" formControlName="address">
                   </div>
-                  <div class="row pt-3">
-                    <label class="form-label" for="exampleFormControlInput1">Tuổi</label>
+                  <div class="row pt-4">
                     <input type="number" class="form-control" placeholder="Tuổi" formControlName="age">
                   </div>
-                  <div class="row pt-3">
-                    <label class="form-label">Giới tính</label>
+                  <div class="row pt-4">
                     <div style="margin-top: 10px">
                       <input type="radio" id="huey" name="sex" value="0" checked formControlName="sex">
                       <label for="huey" style="margin-left: 5px">Nam</label>

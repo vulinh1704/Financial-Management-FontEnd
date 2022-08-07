@@ -49,6 +49,7 @@ input[type="date"]{
   transition: 0.3s;
   font-size: 17px;
 }
+
 .tab {
   background-color: white;
 }
@@ -57,19 +58,18 @@ button:hover {
 }
 
 .tab button.active {
-  background-color: #e3e8ec;
+  background-color: #d0e1ef;
 }
 
 #chart-spend {
+  padding: 6px 12px;
+  border: white;
+}
+
+#chart-collect{
   display: none;
   padding: 6px 12px;
-  border: 1px solid #ccc;
-  border-top: none;
-}
-#chart-spend{
-  padding: 6px 12px;
-  border: 1px solid #ccc;
-  border-top: none;
+  border: white;
 }
 .topright {
   float: right;
