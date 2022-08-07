@@ -30,4 +30,8 @@ export class TransactionService {
   delete(id: any): Observable<any> {
     return this.httpClient.delete(API + `/${id}`);
   }
+  findAllByMonth(status: any):Observable<any> {
+    const id = localStorage.getItem("ID_WALLET");
+    return this.httpClient.get(API + `/find-all-by-time?status=${status}&id=${id}`);
+  }
 }

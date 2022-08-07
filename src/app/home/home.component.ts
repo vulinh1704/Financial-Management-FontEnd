@@ -15,7 +15,6 @@ Chart.register(...registerables);
 export class HomeComponent implements OnInit {
   isOpen: boolean = true;
   transactions: Transaction[] = [];
-  arr: any[] = [20, 60, 20, 30, 40, 50, 48, 57];
 
   //ranger
   value: number = 0;
@@ -25,9 +24,7 @@ export class HomeComponent implements OnInit {
     ceil: 1000,
   };
 
-  constructor(private transactionService: TransactionService,
-              private exportService: ExportService) {
-
+  constructor(private transactionService: TransactionService, private exportService: ExportService) {
   }
 
   ngOnInit(): void {
@@ -49,33 +46,75 @@ export class HomeComponent implements OnInit {
   showTransaction() {
     this.transactionService.findAll().subscribe(transactions => {
       this.transactions = transactions;
-      console.log(transactions);
       this.transactionList();
     })
   }
 
-  // chart
+  // biểu đồ chi
+  transactionsSpent: any[] = [];
+  labelsSpent: any = [];
+  colorSpent: any[] = [];
+  totalRevenueSpent = 0;
+  percentMoneySpent: any[] = [];
+  checkIdSpent: any[] = [];
+  totalSpent: any[] = [];
+
+  getDataSpent() {
+    let pm = 0;
+    this.transactionService.findAllByMonth(2).subscribe((transactions) => {
+      this.transactionsSpent = transactions;
+      if (this.transactionsSpent.length == 0) {
+        this.labelsSpent.push("trống");
+        this.colorSpent.push('#d0e1ef');
+        this.percentMoneySpent.push(100);
+      }
+      if(this.transactionsSpent.length != 0){
+        alert(1)
+        for (let i = 0; i < this.transactionsSpent.length; i++) {
+          if (!this.checkIdSpent.includes(this.transactionsSpent[i].category.id)) {
+            this.labelsSpent.push(this.transactionsSpent[i].category.name);
+            this.colorSpent.push(this.transactionsSpent[i].category.color);
+            this.checkIdSpent.push(this.transactionsSpent[i].category.id);
+            this.totalSpent.push(this.transactionsSpent[i].totalSpent);
+          } else {
+            for (let j = 0; j < this.checkIdSpent.length; j++) {
+              if (this.checkIdSpent[j] == this.transactionsSpent[i].category.id) {
+                this.totalSpent[j] += this.transactionsSpent[i].totalSpent;
+              }
+            }
+          }
+          this.totalRevenueSpent += this.transactionsSpent[i].totalSpent;
+        }
+        for (let i = 0; i < this.totalSpent.length; i++) {
+          pm = (this.totalSpent[i] / this.totalRevenueSpent) * 100;
+          this.percentMoneySpent.push(pm);
+        }
+      }
+    });
+  }
+
+  lab:any = []
   chart3() {
+    this.getDataSpent();
+    console.log('lable =>',this.labelsSpent)
+    this.lab.push('trống');
+    console.log('lab', this.lab)
+    if(this.lab == this.labelsSpent){
+      alert(1);
+    }
     const ctx = document.getElementById('myChart3');
     // @ts-ignore
     const myChart = new Chart(ctx, {
       type: 'doughnut',
       data: {
-        labels: [
-          'Red',
-          'Blue',
-          'Yellow',
-          'Red',
-          'Blue',
-          'Yellow'
-        ],
+        labels: this.lab,
         datasets: [{
           label: 'My First Dataset',
-          data: this.arr,
+          data: [
+            100
+          ],
           backgroundColor: [
-            'rgb(255, 99, 132)',
-            'rgb(54, 162, 235)',
-            '#e66465'
+            '#d0e1ef'
           ],
           hoverOffset: 4
         }]
@@ -83,28 +122,54 @@ export class HomeComponent implements OnInit {
     });
   }
 
+
+  //biểu đồ thu
+  transactionsCollect: any[] = [];
+  labelsCollect: any[] = [];
+  colorCollect: any[] = [];
+  totalRevenueCollect = 0;
+  percentMoney: any[] = [];
+  checkIdCollect: any[] = [];
+  totalCollect: any[] = [];
+  arr: any[] = [20, 60, 20, 30, 40, 50, 48, 57];
+  getDataCollect() {
+    let pm = 0;
+    this.transactionService.findAllByMonth(1).subscribe((transactions) => {
+      this.transactionsCollect = transactions;
+      for (let i = 0; i < this.transactionsCollect.length; i++) {
+        if (!this.checkIdCollect.includes(this.transactionsCollect[i].category.id)) {
+          this.labelsCollect.push(this.transactionsCollect[i].category.name);
+          this.colorCollect.push(this.transactionsCollect[i].category.color);
+          this.checkIdCollect.push(this.transactionsCollect[i].category.id);
+          this.totalCollect.push(this.transactionsCollect[i].totalSpent);
+        } else {
+          for (let j = 0; j < this.checkIdCollect.length; j++) {
+            if (this.checkIdCollect[j] == this.transactionsCollect[i].category.id) {
+              this.totalCollect[j] += this.transactionsCollect[i].totalSpent;
+            }
+          }
+        }
+        this.totalRevenueCollect += this.transactionsCollect[i].totalSpent;
+      }
+      for (let i = 0; i < this.totalCollect.length; i++) {
+        pm = (this.totalCollect[i] / this.totalRevenueCollect) * 100;
+        this.percentMoney.push(pm);
+      }
+    });
+  }
+
   chart() {
+    this.getDataCollect();
     const ctx = document.getElementById('myChart');
     // @ts-ignore
     const myChart = new Chart(ctx, {
       type: 'doughnut',
       data: {
-        labels: [
-          'Red',
-          'Blue',
-          'Yellow',
-          'Red',
-          'Blue',
-          'Yellow'
-        ],
+        labels: this.labelsCollect,
         datasets: [{
           label: 'My First Dataset',
-          data: this.arr,
-          backgroundColor: [
-            'rgb(255, 99, 132)',
-            'rgb(54, 162, 235)',
-            '#e66465'
-          ],
+          data: this.percentMoney,
+          backgroundColor: this.colorCollect,
           hoverOffset: 4
         }]
       },
@@ -148,13 +213,19 @@ export class HomeComponent implements OnInit {
 
   // exportFile
   transactionFile: any[] = [];
-  transactionList(){
+
+  transactionList() {
     for (let i = 0; i < this.transactions.length; i++) {
-      this.transactionFile.push({'Số thứ tự': `${i + 1}`, 'Loại chi tiêu': `${this.transactions[i].category.status}`,
-        'Tổng tiền': `${this.transactions[i].totalSpent}`, 'Thời gian': `${this.transactions[i].time}`, 'Ghi chú': `${this.transactions[i].note}`})
+      this.transactionFile.push({
+        'Số thứ tự': `${i + 1}`,
+        'Loại chi tiêu': `${this.transactions[i].category.status}`,
+        'Tổng tiền': `${this.transactions[i].totalSpent}`,
+        'Thời gian': `${this.transactions[i].time}`,
+        'Ghi chú': `${this.transactions[i].note}`
+      })
     }
-    console.log('transaction',this.transactionFile)
   }
+
   export() {
     alert(1)
     this.exportService.exportExcel(this.transactionFile, 'transactions');

@@ -5,7 +5,7 @@ export interface Transaction {
   id: number;
   wallet: Wallet;
   category: Category;
-  totalSpent: string;
+  totalSpent: number;
   time: string;
   note: string;
 }
