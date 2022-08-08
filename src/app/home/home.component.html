@@ -5,10 +5,10 @@
     <div class="row">
       <div class="col-6">
         <div class="tab">
-          <button class="tablinks-chart" onclick="openCityChart(event, 'chart-collect')" id="defaultOpen" style="width: 50%">Biểu
+          <button class="tablinks-chart" onclick="openCityChart(event, 'chart-collect')"  style="width: 50%">Biểu
             đồ thu
           </button>
-          <button class="tablinks-chart active" onclick="openCityChart(event, 'chart-spend')" style="width: 50%" >Biểu đồ chi</button>
+          <button class="tablinks-chart" onclick="openCityChart(event, 'chart-spend')" style="width: 50%" id="defaultOpen">Biểu đồ chi</button>
         </div>
         <div id="chart-collect" class="tabcontent-chart" style="margin-top: 10px">
           <div id="divChart" style="height: 400px; width: 400px; margin-left: 15%">
@@ -113,7 +113,7 @@
                     <th scope="col"></th>
                     <th scope="col">Loại giao dịch</th>
                     <th scope="col">Số tiền</th>
-                    <th scope="col">Ghi chú</th>
+                    <th scope="col">Thời gian</th>
                     <th scope="col"><i class="fa-solid fa-ellipsis"></i></th>
                   </tr>
                   </thead>
@@ -140,7 +140,7 @@
                       <p>{{transaction.totalSpent}}</p>
                     </td>
                     <td>
-                      <p class="nowrap">{{transaction.note}}</p>
+                      <p class="nowrap">{{transaction.time}}</p>
                     </td>
                     <td class="form-check form-switch">
                       <a (click)="isOpenHtml(i+1)"><i class="fa-solid fa-ellipsis"></i></a>
@@ -148,7 +148,7 @@
                   </tr>
                   <tr id="{{i+1}}" [hidden]="isOpen">
                     <td style="text-align: center" colspan="3">
-                      Thời gian : {{transaction.time}}
+                      Ghi chú : {{transaction.note}}
                     </td>
                     <td style="text-align: center">
                       <i class="fa-solid fa-x" style="color: red" (click)="confirmDelete(transaction.id)"></i>

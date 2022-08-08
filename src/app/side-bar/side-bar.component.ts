@@ -10,7 +10,7 @@ import Swal from "sweetalert2";
 export class SideBarComponent implements OnInit {
   isLogin = false;
   idUser = localStorage.getItem('ID');
-  idWallet = localStorage.getItem('ID_WALLET');
+  idWallet = localStorage.getItem("ID_WALLET")
   constructor(private router:Router) { }
 
   ngOnInit(): void {

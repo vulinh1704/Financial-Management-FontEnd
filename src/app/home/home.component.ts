@@ -36,6 +36,10 @@ export class HomeComponent implements OnInit {
   }
 
   ngOnInit(): void {
+    setTimeout(()=> {
+      // @ts-ignore
+      document.getElementById("defaultOpen").click();
+    },500)
     this.showTransaction();
     this.chart();
     this.chart2();
@@ -75,7 +79,7 @@ export class HomeComponent implements OnInit {
       this.transactionsSpent = transactions;
       if (this.transactionsSpent.length != 0) {
         this.labelsSpent.pop();
-        this.colorSpent.pop();
+        this.colorSpent.shift();
         this.percentMoneySpent.pop();
         for (let i = 0; i < this.transactionsSpent.length; i++) {
           if (!this.checkIdSpent.includes(this.transactionsSpent[i].category.id)) {
@@ -102,7 +106,6 @@ export class HomeComponent implements OnInit {
 
   chart3() {
     this.getDataSpent();
-    console.log(this.totalSpent)
     const ctx = document.getElementById('myChart3');
     // @ts-ignore
     const myChart = new Chart(ctx, {
@@ -128,7 +131,7 @@ export class HomeComponent implements OnInit {
   percentMoney: any[] = [100];
   checkIdCollect: any[] = [];
   totalCollect: any[] = [];
-  arr: any[] = [20, 60, 20, 30, 40, 50, 48, 57];
+
 
   getDataCollect() {
     let pm = 0;
@@ -179,22 +182,30 @@ export class HomeComponent implements OnInit {
     });
   }
 
+
+  //biểu đồ 6 tháng gần nhất
+  getData6Month() {
+    let today = new Date();
+    let date = today.getMonth() + 1;
+    console.log('date',date);
+  }
   chart2() {
+    this.getData6Month();
     const ctx2 = document.getElementById('myChart2');
     // @ts-ignore
     const myChart2 = new Chart(ctx2, {
         type: 'bar',
         data: {
-          labels: ['Red', 'Blue', 'Yellow', 'Green', 'Purple', 'Orange'],
+          labels: ['Thu', 'Blue', 'Yellow', 'Green', 'Purple', 'Orange'],
           datasets: [{
-            label: 'Data1',
+            label: 'Thu',
             data: [12, 19, 3, 5, 2, 3],
             backgroundColor: 'rgb(255, 99, 132)',
             borderColor: 'rgb(255, 99, 132)',
             borderWidth: 1
           },
             {
-              label: 'Data1',
+              label: 'Chi',
               data: [6, 21, 3, 5, 2, 3],
               backgroundColor: 'rgb(60,56,159)',
               borderColor: 'rgb(138,30,53)',
@@ -235,7 +246,6 @@ export class HomeComponent implements OnInit {
         'Ghi chú': `${this.transactions[i].note}`
       })
     }
-    console.log(this.transactionFile)
   }
 
   export() {
