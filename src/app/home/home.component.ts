@@ -37,12 +37,14 @@ export class HomeComponent implements OnInit {
     this.chart3();
   }
 
-  isOpenHtml() {
+  isOpenHtml(id: any) {
     // @ts-ignore
-    if (document.getElementById('detail').hidden) {
-      this.isOpen = false;
+    if (document.getElementById('' + id).hidden) {
+      // @ts-ignore
+      document.getElementById('' + id).hidden = false;
     } else {
-      this.isOpen = true;
+      // @ts-ignore
+      document.getElementById('' + id).hidden = true;
     }
   }
 
@@ -249,21 +251,6 @@ export class HomeComponent implements OnInit {
       /* Read more about handling dismissals below */
       if (result.dismiss === Swal.DismissReason.timer) {
       }
-  isOpenHtml(id: any) {
-    // @ts-ignore
-    if (document.getElementById('' + id).hidden) {
-      // @ts-ignore
-      document.getElementById('' + id).hidden = false;
-    } else {
-      // @ts-ignore
-      document.getElementById('' + id).hidden = true;
-    }
-  }
-
-  showTransaction() {
-    this.transactionService.findAll().subscribe(transactions => {
-      this.transactions = transactions;
-      console.log(transactions);
     })
   }
 }
