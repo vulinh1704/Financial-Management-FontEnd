@@ -37,12 +37,14 @@ export class HomeComponent implements OnInit {
     this.chart3();
   }
 
-  isOpenHtml() {
+  isOpenHtml(id: any) {
     // @ts-ignore
-    if (document.getElementById('detail').hidden) {
-      this.isOpen = false;
+    if (document.getElementById('' + id).hidden) {
+      // @ts-ignore
+      document.getElementById('' + id).hidden = false;
     } else {
-      this.isOpen = true;
+      // @ts-ignore
+      document.getElementById('' + id).hidden = true;
     }
   }
 
@@ -115,10 +117,10 @@ export class HomeComponent implements OnInit {
 
   //biểu đồ thu
   transactionsCollect: any[] = [];
-  labelsCollect: any[] = [];
-  colorCollect: any[] = [];
+  labelsCollect: any[] = ['Trống'];
+  colorCollect: any[] = ['#d0e1ef'];
   totalRevenueCollect = 0;
-  percentMoney: any[] = [];
+  percentMoney: any[] = [100];
   checkIdCollect: any[] = [];
   totalCollect: any[] = [];
   arr: any[] = [20, 60, 20, 30, 40, 50, 48, 57];
@@ -127,24 +129,29 @@ export class HomeComponent implements OnInit {
     let pm = 0;
     this.transactionService.findAllByMonth(1).subscribe((transactions) => {
       this.transactionsCollect = transactions;
-      for (let i = 0; i < this.transactionsCollect.length; i++) {
-        if (!this.checkIdCollect.includes(this.transactionsCollect[i].category.id)) {
-          this.labelsCollect.push(this.transactionsCollect[i].category.name);
-          this.colorCollect.push(this.transactionsCollect[i].category.color);
-          this.checkIdCollect.push(this.transactionsCollect[i].category.id);
-          this.totalCollect.push(this.transactionsCollect[i].totalSpent);
-        } else {
-          for (let j = 0; j < this.checkIdCollect.length; j++) {
-            if (this.checkIdCollect[j] == this.transactionsCollect[i].category.id) {
-              this.totalCollect[j] += this.transactionsCollect[i].totalSpent;
+      if (this.transactionsCollect.length != 0) {
+        this.labelsCollect.pop();
+        this.colorCollect.pop();
+        this.percentMoney.pop();
+        for (let i = 0; i < this.transactionsCollect.length; i++) {
+          if (!this.checkIdCollect.includes(this.transactionsCollect[i].category.id)) {
+            this.labelsCollect.push(this.transactionsCollect[i].category.name);
+            this.colorCollect.push(this.transactionsCollect[i].category.color);
+            this.checkIdCollect.push(this.transactionsCollect[i].category.id);
+            this.totalCollect.push(this.transactionsCollect[i].totalSpent);
+          } else {
+            for (let j = 0; j < this.checkIdCollect.length; j++) {
+              if (this.checkIdCollect[j] == this.transactionsCollect[i].category.id) {
+                this.totalCollect[j] += this.transactionsCollect[i].totalSpent;
+              }
             }
           }
+          this.totalRevenueCollect += this.transactionsCollect[i].totalSpent;
         }
-        this.totalRevenueCollect += this.transactionsCollect[i].totalSpent;
-      }
-      for (let i = 0; i < this.totalCollect.length; i++) {
-        pm = (this.totalCollect[i] / this.totalRevenueCollect) * 100;
-        this.percentMoney.push(pm);
+        for (let i = 0; i < this.totalCollect.length; i++) {
+          pm = (this.totalCollect[i] / this.totalRevenueCollect) * 100;
+          this.percentMoney.push(pm);
+        }
       }
     });
   }

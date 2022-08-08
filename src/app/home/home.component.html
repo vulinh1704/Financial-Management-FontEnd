@@ -8,7 +8,7 @@
           <button class="tablinks-chart" onclick="openCityChart(event, 'chart-collect')" id="defaultOpen" style="width: 50%">Biểu
             đồ thu
           </button>
-          <button class="tablinks-chart" onclick="openCityChart(event, 'chart-spend')" style="width: 50%" >Biểu đồ chi</button>
+          <button class="tablinks-chart active" onclick="openCityChart(event, 'chart-spend')" style="width: 50%" >Biểu đồ chi</button>
         </div>
         <div id="chart-collect" class="tabcontent-chart" style="margin-top: 10px">
           <div id="divChart" style="height: 400px; width: 400px; margin-left: 15%">
@@ -143,10 +143,10 @@
                       <p class="nowrap">{{transaction.note}}</p>
                     </td>
                     <td class="form-check form-switch">
-                      <a (click)="isOpenHtml()"><i class="fa-solid fa-ellipsis"></i></a>
+                      <a (click)="isOpenHtml(i+1)"><i class="fa-solid fa-ellipsis"></i></a>
                     </td>
                   </tr>
-                  <tr id="detail" [hidden]="isOpen">
+                  <tr id="{{i+1}}" [hidden]="isOpen">
                     <td style="text-align: center" colspan="3">
                       Thời gian : {{transaction.time}}
                     </td>
