@@ -16,6 +16,7 @@ Chart.register(...registerables);
 export class HomeComponent implements OnInit {
   isOpen: boolean = true;
   transactions: Transaction[] = [];
+  idWallet: any;
 
   //ranger
   value: number = 0;
@@ -26,13 +27,14 @@ export class HomeComponent implements OnInit {
   };
 
   constructor(private transactionService: TransactionService, private exportService: ExportService) {
+    this.idWallet = localStorage.getItem("ID_WALLET");
   }
 
   ngOnInit(): void {
     this.showTransaction();
-    this.chart3();
     this.chart();
     this.chart2();
+    this.chart3();
   }
 
   isOpenHtml() {
@@ -51,12 +53,12 @@ export class HomeComponent implements OnInit {
     })
   }
 
-  // biểu đồ chi '#d0e1ef' 100
+  // biểu đồ chi
   transactionsSpent: any[] = [];
-  labelsSpent: any[] = [];
-  colorSpent: any[] = [];
+  labelsSpent: any[] = ['Trống'];
+  colorSpent: any[] = ['#d0e1ef'];
   totalRevenueSpent = 0;
-  percentMoneySpent: any[] = [];
+  percentMoneySpent: any[] = [100];
   checkIdSpent: any[] = [];
   totalSpent: any[] = [];
 
@@ -64,10 +66,10 @@ export class HomeComponent implements OnInit {
     let pm = 0;
     this.transactionService.findAllByMonth(2).subscribe((transactions) => {
       this.transactionsSpent = transactions;
-      // if (this.transactionsSpent.length != 0) {
-      //   this.labelsSpent.pop();
-      //   this.colorSpent.pop();
-      //   this.percentMoneySpent.pop();
+      if (this.transactionsSpent.length != 0) {
+        this.labelsSpent.pop();
+        this.colorSpent.pop();
+        this.percentMoneySpent.pop();
         for (let i = 0; i < this.transactionsSpent.length; i++) {
           if (!this.checkIdSpent.includes(this.transactionsSpent[i].category.id)) {
             this.labelsSpent.push(this.transactionsSpent[i].category.name);
@@ -87,7 +89,7 @@ export class HomeComponent implements OnInit {
           pm = (this.totalSpent[i] / this.totalRevenueSpent) * 100;
           this.percentMoneySpent.push(pm);
         }
-      // }
+      }
     });
   }
 
