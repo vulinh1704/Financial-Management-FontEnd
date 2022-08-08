@@ -96,7 +96,7 @@
           </div>
         </div>
         <div class="col-md-9">
-          <div class="white_box QA_section">
+          <div class="white_box QA_section" style="background: white">
             <div class="white_box_tittle list_header">
               <h4><i class="fa-solid fa-list"></i> Danh sách giao dịch</h4>
             </div>
@@ -151,7 +151,7 @@
                       Thời gian : {{transaction.time}}
                     </td>
                     <td style="text-align: center">
-                      <i class="fa-solid fa-x" style="color: red"></i>
+                      <i class="fa-solid fa-x" style="color: red" (click)="confirmDelete(transaction.id)"></i>
                     </td>
                     <td style="text-align: center">
                       <a data-bs-toggle="modal" data-bs-target="#exampleModal-edit" ><i class="fa-solid fa-pen-to-square" style="color: green">

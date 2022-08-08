@@ -20,7 +20,7 @@ export class CategoryService {
   }
 
   findByStatus(num: number): Observable<any> {
-    return this.httpClient.get(API + '/find-by-status/' + num);
+    return this.httpClient.get(API + `/find-by-status/${num}/${localStorage.getItem('ID')}`);
   }
 
   save(category: any): Observable<any> {

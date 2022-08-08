@@ -25,4 +25,9 @@ export class ShowWalletComponent implements OnInit {
     })
     this.router.navigate(['/wallet/' + localStorage.getItem('ID_WALLET')]).then();
   }
+
+  pushNewWallet($event: any) {
+    console.log(`receiveNewWallet: ${$event}`)
+    this.wallets.push($event)
+  }
 }

@@ -71,7 +71,7 @@ export class DetailWalletComponent implements OnInit {
             title: `<h3 style="color: #b71313">Chuyển ví</h3>`,
             icon: 'question',
             html:
-              'Bạn muốn <b>chuyển ví</b>, ví <b>' + this.wallet.name + '</b> sẽ bị <b>tắt</b>',
+              'Bạn muốn <b>chuyển ví</b>, ví đang sử dụng sẽ bị <b>tắt</b>',
             showCloseButton: true,
             focusConfirm: false,
             confirmButtonText: 'Xác nhận',

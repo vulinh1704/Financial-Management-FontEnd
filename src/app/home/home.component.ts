@@ -5,6 +5,8 @@ import {Transaction} from "../model/transaction";
 import {Chart, registerables} from "chart.js";
 import {ExportService} from "../service/export.service";
 import Swal from "sweetalert2";
+import {Router} from "@angular/router";
+import {NgToastService} from "ng-angular-popup";
 
 Chart.register(...registerables);
 
@@ -26,7 +28,10 @@ export class HomeComponent implements OnInit {
     ceil: 1000,
   };
 
-  constructor(private transactionService: TransactionService, private exportService: ExportService) {
+  constructor(private transactionService: TransactionService,
+              private exportService: ExportService,
+              private router: Router,
+              private toast: NgToastService) {
     this.idWallet = localStorage.getItem("ID_WALLET");
   }
 
@@ -106,7 +111,7 @@ export class HomeComponent implements OnInit {
         labels: this.labelsSpent,
         datasets: [{
           label: 'My First Dataset',
-          data:this.percentMoneySpent,
+          data: this.percentMoneySpent,
           backgroundColor: this.colorSpent,
           hoverOffset: 4
         }]
@@ -212,18 +217,19 @@ export class HomeComponent implements OnInit {
   // exportFile
   transactionFile: any[] = [];
   categoryStatus: any;
-  totalFile:any;
+  totalFile: any;
+
   transactionList() {
     for (let i = 0; i < this.transactions.length; i++) {
-      if(this.transactions[i].category.status == '1'){
+      if (this.transactions[i].category.status == '1') {
         this.categoryStatus = 'Thu';
-      } else if (this.transactionsSpent[i].category.status == '2'){
+      } else if (this.transactionsSpent[i].category.status == '2') {
         this.categoryStatus = 'Chi';
       }
       this.transactionFile.push({
         'Số thứ tự': `${i + 1}`,
-        'Loại chi tiêu': `${this.categoryStatus}`,
-        'Tên loại chi tiêu': `${this.transactions[i].category.name}`,
+        'Danh mục chi tiêu': `${this.categoryStatus}`,
+        'Tên danh mục chi tiêu': `${this.transactions[i].category.name}`,
         'Tổng tiền': `${this.transactions[i].totalSpent + ' ' + this.transactions[i].wallet.moneyType.name}`,
         'Thời gian': `${this.transactions[i].time}`,
         'Ghi chú': `${this.transactions[i].note}`
@@ -257,5 +263,39 @@ export class HomeComponent implements OnInit {
       if (result.dismiss === Swal.DismissReason.timer) {
       }
     })
+  }
+
+  confirmDelete(id: number) {
+      let timerInterval: any;
+      Swal.fire({
+        title: '<h3 style="color: #5ec05e"><img src="https://img.pikbest.com/png-images/20190918/cartoon-snail-loading-loading-gif-animation_2734139.png!bw340" style="width: 100px;height: 100px"><\h3>',
+        html: 'Giao dịch sẽ được xóa trong <b></b> mili giây',
+        timer: 2850,
+        timerProgressBar: true,
+        didOpen: () => {
+          Swal.showLoading();
+          // @ts-ignore
+          const b = Swal.getHtmlContainer().querySelector('b');
+          timerInterval = setInterval(() => {
+            // @ts-ignore
+            b.textContent = Swal.getTimerLeft()
+          }, 100)
+        },
+        willClose: () => {
+          clearInterval(timerInterval);
+        }
+      }).then((result) => {
+        this.transactionService.delete(id).subscribe(() => {
+          this.toast.success({detail:"Thông báo", summary: "Xóa giao dich thành công!",duration: 3000,position:'br'})
+          this.router.navigate(['/home']).then(() => {
+            setInterval(() => {
+              location.reload()
+            }, 300)
+          })
+        })
+        /* Read more about handling dismissals below */
+        if (result.dismiss === Swal.DismissReason.timer) {
+        }
+      })
   }
 }

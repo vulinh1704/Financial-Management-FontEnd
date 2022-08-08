@@ -47,7 +47,7 @@ export class ShowCategoryComponent implements OnInit {
   confirmDelete(id: number) {
     Swal.fire({
       title: '<h3 style="color: #575656">Bạn muốn xóa ?</h3>',
-      text: 'Khi xóa loại giao dịch sẽ không còn trong danh sách !',
+      text: 'Sau khi xóa danh mục giao dịch sẽ không còn trong danh sách !',
       icon: 'warning',
       showCloseButton: true,
       confirmButtonColor: '#3085d6',

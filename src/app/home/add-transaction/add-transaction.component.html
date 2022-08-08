@@ -55,33 +55,6 @@
         <div id="collect" class="tabcontent">
           <table class="table lms_table_active" style="margin-top: 20px">
             <tbody>
-            <tr *ngFor="let expenseCategory of expenseCategories; let i = index;" (click)="getCategory(expenseCategory.id)" data-bs-dismiss="modal" aria-label="Close">
-              <td>
-                <div class="d-flex align-items-center">
-                  <div class="flex-shrink-0">
-                    <svg width="20" height="20">
-                      <rect width="25" height="25" [ngStyle]="{'fill':expenseCategory.color,'stroke-width':'3px'}"/>
-                    </svg>
-                  </div>
-                </div>
-              </td>
-              <td>
-                <div class="flex-grow-1 ms-3">
-                  <p>{{expenseCategory.name}}</p>
-                </div>
-              </td>
-              <td>
-                <p class="nowrap">{{expenseCategory.note}}</p>
-              </td>
-              <td>
-              </td>
-            </tr>
-            </tbody>
-          </table>
-        </div>
-        <div id="spend" class="tabcontent">
-          <table class="table lms_table_active" style="margin-top: 20px">
-            <tbody>
             <tr *ngFor="let incomeCategory of incomeCategories; let i = index;" (click)="getCategory(incomeCategory.id)" data-bs-dismiss="modal" aria-label="Close">
               <td>
                 <div class="d-flex align-items-center">
@@ -99,6 +72,33 @@
               </td>
               <td>
                 <p class="nowrap">{{incomeCategory.note}}</p>
+              </td>
+              <td>
+              </td>
+            </tr>
+            </tbody>
+          </table>
+        </div>
+        <div id="spend" class="tabcontent">
+          <table class="table lms_table_active" style="margin-top: 20px">
+            <tbody>
+            <tr *ngFor="let expenseCategory of expenseCategories; let i = index;" (click)="getCategory(expenseCategory.id)" data-bs-dismiss="modal" aria-label="Close">
+              <td>
+                <div class="d-flex align-items-center">
+                  <div class="flex-shrink-0">
+                    <svg width="20" height="20">
+                      <rect width="25" height="25" [ngStyle]="{'fill':expenseCategory.color,'stroke-width':'3px'}"/>
+                    </svg>
+                  </div>
+                </div>
+              </td>
+              <td>
+                <div class="flex-grow-1 ms-3">
+                  <p>{{expenseCategory.name}}</p>
+                </div>
+              </td>
+              <td>
+                <p class="nowrap">{{expenseCategory.note}}</p>
               </td>
               <td>
               </td>
