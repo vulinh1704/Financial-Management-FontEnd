@@ -53,6 +53,7 @@ body a:hover {
 }
 
 input {
-  border: 1px solid #f1f3f5 ;
+  border: 1px solid #f1f3f5;
+  padding: 10px 20px;
 }
 

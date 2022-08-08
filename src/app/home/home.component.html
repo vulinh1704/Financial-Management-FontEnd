@@ -5,196 +5,192 @@
     <div class="row">
       <div class="col-6">
         <div class="tab">
-          <button class="tablinks" onclick="openCity(event, 'chart-collect')" id="defaultOpen" style="width: 50%">Biểu đồ thu</button>
-          <button class="tablinks" onclick="openCity(event, 'chart-spend')" style="width: 50%">Biểu đồ chi</button>
+          <button class="tablinks-chart" onclick="openCityChart(event, 'chart-collect')" id="defaultOpen" style="width: 50%">Biểu
+            đồ thu
+          </button>
+          <button class="tablinks-chart" onclick="openCityChart(event, 'chart-spend')" style="width: 50%" >Biểu đồ chi</button>
         </div>
-        <div id="chart-collect" class="tabcontent" style="margin-top: 10px">
+        <div id="chart-collect" class="tabcontent-chart" style="margin-top: 10px">
           <div id="divChart" style="height: 400px; width: 400px; margin-left: 15%">
             <canvas id="myChart"></canvas>
           </div>
         </div>
-        <div id="chart-spend" class="tabcontent">
-          <h3>Paris</h3>
-          <p>Paris is the capital of France.</p>
+        <div id="chart-spend" class="tabcontent-chart" style="margin-top: 10px">
+          <div id="divChart3" style="height: 400px; width: 400px; margin-left: 15%">
+            <canvas id="myChart3"></canvas>
+          </div>
         </div>
       </div>
-        <div class="col-6">
-          <div class="row">
-            Thu chi 6 tháng gần nhất
-          </div>
-          <div id="divChart2" style="margin-top: 20%">
-            <canvas id="myChart2"></canvas>
-          </div>
+      <div class="col-6">
+        <div class="row" style="text-align: center;margin-top: 10px">
+          <h5>Thu nhập 6 tháng gần nhất</h5>
+        </div>
+        <div id="divChart2" style="margin-top: 20%">
+          <canvas id="myChart2"></canvas>
         </div>
       </div>
     </div>
-    <div class="main_content_iner ">
-      <div class="container-fluid plr_30 body_white_bg pt_30">
-        <div class="row justify-content-center">
-          <div class="col-md-3">
-            <div class="text-start">
-              <a class="btn_1 mb-2 btn-lg email-gradient gradient-9-hover email__btn waves-effect"
-                      data-bs-toggle="modal" data-bs-target="#exampleModal1"><i
-                class="fa-solid fa-folder-plus"></i>Thêm mới giao dịch
-              </a>
-            </div>
-            <div class="email-sidebar">
-              <h4><i class="fa-brands fa-searchengin"></i> Tìm kiếm</h4>
-              <hr style="margin-top: -30px; width: 80%;margin-left: 25px;color: #666666">
-              <ul class="text-start">
-                <li style="margin-top: 10px"><h5 style="margin-left: 10px"> Khoảng giá
-                </h5></li>
-                <li>
-                  <ngx-slider [(value)]="value" [(highValue)]="highValue" [options]="options"
-                              style="width: 90%; margin-left: 3%"></ngx-slider>
-                </li>
-                <li class="text-start" style="margin-top: 10px"><h5 style="margin-left: 10px">
-                  Từ ngày</h5>
-                </li>
-                <li>
-                  <input type="date"/>
-                </li>
-                <li class="text-start" style="margin-top: 10px"><h5 style="margin-left: 10px">
-                  Đến ngày</h5></li>
+  </div>
+  <div class="main_content_iner ">
+    <div class="container-fluid plr_30 body_white_bg pt_30">
+      <div class="row justify-content-center">
+        <div class="col-md-3">
+          <div class="text-start">
+            <button class="btn_1 mb-2 btn-lg email-gradient gradient-9-hover email__btn waves-effect"
+                    data-bs-toggle="modal" data-bs-target="#exampleModal1"><i
+              class="fa-solid fa-folder-plus"></i>Thêm mới giao dịch
+            </button>
+          </div>
+          <div class="email-sidebar">
+            <h4><i class="fa-brands fa-searchengin"></i> Tìm kiếm</h4>
+            <hr style="margin-top: -30px; width: 80%;margin-left: 25px;color: #666666">
+            <ul class="text-start">
+              <li style="margin-top: 10px"><h5 style="margin-left: 10px"> Khoảng giá
+              </h5></li>
+              <li>
+                <ngx-slider [(value)]="value" [(highValue)]="highValue" [options]="options"
+                            style="width: 90%; margin-left: 3%"></ngx-slider>
+              </li>
+              <li class="text-start" style="margin-top: 10px"><h5 style="margin-left: 10px">
+                Từ ngày</h5>
+              </li>
+              <li>
                 <input type="date"/>
-                <li class="text-start" style="margin-top: 10px"><h5 style="margin-left: 10px">
-                  Kiểu giao dịch</h5>
-                  <br>
-                  <input class="form-check-input" type="radio" name="flexRadioDefault" id="flexRadioDefault1"
-                         style="margin-left: 30px">
-                  <img
-                    src="https://previews.123rf.com/images/izakowski/izakowski1301/izakowski130100082/17325761-%E7%8F%BE%E9%87%91%E3%81%A7%E9%87%91%E3%81%AE%E8%A2%8B%E3%82%92%E5%B9%B8%E3%81%9B%E3%81%AA%E7%94%B7%E3%82%84%E3%83%93%E3%82%B8%E3%83%8D%E3%82%B9%E3%83%9E%E3%83%B3%E3%81%AE%E6%BC%AB%E7%94%BB%E3%82%A4%E3%83%A9%E3%82%B9%E3%83%88.jpg"
-                    style="width: 20px;height: 20px; margin-right: 4px;margin-left: 5px;">
-                  <label class="form-check-label" for="flexRadioDefault1">
-                    Thu
-                  </label>
-                  <input class="form-check-input" type="radio" name="flexRadioDefault" id="flexRadioDefault2" checked
-                         style="margin-left: 40px">
-                  <img
-                    src="https://banner2.cleanpng.com/20180301/ade/kisspng-united-states-dollar-banknote-cartoon-vector-holding-dollar-5a979df432a946.2963528815198858122075.jpg"
-                    style="width: 20px;height: 20px; margin-right: 5px; margin-left: 5px">
-                  <label class="form-check-label" for="flexRadioDefault2">
-                    Chi
-                  </label>
-                </li>
-              </ul>
-              <hr style="margin-top: -20px; width: 80%;margin-left: 25px;color: #545252; margin-bottom: 30px">
-              <ul class="text-start">
-                <li>
-                  <button class="btn_1 mb-2 btn-lg email-gradient gradient-9-hover email__btn waves-effect"
-                          style="margin-left: 5px"><i
-                    class="fa-solid fa-trash"></i> Nhập lại
-                  </button>
-                  <button class="btn_1 mb-2 btn-lg email-gradient gradient-9-hover email__btn waves-effect"
-                          style="margin-left: 20px"><i class="fa-brands fa-searchengin"></i> Tìm
-                  </button>
-                </li>
-              </ul>
-            </div>
-          </div>
-          <div class="col-md-9">
-            <div class="white_box QA_section">
-              <div class="white_box_tittle list_header">
-                <h4><i class="fa-solid fa-list"></i> Danh sách giao dịch</h4>
-                <!--                <div class="box_right d-flex lms_block">-->
-                <!--                  <div class="serach_field_2">-->
-                <!--                    <div class="search_inner">-->
-                <!--                      <form active="#">-->
-                <!--                        <div class="search_field">-->
-                <!--                          <input type="text" placeholder="Search content here...">-->
-                <!--                        </div>-->
-                <!--                        <button type="submit"><i class="ti-search"></i></button>-->
-                <!--                      </form>-->
-                <!--                    </div>-->
-                <!--                  </div>-->
-                <!--                </div>-->
-              </div>
-              <div class="QA_table ">
-                <div id="DataTables_Table_0_wrapper" class="dataTables_wrapper no-footer">
-                  <table class="table lms_table_active">
-                    <thead>
-                    <tr>
-                      <th scope="col">
-                        <label class="form-label primary_checkbox d-flex me-12 ">
-                          Thứ tự
-                        </label>
-                      </th>
-                      <th scope="col"></th>
-                      <th scope="col">Loại giao dịch</th>
-                      <th scope="col">Số tiền</th>
-                      <th scope="col">Ghi chú</th>
-                      <th scope="col"><i class="fa-solid fa-ellipsis"></i></th>
-                    </tr>
-                    </thead>
-                    <tbody *ngFor="let transaction of transactions; let i = index">
-                    <tr>
-                      <th scope="row">
-                        <label class="form-label primary_checkbox d-flex me-12 ">{{i + 1}}</label>
-                      </th>
-                      <td><i class="far fa-star"></i></td>
-                      <td>
-                        <div class="d-flex align-items-center">
-                          <div class="flex-shrink-0">
-                            <svg width="20" height="20">
-                              <rect width="25" height="25" [ngStyle]="{'fill':transaction.category.color,'stroke-width':'3px'}"/>
-                            </svg>
-                          </div>
-                          <div class="flex-grow-1 ms-3">
-                            <p>{{transaction.category.name}}</p>
-                          </div>
-                        </div>
-                      </td>
-                      <td>
-                        <p>{{transaction.totalSpent}}</p>
-                      </td>
-                      <td>
-                        <p class="nowrap">{{transaction.note}}</p>
-                      </td>
-                      <td class="form-check form-switch">
-                        <a (click)="isOpenHtml(i+1)"><i class="fa-solid fa-ellipsis" ></i></a>
-                      </td>
-                    </tr>
-                    <tr id="{{i+1}}" hidden="false">
-                      <td style="text-align: center" colspan="3">
-                        {{transaction.time}}
-                      </td>
-                      <td style="color: red; text-align: center">
-                        <i class="fa-solid fa-x"></i>
-                      </td>
-                      <td style="text-align: center">
-                        <a data-bs-toggle="modal" data-bs-target="#exampleModal-edit" style="color: green"><i class="fa-solid fa-pen-to-square"></i></a>
-                      </td>
-                    </tr>
-                    </tbody>
-                  </table>
-                  <div class="dataTables_info" id="DataTables_Table_0_info" role="status" aria-live="polite">Hiển thị 1
-                    đến 10 giao dịch gần nhất
-                  </div>
-                  <div class="dataTables_paginate paging_simple_numbers" id="DataTables_Table_0_paginate"><a
-                    class="paginate_button previous disabled" aria-controls="DataTables_Table_0" data-dt-idx="0"
-                    tabindex="0" id="DataTables_Table_0_previous"><i class="ti-arrow-left"></i></a><span><a
-                    class="paginate_button current" aria-controls="DataTables_Table_0" data-dt-idx="1"
-                    tabindex="0">1</a></span><a class="paginate_button next disabled" aria-controls="DataTables_Table_0"
-                                                data-dt-idx="2" tabindex="0" id="DataTables_Table_0_next"><i
-                    class="ti-arrow-right"></i></a></div>
-                </div>
-              </div>
-            </div>
+              </li>
+              <li class="text-start" style="margin-top: 10px"><h5 style="margin-left: 10px">
+                Đến ngày</h5></li>
+              <input type="date"/>
+              <li class="text-start" style="margin-top: 10px"><h5 style="margin-left: 10px">
+                Kiểu giao dịch</h5>
+                <br>
+                <input class="form-check-input" type="radio" name="flexRadioDefault" id="flexRadioDefault1"
+                       style="margin-left: 30px">
+                <img
+                  src="https://previews.123rf.com/images/izakowski/izakowski1301/izakowski130100082/17325761-%E7%8F%BE%E9%87%91%E3%81%A7%E9%87%91%E3%81%AE%E8%A2%8B%E3%82%92%E5%B9%B8%E3%81%9B%E3%81%AA%E7%94%B7%E3%82%84%E3%83%93%E3%82%B8%E3%83%8D%E3%82%B9%E3%83%9E%E3%83%B3%E3%81%AE%E6%BC%AB%E7%94%BB%E3%82%A4%E3%83%A9%E3%82%B9%E3%83%88.jpg"
+                  style="width: 20px;height: 20px; margin-right: 4px;margin-left: 5px;">
+                <label class="form-check-label" for="flexRadioDefault1">
+                  Thu
+                </label>
+                <input class="form-check-input" type="radio" name="flexRadioDefault" id="flexRadioDefault2" checked
+                       style="margin-left: 40px">
+                <img
+                  src="https://banner2.cleanpng.com/20180301/ade/kisspng-united-states-dollar-banknote-cartoon-vector-holding-dollar-5a979df432a946.2963528815198858122075.jpg"
+                  style="width: 20px;height: 20px; margin-right: 5px; margin-left: 5px">
+                <label class="form-check-label" for="flexRadioDefault2">
+                  Chi
+                </label>
+              </li>
+            </ul>
+            <hr style="margin-top: -20px; width: 80%;margin-left: 25px;color: #545252; margin-bottom: 30px">
+            <ul class="text-start">
+              <li>
+                <button class="btn_1 mb-2 btn-lg email-gradient gradient-9-hover email__btn waves-effect"
+                        style="margin-left: 5px;"><i
+                  class="fa-solid fa-trash"></i> Nhập lại
+                </button>
+                <button class="btn_1 mb-2 btn-lg email-gradient gradient-9-hover email__btn waves-effect"
+                        style="margin-left: 20px"><i class="fa-brands fa-searchengin"></i> Tìm
+                </button>
+              </li>
+            </ul>
           </div>
         </div>
-      </div>
-      <div class="footer_part">
-        <div class="container-fluid">
-          <div class="row">
-            <div class="col-lg-12 col-sm-12">
-              <div class="footer_iner text-center">
-                <p>2022 © Destroy - <a href="#"> Hủy diệt</a></p>
+        <div class="col-md-9">
+          <div class="white_box QA_section">
+            <div class="white_box_tittle list_header">
+              <h4><i class="fa-solid fa-list"></i> Danh sách giao dịch</h4>
+            </div>
+            <div class="QA_table ">
+              <div id="DataTables_Table_0_wrapper" class="dataTables_wrapper no-footer">
+                <table class="table lms_table_active">
+                  <thead>
+                  <tr>
+                    <th scope="col">
+                      <label class="form-label primary_checkbox d-flex me-12 ">
+                        Thứ tự
+                      </label>
+                    </th>
+                    <th scope="col"></th>
+                    <th scope="col">Loại giao dịch</th>
+                    <th scope="col">Số tiền</th>
+                    <th scope="col">Ghi chú</th>
+                    <th scope="col"><i class="fa-solid fa-ellipsis"></i></th>
+                  </tr>
+                  </thead>
+                  <tbody *ngFor="let transaction of transactions; let i = index">
+                  <tr>
+                    <th scope="row">
+                      <label class="form-label primary_checkbox d-flex me-12 ">{{i + 1}}</label>
+                    </th>
+                    <td><i class="far fa-star"></i></td>
+                    <td>
+                      <div class="d-flex align-items-center">
+                        <div class="flex-shrink-0">
+                          <svg width="20" height="20">
+                            <rect width="25" height="25"
+                                  [ngStyle]="{'fill':transaction.category.color,'stroke-width':'3px'}"/>
+                          </svg>
+                        </div>
+                        <div class="flex-grow-1 ms-3">
+                          <p>{{transaction.category.name}}</p>
+                        </div>
+                      </div>
+                    </td>
+                    <td>
+                      <p>{{transaction.totalSpent}}</p>
+                    </td>
+                    <td>
+                      <p class="nowrap">{{transaction.note}}</p>
+                    </td>
+                    <td class="form-check form-switch">
+                      <a (click)="isOpenHtml()"><i class="fa-solid fa-ellipsis"></i></a>
+                    </td>
+                  </tr>
+                  <tr id="detail" [hidden]="isOpen">
+                    <td style="text-align: center" colspan="3">
+                      Thời gian : {{transaction.time}}
+                    </td>
+                    <td style="text-align: center">
+                      <i class="fa-solid fa-x" style="color: red"></i>
+                    </td>
+                    <td style="text-align: center">
+                      <a data-bs-toggle="modal" data-bs-target="#exampleModal-edit" ><i class="fa-solid fa-pen-to-square" style="color: green">
+                      </i></a>
+                    </td>
+                    <td></td>
+                  </tr>
+                  </tbody>
+                </table>
+                <div class="dataTables_info" id="DataTables_Table_0_info" role="status" aria-live="polite">
+                  <button class="btn_1 mb-2 btn-lg email-gradient gradient-9-hover email__btn waves-effect" (click)="export()"><i
+                    class="fa-solid fa-floppy-disk" ></i>Lưu
+                  </button>
+                </div>
+                <div class="dataTables_paginate paging_simple_numbers" id="DataTables_Table_0_paginate"><a
+                  class="paginate_button previous disabled" aria-controls="DataTables_Table_0" data-dt-idx="0"
+                  tabindex="0" id="DataTables_Table_0_previous"><i class="ti-arrow-left"></i></a><span><a
+                  class="paginate_button current" aria-controls="DataTables_Table_0" data-dt-idx="1"
+                  tabindex="0">1</a></span><a class="paginate_button next disabled" aria-controls="DataTables_Table_0"
+                                              data-dt-idx="2" tabindex="0" id="DataTables_Table_0_next"><i
+                  class="ti-arrow-right"></i></a></div>
               </div>
             </div>
           </div>
         </div>
       </div>
     </div>
+    <div class="footer_part">
+      <div class="container-fluid">
+        <div class="row">
+          <div class="col-lg-12 col-sm-12">
+            <div class="footer_iner text-center">
+              <p>2022 © Destroy - <a href="#"> Hủy diệt</a></p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
 </section>
 <app-edit-transaction></app-edit-transaction>
 <app-add-transaction></app-add-transaction>
