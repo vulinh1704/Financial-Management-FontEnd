@@ -1,4 +1,4 @@
-import { Injectable } from '@angular/core';
+import {Injectable} from '@angular/core';
 import {HttpClient} from "@angular/common/http";
 import {Observable} from "rxjs";
 
@@ -9,7 +9,8 @@ const API = 'http://localhost:8080/transactions/';
 })
 export class TransactionService {
 
-  constructor(private httpClient: HttpClient) { }
+  constructor(private httpClient: HttpClient) {
+  }
 
   findAll(): Observable<any> {
     return this.httpClient.get(API + 'find-by-wallet/' + localStorage.getItem('ID_WALLET'));
@@ -30,16 +31,20 @@ export class TransactionService {
   delete(id: any): Observable<any> {
     return this.httpClient.delete(API + id);
   }
-  findAllByMonth(status: any):Observable<any> {
+
+  findAllByMonth(status: any): Observable<any> {
     const id = localStorage.getItem("ID_WALLET");
     return this.httpClient.get(API + `find-all-by-time?status=${status}&id=${id}`);
   }
+
   findAllTransactionsIncomeFor6Months(): Observable<any> {
     const id = localStorage.getItem("ID_WALLET");
     return this.httpClient.get(API + `find-all-income-6Month/${id}`);
   }
+
   findAllTransactionsExpenseFor6Months(): Observable<any> {
     const id = localStorage.getItem("ID_WALLET")
     return this.httpClient.get(API + `/find-all-Expense-6Month/${id}`);
   }
+
 }
