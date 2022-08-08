@@ -39,7 +39,7 @@ export class HomeComponent implements OnInit {
     setTimeout(()=> {
       // @ts-ignore
       document.getElementById("defaultOpen").click();
-    },500)
+    },700)
     this.showTransaction();
     this.chart();
     this.chart2();

@@ -12,7 +12,7 @@ export class WalletService {
   constructor(private httpClient: HttpClient) { }
 
   findAll(): Observable<any> {
-    return this.httpClient.get(API + '/find-by-user/' + localStorage.getItem('ID'));
+    return this.httpClient.get(API + '/find-byuser/' + localStorage.getItem('ID'));
   }
 
   findById(id: number): Observable<any> {
@@ -32,6 +32,6 @@ export class WalletService {
   }
 
   updateStatus(id: number, wallet: any): Observable<any> {
-    return this.httpClient.put(API + '/update-status/' + id, wallet);
+    return this.httpClient.put(API + '/updatestatus/' + id, wallet);
   }
 }
