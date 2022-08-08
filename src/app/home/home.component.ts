@@ -249,6 +249,21 @@ export class HomeComponent implements OnInit {
       /* Read more about handling dismissals below */
       if (result.dismiss === Swal.DismissReason.timer) {
       }
+  isOpenHtml(id: any) {
+    // @ts-ignore
+    if (document.getElementById('' + id).hidden) {
+      // @ts-ignore
+      document.getElementById('' + id).hidden = false;
+    } else {
+      // @ts-ignore
+      document.getElementById('' + id).hidden = true;
+    }
+  }
+
+  showTransaction() {
+    this.transactionService.findAll().subscribe(transactions => {
+      this.transactions = transactions;
+      console.log(transactions);
     })
   }
 }

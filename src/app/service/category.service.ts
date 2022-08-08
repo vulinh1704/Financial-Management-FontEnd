@@ -19,6 +19,10 @@ export class CategoryService {
     return this.httpClient.get(API + '/' + id);
   }
 
+  findByStatus(num: number): Observable<any> {
+    return this.httpClient.get(API + '/find-by-status/' + num);
+  }
+
   save(category: any): Observable<any> {
     return this.httpClient.post(API, category);
   }
