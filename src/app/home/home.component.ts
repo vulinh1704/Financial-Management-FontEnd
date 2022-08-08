@@ -208,7 +208,7 @@ export class HomeComponent implements OnInit {
               label: 'Chi',
               data: [6, 21, 3, 5, 2, 3],
               backgroundColor: 'rgb(60,56,159)',
-              borderColor: 'rgb(138,30,53)',
+              borderColor: 'rgb(150,33,58)',
               borderWidth: 1
             }
           ],
