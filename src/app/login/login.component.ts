@@ -40,6 +40,7 @@ export class LoginComponent implements OnInit {
       localStorage.setItem('ID', data.id);
       if (data.roles[0].authority == "ROLE_USER") {
         this.userService.findById(localStorage.getItem('ID')).subscribe( data=>{
+
           localStorage.setItem('AVATAR', data.avatar);
           this.toast.success({detail:"Thông báo", summary: "Đăng nhập thành công!",duration: 3000,position:'br'});
           this.router.navigateByUrl('/home').then();

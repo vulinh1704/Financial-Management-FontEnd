@@ -1,7 +1,8 @@
-import { Component, OnInit } from '@angular/core';
+import {Component, OnInit} from '@angular/core';
 import {WalletService} from "../../service/wallet.service";
 import {Wallet} from "../../model/wallet";
 import {Router} from "@angular/router";
+
 @Component({
   selector: 'app-show-wallet',
   templateUrl: './show-wallet.component.html',
@@ -12,7 +13,8 @@ export class ShowWalletComponent implements OnInit {
   wallets: Wallet[] = [];
 
   constructor(private walletService: WalletService,
-              private router: Router) { }
+              private router: Router) {
+  }
 
   ngOnInit(): void {
     this.showWallet();
