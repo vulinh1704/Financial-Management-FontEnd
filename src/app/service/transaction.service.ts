@@ -51,4 +51,7 @@ export class TransactionService {
     const id = localStorage.getItem("ID_WALLET");
     return this.httpClient.get(API + `find-all-transaction?startTime=${startTime}&endTime=${endTime}&status=${status}&from=${from}&to=${to}&id=${id}`);
   }
+  findAllTransactionsByCategoryID(id: any): Observable<any> {
+    return this.httpClient.get(API + 'find-by-category/'+ id);
+  }
 }

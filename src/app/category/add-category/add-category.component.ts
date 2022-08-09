@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import {Component, EventEmitter, OnInit, Output} from '@angular/core';
 import {FormControl, FormGroup} from "@angular/forms";
 import {Router} from "@angular/router";
 import {NgToastService} from "ng-angular-popup";
@@ -26,6 +26,9 @@ export class AddCategoryComponent implements OnInit {
   ngOnInit(): void {
   }
 
+  @Output()
+  onNewCategory = new EventEmitter<any>()
+
   addCategory() {
     this.category = {
       name: this.categoryForm.value.name,
@@ -36,14 +39,10 @@ export class AddCategoryComponent implements OnInit {
         id: localStorage.getItem('ID')
       }
     }
-    console.log(this.category);
-    this.categoryService.save(this.category).subscribe(() => {
+    this.categoryService.save(this.category).subscribe((data) => {
+      this.onNewCategory.emit(data)
       this.toast.success({detail:"Thông báo", summary: "Thêm danh mục thành công!",duration: 3000,position:'br'})
-      this.router.navigate(['/category/']).then(() => {
-        setInterval(() => {
-          location.reload()
-        }, 500)
-      })
+      this.router.navigate(['/category/']).then()
     }, e => {
       this.toast.error({detail: "Thông Báo", summary: "Thêm danh mục thất bại", duration: 3000, position: "br"})
       console.log(e);
