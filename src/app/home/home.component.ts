@@ -385,9 +385,9 @@ export class HomeComponent implements OnInit {
   }
 
   searchWallet() {
-    console.log(this.formSearch.value.endTime);
+    console.log(this.formSearch.value.endTime)
     if (this.formSearch.value.startTime == null) {
-      this.formSearch.value.endTime = "";
+      this.formSearch.value.startTime = "";
     }
     if (this.formSearch.value.endTime == null) {
       this.formSearch.value.endTime = "";

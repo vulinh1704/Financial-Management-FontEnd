@@ -36,7 +36,7 @@
   <div class="main_content_iner">
     <div class="container-fluid plr_30 body_white_bg pt_30">
       <div class="row justify-content-center">
-        <div class="col-md-3" style="height: 100vh;width:290px">
+        <div class="col-md-3" style="height: 100vh;">
           <div class="email-sidebar">
             <form [formGroup]="formSearch" (ngSubmit)="searchWallet()">
               <h4 style="font-size: 16px;margin-top: 3px"><i class="fa-brands fa-searchengin"></i> Tìm kiếm</h4>
@@ -48,7 +48,7 @@
                   <ngx-slider [(value)]="value" [(highValue)]="highValue" [options]="options"
                               style="width: 90%; margin-left: 3%;margin-top: 15%"></ngx-slider>
                 </li>
-                <li class="text-start" style="margin-top: 10px"><h5 style="margin-left: 10px" >
+                <li class="text-start" style="margin-top: 10px"><h5 style="margin-left: 10px">
                   Từ ngày</h5>
                 </li>
                 <li>
@@ -60,7 +60,8 @@
                 <li class="text-start" style="margin-top: 10px"><h5 style="margin-left: 10px">
                   Kiểu giao dịch</h5>
                   <br>
-                  <input class="form-check-input" type="radio" name="status" value="1" id="flexRadioDefault1" formControlName="status" checked
+                  <input class="form-check-input" type="radio" name="status" value="1" id="flexRadioDefault1"
+                         formControlName="status" checked
                          style="margin-left: 30px">
                   <img
                     src="https://previews.123rf.com/images/izakowski/izakowski1301/izakowski130100082/17325761-%E7%8F%BE%E9%87%91%E3%81%A7%E9%87%91%E3%81%AE%E8%A2%8B%E3%82%92%E5%B9%B8%E3%81%9B%E3%81%AA%E7%94%B7%E3%82%84%E3%83%93%E3%82%B8%E3%83%8D%E3%82%B9%E3%83%9E%E3%83%B3%E3%81%AE%E6%BC%AB%E7%94%BB%E3%82%A4%E3%83%A9%E3%82%B9%E3%83%88.jpg"
@@ -68,7 +69,8 @@
                   <label class="form-check-label" for="flexRadioDefault1">
                     Thu
                   </label>
-                  <input class="form-check-input" type="radio" name="status" id="flexRadioDefault2" checked formControlName="status" value="2"
+                  <input class="form-check-input" type="radio" name="status" id="flexRadioDefault2" checked
+                         formControlName="status" value="2"
                          style="margin-left: 40px">
                   <img
                     src="https://banner2.cleanpng.com/20180301/ade/kisspng-united-states-dollar-banknote-cartoon-vector-holding-dollar-5a979df432a946.2963528815198858122075.jpg"
@@ -98,6 +100,10 @@
             <div class="white_box_tittle list_header">
               <h4 style="margin-top: -5px"><i class="fa-solid fa-list"></i> Danh sách giao dịch</h4>
               <div>
+                  <button class="btn_1 mb-2 btn-lg email-gradient gradient-9-hover email__btn waves-effect"
+                          (click)="export()" style="margin-right: 10px"><i
+                    class="fa-solid fa-floppy-disk"></i>Lưu
+                  </button>
                 <button data-bs-toggle="modal" style="margin-top: -30px" data-bs-target="#exampleModal1"
                         class="btn_1 mb-2 btn-lg email-gradient gradient-9-hover email__btn waves-effect"><i
                   class="fa-solid fa-folder-plus"></i>Thêm mới giao dịch
@@ -121,7 +127,8 @@
                     <th scope="col"><i class="fa-solid fa-ellipsis"></i></th>
                   </tr>
                   </thead>
-                  <tbody *ngFor="let transaction of transactions |paginate: { itemsPerPage: 7, currentPage: p, totalItems: total }; let i = index">
+                  <tbody
+                    *ngFor="let transaction of transactions |paginate: { itemsPerPage: 7, currentPage: p, totalItems: total }; let i = index">
                   <tr>
                     <th scope="row">
                       <label class="form-label primary_checkbox d-flex me-12 ">{{i + 1}}</label>
@@ -170,12 +177,7 @@
                      style="margin-left: 500px; margin-top: 20px">
                   <pagination-controls (pageChange)="pageChangeEvent($event)"></pagination-controls>
                 </div>
-                <div class="dataTables_info" id="DataTables_Table_0_info" role="status" aria-live="polite">
-                  <button class="btn_1 mb-2 btn-lg email-gradient gradient-9-hover email__btn waves-effect"
-                          (click)="export()"><i
-                    class="fa-solid fa-floppy-disk"></i>Lưu
-                  </button>
-                </div>
+
               </div>
             </div>
           </div>
