@@ -23,6 +23,10 @@ export class WalletService {
     return this.httpClient.post(API, wallet);
   }
 
+  updateNormal(id: any, wallet: any): Observable<any> {
+    return this.httpClient.put(API + '/' + id, wallet);
+  }
+
   update(id: number, wallet: any): Observable<any> {
     return this.httpClient.put(API + '/edit-money-type/'+ id, wallet);
   }

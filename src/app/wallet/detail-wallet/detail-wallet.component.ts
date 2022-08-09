@@ -90,7 +90,7 @@ export class DetailWalletComponent implements OnInit {
                   id: localStorage.getItem('ID')
                 }
               }
-              this.walletService.update(this.wallet.id, this.walletEdit).subscribe(() => {
+              this.walletService.updateNormal(this.wallet.id, this.walletEdit).subscribe(() => {
                 localStorage.removeItem('ID_WALLET');
                 localStorage.setItem('ID_WALLET', this.wallet.id);
                 location.reload();
