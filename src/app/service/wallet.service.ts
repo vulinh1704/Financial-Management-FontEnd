@@ -2,7 +2,7 @@ import { Injectable } from '@angular/core';
 import {HttpClient} from "@angular/common/http";
 import {Observable} from "rxjs";
 
-const API = 'http://localhost:8080/wallets'
+const API = 'http://localhost:8081/wallets'
 
 @Injectable({
   providedIn: 'root'
@@ -12,7 +12,7 @@ export class WalletService {
   constructor(private httpClient: HttpClient) { }
 
   findAll(): Observable<any> {
-    return this.httpClient.get(API);
+    return this.httpClient.get(API + '/find-by-user/' + localStorage.getItem('ID'));
   }
 
   findById(id: number): Observable<any> {

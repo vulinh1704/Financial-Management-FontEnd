@@ -1,5 +1,6 @@
-import { Component, OnInit } from '@angular/core';
+import {Component, OnInit} from '@angular/core';
 import {Router} from "@angular/router";
+import Swal from "sweetalert2";
 
 @Component({
   selector: 'app-side-bar',
@@ -24,5 +25,4 @@ export class SideBarComponent implements OnInit {
 >>>>>>> origin/dev
     }
   }
-
 }
