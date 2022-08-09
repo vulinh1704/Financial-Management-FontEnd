@@ -21,7 +21,7 @@ export class TransactionService {
   }
 
   save(transaction: any): Observable<any> {
-    return this.httpClient.post(API, transaction);
+    return this.httpClient.post(API + 'create', transaction);
   }
 
   update(id: number, transaction: any): Observable<any> {
