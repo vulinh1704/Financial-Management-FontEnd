@@ -27,7 +27,7 @@
                   <th scope="col">Xóa</th>
                 </tr>
                 </thead>
-                <tbody *ngFor="let category of categories; let i = index;">
+                <tbody *ngFor="let category of categories|paginate: { itemsPerPage: 7, currentPage: p, totalItems: total }; let i = index;">
                 <tr style="text-align: center">
                   <td scope="row"><a href="#" class="question_content">{{category.name}}</a></td>
                   <td>{{category.note}}</td>
@@ -41,6 +41,10 @@
                 </tr>
                 </tbody>
               </table>
+              <div class="dataTables_scroll" id="DataTables_Table_0_paginate"
+                   style="margin-left: 850px; margin-top: 35px">
+                <pagination-controls (pageChange)="pageChangeEvent($event)"></pagination-controls>
+              </div>
             </div>
           </div>
         </div>

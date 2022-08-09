@@ -439,5 +439,11 @@ export class HomeComponent implements OnInit {
   idEdit: number = 22;
 
   //Paging
+  p: number = 1;
+  total: number = 0;
+
+  pageChangeEvent(event: number) {
+    this.p = event;
+  }
 
 }

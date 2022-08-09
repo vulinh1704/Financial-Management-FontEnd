@@ -121,7 +121,7 @@
                     <th scope="col"><i class="fa-solid fa-ellipsis"></i></th>
                   </tr>
                   </thead>
-                  <tbody *ngFor="let transaction of transactions; let i = index">
+                  <tbody *ngFor="let transaction of transactions |paginate: { itemsPerPage: 7, currentPage: p, totalItems: total }; let i = index">
                   <tr>
                     <th scope="row">
                       <label class="form-label primary_checkbox d-flex me-12 ">{{i + 1}}</label>
@@ -158,28 +158,24 @@
                       <i class="fa-solid fa-x" style="color: red" (click)="confirmDelete(transaction.id)"></i>
                     </td>
                     <td style="text-align: center">
-                      <a data-bs-toggle="modal" data-bs-target="#exampleModal-edit" ><i class="fa-solid fa-pen-to-square" style="color: green">
+                      <a data-bs-toggle="modal" data-bs-target="#exampleModal-edit"><i class="fa-solid fa-pen-to-square"
+                                                                                       style="color: green">
                       </i></a>
                     </td>
                     <td></td>
                   </tr>
                   </tbody>
                 </table>
+                <div class="dataTables_scroll" id="DataTables_Table_0_paginate"
+                     style="margin-left: 500px; margin-top: 20px">
+                  <pagination-controls (pageChange)="pageChangeEvent($event)"></pagination-controls>
+                </div>
                 <div class="dataTables_info" id="DataTables_Table_0_info" role="status" aria-live="polite">
                   <button class="btn_1 mb-2 btn-lg email-gradient gradient-9-hover email__btn waves-effect"
                           (click)="export()"><i
                     class="fa-solid fa-floppy-disk"></i>Lưu
                   </button>
                 </div>
-                <mat-paginator [length]="200" [pageSizeOptions]="[10, 50, 100]" aria-label="Select page">
-                </mat-paginator>
-                <div class="dataTables_paginate paging_simple_numbers" id="DataTables_Table_0_paginate"><a
-                  class="paginate_button previous disabled" aria-controls="DataTables_Table_0" data-dt-idx="0"
-                  tabindex="0" id="DataTables_Table_0_previous"><i class="ti-arrow-left"></i></a><span><a
-                  class="paginate_button current" aria-controls="DataTables_Table_0" data-dt-idx="1"
-                  tabindex="0">1</a></span><a class="paginate_button next disabled" aria-controls="DataTables_Table_0"
-                                              data-dt-idx="2" tabindex="0" id="DataTables_Table_0_next"><i
-                  class="ti-arrow-right"></i></a></div>
               </div>
             </div>
           </div>

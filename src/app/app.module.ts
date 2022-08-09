@@ -31,8 +31,17 @@ import {MatInputModule} from "@angular/material/input";
 import {MatNativeDateModule} from "@angular/material/core";
 import { EditTransactionComponent } from './home/edit-transaction/edit-transaction.component';
 import { AddTransactionComponent } from './home/add-transaction/add-transaction.component';
+import {MatPaginatorModule} from '@angular/material/paginator';
+import {MatCardModule} from "@angular/material/card";
+import {MatToolbarModule} from "@angular/material/toolbar";
+import {MatCheckboxModule} from "@angular/material/checkbox";
+import {MatProgressSpinnerModule} from "@angular/material/progress-spinner";
+import {MatSlideToggleModule} from "@angular/material/slide-toggle";
+import {MatButtonModule} from "@angular/material/button";
+import {MatProgressBarModule} from "@angular/material/progress-bar";
 import {NgxPaginationModule} from "ngx-pagination";
-import {MatPaginatorModule} from "@angular/material/paginator";
+import {MatIconModule} from "@angular/material/icon";
+import {MatRadioModule} from "@angular/material/radio";
 
 @NgModule({
   declarations: [
@@ -55,6 +64,18 @@ import {MatPaginatorModule} from "@angular/material/paginator";
     AddTransactionComponent,
   ],
   imports: [
+    MatInputModule,
+    MatCardModule,
+    MatToolbarModule,
+    MatIconModule,
+    MatRadioModule,
+    MatCheckboxModule,
+    MatSlideToggleModule,
+    MatButtonModule,
+    MatProgressSpinnerModule,
+    MatProgressBarModule,
+    MatPaginatorModule,
+    NgxPaginationModule,
     BrowserModule,
     AppRoutingModule,
     HttpClientModule,
