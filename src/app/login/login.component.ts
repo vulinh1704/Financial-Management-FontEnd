@@ -39,16 +39,15 @@ export class LoginComponent implements OnInit {
       localStorage.setItem('PASS', this.loginForm.value.password);
       localStorage.setItem('ID', data.id);
       if (data.roles[0].authority == "ROLE_USER") {
-        this.userService.findById(localStorage.getItem('ID')).subscribe( data=>{
-
+        this.userService.findById(localStorage.getItem('ID')).subscribe( (data)=>{
           localStorage.setItem('AVATAR', data.avatar);
           this.toast.success({detail:"Thông báo", summary: "Đăng nhập thành công!",duration: 3000,position:'br'});
           this.router.navigateByUrl('/home').then();
-          this.walletService.findAll().subscribe(wallets => {
+          this.walletService.findAll().subscribe((wallets) => {
             this.wallets = wallets;
             for (let i = 0; i < this.wallets.length; i++) {
               if (this.wallets[i].status == 2) {
-                localStorage.setItem('ID_WALLET', String(this.wallets[i].id));
+                localStorage.setItem('ID_WALLET',String(this.wallets[i].id));
               }
             }
             location.reload();
