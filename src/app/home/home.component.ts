@@ -1,4 +1,4 @@
-import {Component, OnInit} from '@angular/core';
+import {Component, Input, OnInit} from '@angular/core';
 import {Options} from "@angular-slider/ngx-slider";
 import {TransactionService} from "../service/transaction.service";
 import {Transaction} from "../model/transaction";
@@ -44,6 +44,7 @@ export class HomeComponent implements OnInit {
     this.chart();
     this.chart2();
     this.chart3();
+
   }
 
   isOpenHtml(id: any) {
@@ -297,15 +298,19 @@ export class HomeComponent implements OnInit {
       }).then((result) => {
         this.transactionService.delete(id).subscribe(() => {
           this.toast.success({detail:"Thông báo", summary: "Xóa giao dich thành công!",duration: 3000,position:'br'})
-          this.router.navigate(['/home']).then(() => {
-            setInterval(() => {
-              location.reload()
-            }, 300)
-          })
+          setInterval(() => {
+            location.reload()
+          }, 600)
         })
         /* Read more about handling dismissals below */
         if (result.dismiss === Swal.DismissReason.timer) {
         }
       })
   }
+
+  //get idTransaction
+  idEdit: number = 22;
+
+  //Paging
+
 }

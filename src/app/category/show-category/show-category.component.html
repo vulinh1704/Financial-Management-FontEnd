@@ -7,7 +7,7 @@
         <div class="col-12">
           <div class="QA_section">
             <div class="white_box_tittle list_header">
-              <h4>Loại chi tiêu</h4>
+              <h4>Danh mục chi tiêu</h4>
               <div class="box_right d-flex lms_block">
                 <div class="add_button" style="margin-right: 50px">
                   <a href="#" class="btn_1" data-bs-toggle="modal" data-bs-target="#staticBackdrop-category"><i
@@ -37,7 +37,7 @@
                     <div class="br" [ngStyle]="{'background': category.color,'height':'5px'}"></div>
                   </td>
                   <td><a class="status_btn" style="background: #60e886" data-bs-toggle="modal" data-bs-target="#staticBackdrop-edit-category" (click)="getCategory(category.id)">Sửa</a></td>
-                  <td><a class="status_btn" style="background: #ec82a5" (click)="confirmDelete(category.id)">Xóa</a></td>
+                  <td><a class="status_btn" style="background: #ec82a5" (click)="findAllTransaction(category.id)">Xóa</a></td>
                 </tr>
                 </tbody>
               </table>
@@ -59,7 +59,7 @@
     </div>
   </div>
 </section>
-<app-add-category></app-add-category>
+<app-add-category (onNewCategory)="pushNewCategory($event)"></app-add-category>
 
 
 <div class="modal fade" id="staticBackdrop-edit-category" data-bs-backdrop="static" data-bs-keyboard="false"
@@ -107,7 +107,7 @@
           </div>
         </div>
         <div>
-          <button type="submit" class="btn_1 btn btn-primary" style="background: #4694e1; margin-left: 80%; margin-bottom: 15px">Sửa</button>
+          <button type="submit" class="btn_1 btn btn-primary" style="background: #4694e1; margin-left: 80%; margin-bottom: 15px" data-bs-dismiss="modal" aria-label="Close">Sửa</button>
         </div>
       </form>
     </div>

@@ -25,19 +25,15 @@ export class AddTransactionComponent implements OnInit {
   expenseCategories: Category[] = [];
   incomeCategories: Category[] = [];
   transaction: any;
-  num: number = 0;
 
   constructor(private transactionService: TransactionService,
               private categoryService: CategoryService,
-              private toast: NgToastService,
-              private router: Router) {
+              private toast: NgToastService) {
   }
 
   ngOnInit(): void {
     this.showExpenseCategory();
     this.showIncomeCategory();
-    console.log(this.expenseCategories);
-    console.log(this.incomeCategories);
   }
 
   showExpenseCategory() {

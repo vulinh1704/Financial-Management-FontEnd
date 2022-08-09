@@ -4,6 +4,7 @@ import {WalletService} from "../../service/wallet.service";
 import {ActivatedRoute, Router} from "@angular/router";
 import {FormControl, FormGroup} from "@angular/forms";
 import {NgToastService} from "ng-angular-popup";
+import {set} from "@angular/fire/database";
 
 @Component({
   selector: 'app-detail-wallet',
@@ -76,26 +77,26 @@ export class DetailWalletComponent implements OnInit {
             focusConfirm: false,
             confirmButtonText: 'Xác nhận',
           }).then((result) => {
-              if (result.isConfirmed) {
-                this.walletEdit = {
-                  name: this.wallet.name,
-                  moneyType: {
-                    id: this.wallet.moneyType.id,
-                  },
-                  icon: this.icon,
-                  moneyAmount: this.wallet.moneyAmount,
-                  status: 2,
-                  user: {
-                    id: localStorage.getItem('ID')
-                  }
+            if (result.isConfirmed) {
+              this.walletEdit = {
+                name: this.wallet.name,
+                moneyType: {
+                  id: this.wallet.moneyType.id,
+                },
+                icon: this.icon,
+                moneyAmount: this.wallet.moneyAmount,
+                status: 2,
+                user: {
+                  id: localStorage.getItem('ID')
                 }
-                this.walletService.update(this.wallet.id, this.walletEdit).subscribe(() => {
-                  localStorage.removeItem('ID_WALLET');
-                  localStorage.setItem('ID_WALLET', this.wallet.id);
-                  location.reload();
-                })
               }
-            })
+              this.walletService.update(this.wallet.id, this.walletEdit).subscribe(() => {
+                localStorage.removeItem('ID_WALLET');
+                localStorage.setItem('ID_WALLET', this.wallet.id);
+                location.reload();
+              })
+            }
+          })
           this.walletService.findById(this.idInUse).subscribe((wallet) => {
             this.walletInUse = wallet;
             this.walletService.updateStatus(this.walletInUse.id, this.walletInUse).subscribe(() => {
@@ -107,68 +108,51 @@ export class DetailWalletComponent implements OnInit {
   }
 
   confirmDelete() {
-    if (this.wallet.id == localStorage.getItem('ID_WALLET')){
+    if (this.wallet.id == localStorage.getItem('ID_WALLET')) {
       Swal.fire({
         title: '<h3 style="color: #575656">Bạn muốn xóa ví ?</h3>',
         text: 'Ví này hiện đang sử dụng nên không thể xóa !',
         icon: 'warning',
         confirmButtonText: 'Xác nhận',
       })
-    }
-    else {
+    } else {
+      let timerInterval: any;
       Swal.fire({
-        title: '<h3 style="color: #575656">Bạn muốn xóa ví ?</h3>',
-        text: 'Khi xóa ví của bạn sẽ không còn trong danh sách !',
-        icon: 'warning',
-        showCloseButton: true,
-        confirmButtonColor: '#3085d6',
-        cancelButtonColor: '#d33',
-        confirmButtonText: 'Xóa',
-      }).then((result) => {
-        if (result.isConfirmed) {
-          this.walletDelete = {
-            name: this.wallet.name,
-            moneyType: {
-              id: this.wallet.moneyType.id,
-            },
-            icon: this.wallet.icon,
-            moneyAmount: this.wallet.moneyAmount,
-            status: this.wallet.status,
-            user: {
-              id: localStorage.getItem('ID')
-            }
-          }
-          this.walletService.delete(this.wallet.id, this.walletDelete).subscribe(() => {
-            let timerInterval: any
-            Swal.fire({
-              title: '<h3 style="color:#d94646;"><i class="fa-solid fa-trash"></i> Đang xóa ...</h3>',
-              html: 'Ví được xóa trong <b></b> mini giây.',
-              timer: 1500,
-              timerProgressBar: true,
-              didOpen: () => {
-                Swal.showLoading()
-                // @ts-ignore
-                const b = Swal.getHtmlContainer().querySelector('b')
-                timerInterval = setInterval(() => {
-                  // @ts-ignore
-                  b.textContent = Swal.getTimerLeft()
-                }, 100)
-              },
-              willClose: () => {
-                clearInterval(timerInterval)
-              }
-            }).then((result) => {
-              if (result.dismiss === Swal.DismissReason.timer) {
-                console.log('I was closed by the timer')
-              }
-            })
-            this.router.navigate(['/wallet/' + localStorage.getItem('ID_WALLET')]).then(() => {
-              setInterval(() => {
-                location.reload()
-              }, 1500)
-            })
-          })
+        title: '<h3 style="color: #5ec05e"><img src="https://img.pikbest.com/png-images/20190918/cartoon-snail-loading-loading-gif-animation_2734139.png!bw340" style="width: 100px;height: 100px"><\h3>',
+        html: 'Ví sẽ được xóa trong <b></b> mili giây',
+        timer: 2850,
+        timerProgressBar: true,
+        didOpen: () => {
+          Swal.showLoading();
+          // @ts-ignore
+          const b = Swal.getHtmlContainer().querySelector('b');
+          timerInterval = setInterval(() => {
+            // @ts-ignore
+            b.textContent = Swal.getTimerLeft()
+          }, 100)
+        },
+        willClose: () => {
+          clearInterval(timerInterval);
         }
+      }).then((result) => {
+        this.walletDelete = {
+          name: this.wallet.name,
+          moneyType: {
+            id: this.wallet.moneyType.id,
+          },
+          icon: this.wallet.icon,
+          moneyAmount: this.wallet.moneyAmount,
+          status: this.wallet.status,
+          user: {
+            id: localStorage.getItem('ID')
+          }
+        }
+        this.walletService.delete(this.wallet.id, this.walletDelete).subscribe(() => {
+          this.toast.success({detail: 'Thông báo!', summary: "Xóa ví thành công!",duration: 3000,position:'br'});
+          setInterval(() => {
+            location.reload()
+          },180)
+        })
       })
     }
   }
@@ -189,9 +173,10 @@ export class DetailWalletComponent implements OnInit {
     console.log(this.walletEdit);
     this.walletService.update(this.id, this.walletEdit).subscribe(() => {
       this.toast.success({detail: "Thông báo", summary: "Sửa ví thành công!", duration: 3000, position: 'br'});
-    }, error => {
+      this.getWallet(this.id);
+    }, (error) => {
       this.toast.error({detail: "Thông báo", summary: "Sửa ví thất bại!", duration: 3000, position: 'br'});
+      this.getWallet(this.id);
     })
-    location.reload();
   }
 }

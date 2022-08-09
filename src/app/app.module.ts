@@ -31,6 +31,7 @@ import {MatInputModule} from "@angular/material/input";
 import {MatNativeDateModule} from "@angular/material/core";
 import { EditTransactionComponent } from './home/edit-transaction/edit-transaction.component';
 import { AddTransactionComponent } from './home/add-transaction/add-transaction.component';
+import {MatPaginatorModule} from '@angular/material/paginator';
 
 @NgModule({
   declarations: [
@@ -65,7 +66,8 @@ import { AddTransactionComponent } from './home/add-transaction/add-transaction.
     NgxSliderModule,
     MatDatepickerModule,
     MatInputModule,
-    MatNativeDateModule
+    MatNativeDateModule,
+    MatPaginatorModule
   ],
   providers: [
     {

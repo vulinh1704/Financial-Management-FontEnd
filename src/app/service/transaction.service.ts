@@ -47,4 +47,7 @@ export class TransactionService {
     return this.httpClient.get(API + `/find-all-Expense-6Month/${id}`);
   }
 
+  findAllTransactionsByCategoryID(id: any): Observable<any> {
+    return this.httpClient.get(API + 'find-by-category/'+ id);
+  }
 }
