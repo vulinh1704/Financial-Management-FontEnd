@@ -419,10 +419,10 @@ export class HomeComponent implements OnInit {
       this.max = transactions[0].totalSpent;
       this.min = transactions[0].totalSpent;
       for (let i = 0; i < transactions.length; i++) {
-        if (transactions[0].totalSpent > this.value) {
+        if (transactions[i].totalSpent < this.min) {
           this.min = transactions[i].totalSpent;
         }
-        if (transactions[0].totalSpent < this.value) {
+        if (transactions[i].totalSpent > this.max) {
           this.max = transactions[i].totalSpent;
         }
       }
