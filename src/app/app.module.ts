@@ -91,6 +91,7 @@ import { AddFirstWalletComponent } from './login/add-first-wallet/add-first-wall
     MatDatepickerModule,
     MatInputModule,
     MatNativeDateModule,
+    NgxPaginationModule,
     MatPaginatorModule
   ],
   providers: [

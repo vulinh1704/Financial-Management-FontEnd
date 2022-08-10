@@ -25,7 +25,7 @@ export class UserService {
   }
 
   login(user: User): Observable<User> {
-    return this.httpClient.post<User>(environment.apiUrl + '/login', user);
+    return this.httpClient.post<User>(environment.apiUrl + 'login', user);
   }
 
   changePass(id: any, user: User): Observable<User> {

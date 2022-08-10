@@ -7,6 +7,9 @@ import {ExportService} from "../service/export.service";
 import Swal from "sweetalert2";
 import {Router} from "@angular/router";
 import {NgToastService} from "ng-angular-popup";
+import {PageEvent} from "@angular/material/paginator";
+import {WalletService} from "../service/wallet.service";
+import {FormControl, FormGroup} from "@angular/forms";
 
 Chart.register(...registerables);
 
@@ -20,32 +23,30 @@ export class HomeComponent implements OnInit {
   transactions: Transaction[] = [];
   idWallet: any;
 
-  //ranger
-  value: number = 0;
-  highValue: number = 0;
-  options: Options = {
-    floor: 0,
-    ceil: 1000,
-  };
-
   constructor(private transactionService: TransactionService,
               private exportService: ExportService,
+              private walletService: WalletService,
               private router: Router,
               private toast: NgToastService) {
     this.idWallet = localStorage.getItem("ID_WALLET");
   }
 
   ngOnInit(): void {
-    setTimeout(()=> {
+    setTimeout(() => {
       // @ts-ignore
       document.getElementById("defaultOpen").click();
-    },700)
+      this.chart2();
+    }, 700)
+    this.findMaxMin();
     this.showTransaction();
+    this.getData6Month();
+    this.getData6MonthExpense()
     this.chart();
-    this.chart2();
     this.chart3();
+    this.getNameCate();
 
   }
+
 
   isOpenHtml(id: any) {
     // @ts-ignore
@@ -185,31 +186,87 @@ export class HomeComponent implements OnInit {
 
 
   //biểu đồ 6 tháng gần nhất
+  transactionsIncomeMonth: any[] = [];
+  totalIncome: any[] = [];
+  lab: any[] = [];
+
   getData6Month() {
     let today = new Date();
-    let date = today.getMonth() + 1;
-    console.log('date',date);
+    this.transactionService.findAllTransactionsIncomeFor6Months().subscribe((transaction) => {
+      this.pushTotalIncome(transaction[today.getMonth() - 4 + '']);
+      this.pushTotalIncome(transaction[today.getMonth() - 3 + '']);
+      this.pushTotalIncome(transaction[today.getMonth() - 2 + '']);
+      this.pushTotalIncome(transaction[today.getMonth() - 1 + '']);
+      this.pushTotalIncome(transaction[today.getMonth() + '']);
+      this.pushTotalIncome(transaction[today.getMonth() + 1 + '']);
+    })
   }
+
+  pushTotalIncome(transactions: any) {
+    this.transactionsIncomeMonth = transactions;
+    if (this.transactionsIncomeMonth.length == 0) {
+      this.totalIncome.push(0);
+    } else if (this.transactionsIncomeMonth.length != 0) {
+      let total = 0;
+      for (let i = 0; i < this.transactionsIncomeMonth.length; i++) {
+        if (this.transactionsIncomeMonth[i].category.status == 1) {
+          total += this.transactionsIncomeMonth[i].totalSpent;
+        }
+      }
+      this.totalIncome.push(total);
+    }
+  }
+
+  transactionsExpenseMonth: any[] = [];
+  totalExpense: any[] = [];
+
+  getData6MonthExpense() {
+    let today = new Date();
+    this.transactionService.findAllTransactionsExpenseFor6Months().subscribe((transaction) => {
+      this.pushTotalExpense(transaction[today.getMonth() - 4 + '']);
+      this.pushTotalExpense(transaction[today.getMonth() - 3 + '']);
+      this.pushTotalExpense(transaction[today.getMonth() - 2 + '']);
+      this.pushTotalExpense(transaction[today.getMonth() - 1 + '']);
+      this.pushTotalExpense(transaction[today.getMonth() + '']);
+      this.pushTotalExpense(transaction[today.getMonth() + 1 + '']);
+      this.lab.push('Tháng ' + (today.getMonth() - 4) + '', 'Tháng ' + (today.getMonth() - 3) + '', 'Tháng ' + (today.getMonth() - 2) + '', 'Tháng ' + (today.getMonth() - 1) + '', 'Tháng ' + today.getMonth() + '', 'Tháng ' + (today.getMonth() + 1) + '')
+    })
+  }
+
+  pushTotalExpense(transactions: any) {
+    this.transactionsExpenseMonth = transactions;
+    if (this.transactionsExpenseMonth.length == 0) {
+      this.totalExpense.push(0);
+    } else if (this.transactionsExpenseMonth.length != 0) {
+      let total = 0;
+      for (let i = 0; i < this.transactionsExpenseMonth.length; i++) {
+        if (this.transactionsExpenseMonth[i].category.status == 2) {
+          total += this.transactionsExpenseMonth[i].totalSpent;
+        }
+      }
+      this.totalExpense.push(total);
+    }
+  }
+
   chart2() {
-    this.getData6Month();
     const ctx2 = document.getElementById('myChart2');
     // @ts-ignore
     const myChart2 = new Chart(ctx2, {
         type: 'bar',
         data: {
-          labels: ['Thu', 'Blue', 'Yellow', 'Green', 'Purple', 'Orange'],
+          labels: this.lab,
           datasets: [{
             label: 'Thu',
-            data: [12, 19, 3, 5, 2, 3],
-            backgroundColor: 'rgb(255, 99, 132)',
-            borderColor: 'rgb(255, 99, 132)',
+            data: this.totalIncome,
+            backgroundColor: 'rgb(114,231,217)',
+            borderColor: 'rgb(108,231,202)',
             borderWidth: 1
           },
             {
               label: 'Chi',
-              data: [6, 21, 3, 5, 2, 3],
-              backgroundColor: 'rgb(60,56,159)',
-              borderColor: 'rgb(150,33,58)',
+              data: this.totalExpense,
+              backgroundColor: 'rgb(217,122,136)',
+              borderColor: 'rgb(225,117,140)',
               borderWidth: 1
             }
           ],
@@ -306,6 +363,76 @@ export class HomeComponent implements OnInit {
         if (result.dismiss === Swal.DismissReason.timer) {
         }
       })
+  }
+
+  //ranger
+  value: number = 0;
+  highValue: number = 0;
+  options: Options = {};
+  max = 1000;
+  min = 0;
+  nameCate: any;
+  formSearch = new FormGroup({
+    startTime: new FormControl(),
+    endTime: new FormControl(),
+    status: new FormControl("1")
+  })
+
+  getNameCate() {
+    this.walletService.findById(this.idWallet).subscribe((wallet) => {
+      this.nameCate = wallet.moneyType.name;
+    })
+  }
+
+  searchWallet() {
+    console.log(this.formSearch.value.endTime)
+    if (this.formSearch.value.startTime == null) {
+      this.formSearch.value.startTime = "";
+    }
+    if (this.formSearch.value.endTime == null) {
+      this.formSearch.value.endTime = "";
+    }
+    this.transactionService.findAllTransactions(String(this.formSearch.value.startTime), String(this.formSearch.value.endTime), Number(this.formSearch.value.status), this.value, this.highValue).subscribe((transactions) => {
+      this.transactions = transactions;
+      console.log(this.transactions)
+    }, error => {
+    })
+  }
+
+  resetForm() {
+    this.showTransaction()
+    this.value = this.min;
+    this.highValue = this.max;
+    this.options = {
+      floor: this.min,
+      ceil: this.max,
+    };
+    this.formSearch = new FormGroup({
+      startTime: new FormControl(),
+      endTime: new FormControl(),
+      status: new FormControl("1")
+    })
+  }
+
+  findMaxMin() {
+    this.transactionService.findAll().subscribe((transactions) => {
+      this.max = transactions[0].totalSpent;
+      this.min = transactions[0].totalSpent;
+      for (let i = 0; i < transactions.length; i++) {
+        if (transactions[i].totalSpent < this.min) {
+          this.min = transactions[i].totalSpent;
+        }
+        if (transactions[i].totalSpent > this.max) {
+          this.max = transactions[i].totalSpent;
+        }
+      }
+      this.value = this.min;
+      this.highValue = this.max;
+      this.options = {
+        floor: this.min,
+        ceil: this.max,
+      };
+    })
   }
 
   //get idTransaction
