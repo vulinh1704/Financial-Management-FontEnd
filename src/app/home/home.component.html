@@ -133,7 +133,7 @@
                     <th scope="row">
                       <label class="form-label primary_checkbox d-flex me-12 ">{{i + 1}}</label>
                     </th>
-                    <td><i class="far fa-star"></i></td>
+                    <td></td>
                     <td>
                       <div class="d-flex align-items-center">
                         <div class="flex-shrink-0">
@@ -175,7 +175,10 @@
                 </table>
                 <div class="dataTables_scroll" id="DataTables_Table_0_paginate"
                      style="margin-left: 500px; margin-top: 20px">
-                  <pagination-controls (pageChange)="pageChangeEvent($event)"></pagination-controls>
+                  <pagination-controls
+                    previousLabel="Trước"
+                    nextLabel="Sau"
+                    (pageChange)="pageChangeEvent($event)"></pagination-controls>
                 </div>
 
               </div>

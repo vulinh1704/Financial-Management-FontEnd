@@ -39,7 +39,8 @@ export class HomeComponent implements OnInit {
       // @ts-ignore
       document.getElementById("defaultOpen").click();
       this.chart2();
-    }, 700)
+
+    }, 800)
     this.findMaxMin();
     this.showTransaction();
     this.getData6Month();
@@ -50,7 +51,6 @@ export class HomeComponent implements OnInit {
     this.showExpenseCategoryUpdate();
     this.showIncomeCategoryUpdate();
   }
-
 
   isOpenHtml(id: any) {
     // @ts-ignore
@@ -64,8 +64,9 @@ export class HomeComponent implements OnInit {
   }
 
   showTransaction() {
-    this.transactionService.findAll().subscribe(transactions => {
+    this.transactionService.findAll().subscribe((transactions) => {
       this.transactions = transactions;
+      this.transactionFile = [];
       this.transactionList();
     })
   }
@@ -296,7 +297,7 @@ export class HomeComponent implements OnInit {
     for (let i = 0; i < this.transactions.length; i++) {
       if (this.transactions[i].category.status == '1') {
         this.categoryStatus = 'Thu';
-      } else if (this.transactionsSpent[i].category.status == '2') {
+      } else if (this.transactions[i].category.status == '2') {
         this.categoryStatus = 'Chi';
       }
       this.transactionFile.push({
@@ -392,7 +393,6 @@ export class HomeComponent implements OnInit {
   }
 
   searchWallet() {
-    console.log(this.formSearch.value.endTime)
     if (this.formSearch.value.startTime == null) {
       this.formSearch.value.startTime = "";
     }
@@ -401,13 +401,13 @@ export class HomeComponent implements OnInit {
     }
     this.transactionService.findAllTransactions(String(this.formSearch.value.startTime), String(this.formSearch.value.endTime), Number(this.formSearch.value.status), this.value, this.highValue).subscribe((transactions) => {
       this.transactions = transactions;
-      console.log(this.transactions)
+      this.transactionFile = [];
+      this.transactionList();
     }, error => {
     })
   }
 
   resetForm() {
-    this.showTransaction()
     this.value = this.min;
     this.highValue = this.max;
     this.options = {
@@ -419,6 +419,7 @@ export class HomeComponent implements OnInit {
       endTime: new FormControl(),
       status: new FormControl("1")
     })
+    this.showTransaction()
   }
 
   findMaxMin() {
