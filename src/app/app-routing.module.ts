@@ -9,6 +9,8 @@ import {ProfileComponent} from "./profile/profile.component";
 import {ChangePasswordComponent} from "./change-password/change-password.component";
 import {ShowWalletComponent} from "./wallet/show-wallet/show-wallet.component";
 import {ShowCategoryComponent} from "./category/show-category/show-category.component";
+import {AddWalletComponent} from "./wallet/add-wallet/add-wallet.component";
+import {AddFirstWalletComponent} from "./login/add-first-wallet/add-first-wallet.component";
 
 const routes: Routes = [{
   path:'home',
@@ -32,12 +34,14 @@ const routes: Routes = [{
 }, {
   path: 'category',
   component: ShowCategoryComponent,
-  loadChildren: () => import('./category/show-category/show-category-routing.module').then(module => module.ShowCategoryRoutingModule)
 }, {
   path: 'user',
   canActivate: [AuthGuard],
   component: HomePageComponent,
   loadChildren: () => import('./user/user-routing.module').then(module => module.UserRoutingModule)
+}, {
+  path: 'create',
+  component: AddFirstWalletComponent,
 }];
 
 @NgModule({

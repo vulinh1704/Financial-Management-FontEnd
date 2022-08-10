@@ -178,7 +178,9 @@ export class DetailWalletComponent implements OnInit {
       },180)
     }, (error) => {
       this.toast.error({detail: "Thông báo", summary: "Sửa ví thất bại!", duration: 3000, position: 'br'});
-      this.getWallet(this.id);
+      setInterval(() => {
+        location.reload()
+      },180)
     })
   }
 }
