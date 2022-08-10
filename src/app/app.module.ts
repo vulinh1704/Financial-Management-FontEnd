@@ -29,7 +29,6 @@ import {NgxSliderModule} from "@angular-slider/ngx-slider";
 import {MatDatepickerModule} from "@angular/material/datepicker";
 import {MatInputModule} from "@angular/material/input";
 import {MatNativeDateModule} from "@angular/material/core";
-import { EditTransactionComponent } from './home/edit-transaction/edit-transaction.component';
 import { AddTransactionComponent } from './home/add-transaction/add-transaction.component';
 import {MatPaginatorModule} from '@angular/material/paginator';
 import {MatCardModule} from "@angular/material/card";
@@ -43,6 +42,15 @@ import {NgxPaginationModule} from "ngx-pagination";
 import {MatIconModule} from "@angular/material/icon";
 import {MatRadioModule} from "@angular/material/radio";
 import { AddFirstWalletComponent } from './login/add-first-wallet/add-first-wallet.component';
+
+//social-login
+
+import {
+  GoogleLoginProvider,
+  FacebookLoginProvider
+} from '@abacritt/angularx-social-login';
+import { SocialLoginComponent } from './social-login/social-login.component';
+import {SocialLoginModule, SocialAuthServiceConfig} from "@abacritt/angularx-social-login";
 
 @NgModule({
   declarations: [
@@ -61,9 +69,9 @@ import { AddFirstWalletComponent } from './login/add-first-wallet/add-first-wall
     ShowCategoryComponent,
     AddCategoryComponent,
     DetailWalletComponent,
-    EditTransactionComponent,
     AddTransactionComponent,
     AddFirstWalletComponent,
+    SocialLoginComponent,
   ],
   imports: [
     MatInputModule,
@@ -92,7 +100,8 @@ import { AddFirstWalletComponent } from './login/add-first-wallet/add-first-wall
     MatInputModule,
     MatNativeDateModule,
     NgxPaginationModule,
-    MatPaginatorModule
+    MatPaginatorModule,
+    SocialLoginModule
   ],
   providers: [
     {
@@ -101,6 +110,26 @@ import { AddFirstWalletComponent } from './login/add-first-wallet/add-first-wall
     }, {
       provide: HTTP_INTERCEPTORS,
       useClass: ErrorInterceptor, multi: true
+    },{
+      provide: 'SocialAuthServiceConfig',
+      useValue: {
+        autoLogin: false,
+        providers: [
+          {
+            id: GoogleLoginProvider.PROVIDER_ID,
+            provider: new GoogleLoginProvider(
+              '503653920031-kj2bqusrbsu9qi3g16d12p91gmut1h79.apps.googleusercontent.com'
+            )
+          },
+          {
+            id: FacebookLoginProvider.PROVIDER_ID,
+            provider: new FacebookLoginProvider('537877904691106')
+          }
+        ],
+        onError: (err) => {
+          console.error(err);
+        }
+      } as SocialAuthServiceConfig,
     }
   ],
   bootstrap: [AppComponent]

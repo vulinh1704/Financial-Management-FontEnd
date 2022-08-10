@@ -79,3 +79,53 @@ button:hover {
 }
 
 .topright:hover {color: red;}
+
+/*edit*/
+
+/*tab*/
+#cateEdit{
+  overflow: hidden;
+  border: 1px solid #3b76ef;
+  background-color: white;
+  border-radius: 7px;
+}
+
+#cateEdit button {
+  background-color: inherit;
+  float: left;
+  border: none;
+  outline: none;
+  cursor: pointer;
+  padding: 10px 10px;
+  transition: 0.3s;
+  font-size: 17px;
+}
+
+#cateEdit button:hover {
+  background-color: #eceeef;
+}
+
+#cateEdit button.active {
+  background-color: #4d84f5;
+  color: white;
+}
+
+#collect-edit {
+  padding: 6px 12px;
+  border: 1px solid #3b76ef;
+  border-top: none;
+  border-radius: 7px;
+}
+
+#spend-edit {
+  display: none;
+  padding: 6px 12px;
+  border: 1px solid #3b76ef;
+  border-top: none;
+  border-radius: 7px;
+}
+
+.tdTbale {
+  border: 1px solid #6aaaea;
+  text-align: center;
+}

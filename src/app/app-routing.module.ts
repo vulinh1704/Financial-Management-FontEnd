@@ -34,7 +34,6 @@ const routes: Routes = [{
 }, {
   path: 'category',
   component: ShowCategoryComponent,
-  loadChildren: () => import('./category/show-category/show-category-routing.module').then(module => module.ShowCategoryRoutingModule)
 }, {
   path: 'user',
   canActivate: [AuthGuard],

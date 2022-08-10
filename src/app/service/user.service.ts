@@ -41,4 +41,7 @@ export class UserService {
     return this.httpClient.get<User>(API_URL + `/${id}` )
   }
 
+  findByUsername(username: any) : Observable<any> {
+    return this.httpClient.get<any>(API_URL + `/find-by-username/${username}` )
+  }
 }
