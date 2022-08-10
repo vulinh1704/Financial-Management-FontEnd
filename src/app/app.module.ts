@@ -42,6 +42,7 @@ import {MatProgressBarModule} from "@angular/material/progress-bar";
 import {NgxPaginationModule} from "ngx-pagination";
 import {MatIconModule} from "@angular/material/icon";
 import {MatRadioModule} from "@angular/material/radio";
+import { AddFirstWalletComponent } from './login/add-first-wallet/add-first-wallet.component';
 
 @NgModule({
   declarations: [
@@ -62,6 +63,7 @@ import {MatRadioModule} from "@angular/material/radio";
     DetailWalletComponent,
     EditTransactionComponent,
     AddTransactionComponent,
+    AddFirstWalletComponent,
   ],
   imports: [
     MatInputModule,

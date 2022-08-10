@@ -173,10 +173,14 @@ export class DetailWalletComponent implements OnInit {
     console.log(this.walletEdit);
     this.walletService.update(this.id, this.walletEdit).subscribe(() => {
       this.toast.success({detail: "Thông báo", summary: "Sửa ví thành công!", duration: 3000, position: 'br'});
-      this.getWallet(this.id);
+      setInterval(() => {
+        location.reload()
+      },180)
     }, (error) => {
       this.toast.error({detail: "Thông báo", summary: "Sửa ví thất bại!", duration: 3000, position: 'br'});
-      this.getWallet(this.id);
+      setInterval(() => {
+        location.reload()
+      },180)
     })
   }
 }
