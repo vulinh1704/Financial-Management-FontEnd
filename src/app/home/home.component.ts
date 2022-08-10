@@ -324,7 +324,7 @@ export class HomeComponent implements OnInit {
       },
       willClose: () => {
         clearInterval(timerInterval);
-        this.exportService.exportExcel(this.transactionFile, 'transactions');
+        this.exportService.exportExcel(this.transactionFile, 'danh_sach_giao_dich');
       }
     }).then((result) => {
       /* Read more about handling dismissals below */
@@ -368,7 +368,10 @@ export class HomeComponent implements OnInit {
   //ranger
   value: number = 0;
   highValue: number = 0;
-  options: Options = {};
+  options: Options = {
+    floor: 0,
+    ceil: 1,
+  };
   max = 1000;
   min = 0;
   nameCate: any;
